@@ -1,0 +1,244 @@
+---
+layout: default
+---
+<style>
+  th, td { white-space: nowrap; }
+  .selected{
+  background-color: #acbad4; 
+  }
+</style>
+
+  <section class="content" >
+    <ul id="myTab" class="nav nav-tabs">
+            <li class="active"><a href="#order" data-toggle="tab" id="hw">华为技术</a></li>
+            <li><a href="#order" data-toggle="tab" id="zx">中兴通讯</a></li>
+            <li><a href="#order" data-toggle="tab" id="fh">烽火通信</a></li>
+            <li><a href="#order" data-toggle="tab" id="njy">诺基亚</a></li>
+            <li><a href="#order" data-toggle="tab" id="hs">杭州华三</a></li>
+            <li><a href="#order-1" data-toggle="tab" id="other">其他客户</a></li>
+        </ul>
+        <div id="myTabContent" class="tab-content" style="display: inline;">
+          <div class="tab-pane fade in active" id="order">
+              <div class="box" >
+                  <div class="box-body" style="height: 550px;overflow:scroll;" >
+                      <div class="col-xs-12">
+                        <table id="example" class="table table-bordered " >
+                            <thead>
+                              <tr>
+                                  <th>ID</th>
+                                  <th>上传日期</th>
+                                  <th>采购模式</th>
+                                  <th>订单号</th>
+                                  <th>订单行</th>
+                                  <th>型号</th>
+                                  <th>项目编码</th>
+                                  <th>K3代码</th>
+                                  <th>需求数量</th>
+                                  <th>已关联数量</th>
+                                  <th>剩余数量</th>
+                                  <th>需求日期</th>
+                                  <th>任务令号</th>                       
+                                  <th>价格</th>
+                                  <th>下单日期</th>
+                              </tr>
+                            </thead>
+                        </table>
+                      </div>
+                  </div>
+                  <div class="box-footer">
+                    <div class="col-xs-4">
+                        <form id= "uploadForm">
+                          <div class="col-xs-7">
+                            <input type="hidden" id="order_type" name="type" value="hw" />
+                            <input type="file" name="file" accept=".xls,.xlsx" style="display: inline;">
+                          </div> 
+                          <div class="col-xs-5">
+                            <input type="button" value="上传" class="btn btn-info" onclick="doUpload()" style="display: inline;"/> 
+                          </div> 
+                        </form>
+                    </div>
+                    <div class="col-xs-8">
+                      <div class="col-md-5">
+                       
+                      </div>
+                      <div class="col-md-5">
+                        
+                      </div>
+                      <div class="col-md-2">
+                        <button class="btn btn-info" id="create">生成</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+<!-- model -->
+<div class="modal fade" id="myModal" role="dialog" aria-labelledby="myModalLabel" >
+    <div class="modal-dialog" role="document" style="width: 900px">
+      <div class="modal-content" >
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h2 class="modal-title" id="myModalLabel" align="center">销售订单</h2>
+        </div>
+        <form id="orderform" >
+        <div class="modal-body">
+            <div class="row">
+              <div class="col-xs-4">
+                  <span>
+                      编&emsp;&emsp;&emsp;&emsp;号：
+                    </span>
+                    <input type="text" id="bh" name="bh"> 
+                </div><!-- /.col-lg-4 -->
+                <div class="col-xs-4"> 
+                    <span>
+                      购货单位：
+                    </span>
+                    <select name="ghdw" id="ghdw" class="form-control" style="width: 134px;display: inline; height: 26px"></select>
+                </div><!-- /.col-lg-4 -->
+                <div class="col-xs-4">  
+                    <span>
+                      订单类型：
+                    </span>
+                    <input type="text" id="ddlx" name="ddlx"> 
+                </div><!-- /.col-lg-4 -->
+            </div><!-- row -->
+            <div class="row">
+              <div class="col-xs-4">
+                <span>
+                   客户订单编号：
+                </span>
+                <input type="text" id="ddbh" name="ddbh">
+                </div><!-- /.col-lg-4 -->
+                <div class="col-xs-4"> 
+                    <span>
+                      接单日期：
+                    </span>
+                    <input type="text" id="jdrq" name="jdrq">  
+                </div><!-- /.col-lg-4 -->
+                <div class="col-xs-4">  
+                    <span>
+                      客户代码：
+                    </span>
+                    <input type="text" id="khdm" name="khdm"> 
+                </div><!-- /.col-lg-4 -->
+            </div>
+            <div class="row">
+              <div class="col-xs-4">
+                <span>
+                  销售&emsp;&emsp;片区：
+                </span>
+                <input type="text" id="xspq" name="xspq">
+                </div><!-- /.col-lg-4 -->
+                <div class="col-xs-4"> 
+                    <span>
+                      日&emsp;&emsp;期：
+                    </span>
+                    <input type="text" id="rq" name="rq">  
+                </div><!-- /.col-lg-4 -->
+                <div class="col-xs-4">  
+                    <!-- <span>
+                      币&emsp;&emsp;别：
+                    </span>
+                    <input type="text" id="bb" name="bb">  -->
+                     <span>
+                      制&emsp;&emsp;单：
+                    </span>
+                    <input type="text" id="zd" name="zd"> 
+                </div><!-- /.col-lg-4 -->
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                  <div class="box" style="height: 350px;overflow:scroll;">
+                    <div class="box-body">
+                      <table id="example2" class="table table-bordered ">
+                        <thead>
+                          <tr>
+                            <th>客户订单行号</th>
+                            <th>对应代码</th>
+                            <th>数量</th>
+                            <th>任务令</th>
+                            <th>产品代码</th>
+                            <th>产品名称</th>
+                            <th>规格型号</th>
+                            <th>单位</th>
+                            <th>单价</th>
+                            <th>税率（％）</th>
+                            <th>含税单价</th>
+                            <th>交货日期</th>
+                            <th>承诺交货日期</th>
+                            <th>物料分类</th>
+                          </tr>
+                        </thead> 
+                        <tbody></tbody>      
+                      </table>
+                    </div> 
+                  </div>                      
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-3">
+                  <div class="form-group">
+                    <span>
+                      部门：
+                    </span>
+                    <select class="form-control select2 " id="bm"  name="bm" style="width: 100%;">
+                      <!-- <option value="510">营销部门</option> -->
+                    </select>
+                  </div>
+                </div>
+                <div class="col-xs-3"> 
+                    <span>
+                      业务员：
+                    </span>
+                    <select class="form-control select2" id="ywy" name="ywy" style="width: 100%;">
+                      
+                    </select> 
+                </div>
+                <div class="col-xs-3">  
+                    <span>
+                      销售方式：
+                    </span>
+                    <select class="form-control select2" id="xsfs" name="xsfs" style="width: 100%;">
+                      <!-- <option value="101">赊销</option> -->
+                    </select> 
+                </div>
+                <div class="col-xs-3">  
+                    <span>
+                      币别：
+                    </span>
+                    <select class="form-control select2" id="bb" name="bb" style="width: 100%;">
+                      <!-- <option value="1">人民币</option> -->
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+          <div class="col-xs-12">
+            <button type="button" class="btn btn-default " data-dismiss="modal">退出</button>
+            <button id="save" type="button" class="btn btn-primary pull-left">保存</button>
+          </div>
+        </div>
+        </form>
+      </div>
+    </div>
+</div>
+<!-- <div class="model fade" id="Model" tabindex="-1" role="dialog" aria-labelledby="ModelLabel">
+  <div class="modal-content" >
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <h2 class="modal-title" id="myModalLabel" align="center">销售订单</h2>
+    </div>
+    <div class="model-body">
+      
+    </div>
+    <div class="modal-footer">
+      <div class="col-lg-12">
+        <button type="button" class="btn btn-default " data-dismiss="modal">退出</button>
+        <button id="save" type="button" class="btn btn-primary pull-left">保存</button>
+      </div>
+    </div>
+  </div>
+</div> -->
+<script src="../../javascript/k3/sales_order2.js"></script>

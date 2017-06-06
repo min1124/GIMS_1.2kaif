@@ -1,0 +1,76 @@
+---
+layout: default
+--- 
+
+
+ 	<section class="content">
+		<ul class="nav nav-tabs">
+            <li class="active"><a href="#insert" data-toggle="tab" >信息录入</a></li>
+            <li><a href="#search" data-toggle="tab" >信息查询</a></li>
+        </ul>
+        <div id="myTabContent" class="tab-content" style="display: inline;">
+        	<div class="tab-pane fade in active" id="insert">	 
+		 		<div class="box">
+		 			<div class="box-header">
+		 				<div class="col-xs-4">
+			                <span>编号</span>
+			                <input type="text" id="bh">
+			            </div>
+			            <div class="col-xs-4">
+			                <span>物料代码</span>
+			                <select name="" id="wldm" class="form-control" style="display:inline;width: 135px;height: 100%"></select>
+			            </div>
+
+			            <div class="col-xs-4">
+			                <span>数量</span>
+			                <input type="text" id="sl">
+			            </div>
+			            <div class="col-xs-4">
+			                <span>盒号</span>
+			                <input type="text" id="hh">
+			            </div>
+			            <div class="col-xs-4">
+			            	
+			            </div>
+			            <div class="col-xs-4">
+			            	<button class="btn primary pull-right" style="display:none;" id="save">保存</button>
+			            </div>
+		          	</div>
+		 			<div class="box-body">
+		 				<table id="example" class="table table-bordered " >
+		 					<thead>
+		 						<tr>
+		 							<th>盒号</th>
+		 							<th>批号</th>
+		 							<th>物料代码</th>
+		 							<th>数量</th>
+		 							<th>保质期</th>	
+		 						</tr>
+		 					</thead>
+		 				</table>
+		 			</div>
+		 		</div>
+		 	</div>
+		 	<div class="tab-pane fade" id="search">
+		 		<div class="box">
+		 			<div class="box-body">
+		 				<table id="example1" class="table table-bordered " >
+		 					<thead>
+		 						<tr>
+		 							<th>编号</th>
+		 							<th>盒号</th>
+		 							<th>批号</th>
+		 							<th>物料代码</th>
+		 							<th>数量</th>
+		 							<th>保质期</th>
+		 							<th>保存日前</th>	
+		 						</tr>
+		 					</thead>
+		 				</table>
+		 			</div>
+		 		</div>	 
+		 	</div>
+	 	</div>
+ 	</section>
+
+<script src="../../javascript/k3/tabbox.js"></script>

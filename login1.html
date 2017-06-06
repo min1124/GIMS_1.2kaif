@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+	<title>GIMS登录</title>
+	<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" href="bootstrap/css/login.css">
+</head>
+<body>
+	<div class="container">
+		<form class="form-signin">
+			<h2 class="form-signin-heading">欢迎登录GIMS</h2>
+			<label for="inputEmail" class="sr-only">用户名</label>
+			<input type="text" id="name" class="form-control" placeholder="用户名" required autofocus>
+			<label for="inputPassword" class="sr-only">密码</label>	
+			<input type="password" id="password" class="form-control" placeholder="密码" required>
+			<div class="form-message" style="height: 20px;">
+			</div>
+			<input class="btn btn-lg btn-primary btn-block" type="button" id="btlogin" value="login">
+		</form>
+	
+	</div>
+<script src="plugins/jQuery/jQuery-2.1.4.min.js"></script>
+<script>
+document.cookie  = 'name='+"";
+$('#btlogin').on('click', function(){
+	var name = $('#name').val();
+	var password = $('#password').val();
+	// var url = "http://192.168.137.179:3000/login?t=" + Math.random();
+	var url = "http://192.168.7.82:3000/login?t=" + Math.random();
+	var data = {
+		name: name, 
+		password: password
+	};
+	if(name == "") {
+		$('#name').focus();
+		formMessage('登录工号不能为空','warning');
+	}
+	else {
+		$.support.cors = true;
+		$.ajax({
+			url: url,
+			datatype: "jsonp",
+			type: "POST",
+			data: data,
+			async:false,
+			error:function(XMLHttpRequest, textStatus, errorThrown){
+				alert(XMLHttpRequest +" , "+ textStatus + " , " + errorThrown);
+			},
+			success: function(rs){
+				if(rs.name != null){
+					document.cookie  = 'name='+rs.name;
+					document.cookie  = 'token='+rs.authentication_token;
+					// alert(document.cookie);
+					formMessage('登录成功。','warning');
+					// window.setTimeout(function () {
+						window.location.href = "index.html"
+					// },1000);
+				}
+				else {
+					formMessage('用户名或密码错误。','warning');
+					window.setTimeout(function() {
+						formMessage('','warning');
+					},1500);
+				}
+			}
+		});
+	}
+});
+
+function getxhr() {
+    if(window.XMLHttpRequest){
+      var xhr = new XMLHttpRequest();
+      return xhr;
+    }
+    else if(window.ActiveXObject){
+      var xhr = new ActiveXObject("Microsoft.XMLHTTP");
+      return xhr;
+    }
+    // var XMLHttpReq;
+    // XMLHttpReq = window.XMLHttpRequest? new XMLHttpRequest():new ActiveXObject("Microsoft.XMLHTTP");
+    // return XMLHttpReq;
+ }
+//提示信息
+function formMessage(msg, type) {
+	$('.form-message').html('');
+	$('.form-message').append('<div class="form-"' + type +'-text">' + msg + '</div>');
+}
+</script>
+</body>
+</html>
+

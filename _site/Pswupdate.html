@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>AdminLTE 2 | Registration Page</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <!-- Bootstrap 3.3.5 -->
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="plugins/font-awesome-4.5.0/css/font-awesome.min.css">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="plugins/ionicons-2.0.1/css/ionicons.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="dist/css/AdminLTE.min.css">
+  </head>
+  <body class="hold-transition register-page">
+    <div class="register-box">
+      <div class="register-logo">
+        <a href=""><b>正源</b>Gims</a>
+      </div>
+
+      <div class="register-box-body">
+        <p class="login-box-msg">密码修改</p>
+        <!-- <form> -->
+          <div class="form-group has-feedback">
+            <input type="text" class="form-control" placeholder="姓名" id="name">
+            <span class="glyphicon glyphicon-user form-control-feedback"></span>
+          </div>
+          <!-- <div class="form-group has-feedback">
+            <input type="text" class="form-control" placeholder="工号" id="work_no">
+            <span class="glyphicon glyphicon-list-alt form-control-feedback"></span>
+          </div> -->
+          <div class="form-group has-feedback">
+            <input type="password" class="form-control" placeholder="Old Password" id="oldpassword">
+            <span class="glyphicon glyphicon-log-in form-control-feedback"></span>
+          </div>
+          <div class="form-group has-feedback">
+            <input type="password" class="form-control" placeholder="New Password" id="newpassword">
+            <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+          </div>
+          <div class="form-group has-feedback">
+            <input type="password" class="form-control" placeholder="Retype password" id="repassword">
+            <span class="glyphicon glyphicon-log-in form-control-feedback"></span>
+          </div>
+          <div class="row">
+            <div class="col-xs-4">
+              <button class="btn btn-primary btn-block btn-flat" id="pswupdate">密码修改</button>
+            </div><!-- /.col -->
+            <div class="col-xs-4">
+              
+            </div>
+            <!-- <div class="col-xs-4">
+              <button class="btn btn-primary btn-block btn-flat" id="power">权限申请</button>
+            </div> -->
+          </div>
+        <!-- </form> -->
+
+    </div><!-- /.register-box -->
+
+    <!-- jQuery 2.1.4 -->
+    <script src="plugins/jQuery/jquery-1.11.0.min.js"></script>
+    <!-- Bootstrap 3.3.5 -->
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+    <!-- iCheck -->
+    <!-- <script src="plugins/iCheck/icheck.min.js"></script> -->
+    <script>
+      $(function () {
+        $('#pswupdate').click(function(){
+        	var name = $("#name").val();
+          	// var work_no = $('#work_no').val();
+          	var oldpsw = $('#oldpassword').val();
+          	var newpsw = $('#newpassword').val();
+          	if(name==""||oldpsw==""||newpsw==""){
+				alert("请输入完整信息")
+			}else{
+				if(newpsw==$('#repassword').val()){
+					$.ajax({  //获得部门
+			            'url':'http://192.168.7.82:3001/user/pswupdate',
+			            // 'url':'http://localhost:3000/user/pswupdate',   
+			            'type': 'post',
+			            'data':{
+			            	name:name,
+			            	newpsw:newpsw,
+			            	oldpsw:oldpsw,
+			            	// work_no: work_no,
+			            },
+			            'error': function(rs){
+			            	alert("网络错误，请刷新页面")
+			            },
+			            'success': function(rs){
+			            	alert(rs)
+			            	if (rs == "修改密码成功"){
+			            		window.location.href = "../login.html"
+			            	}
+							
+			            }
+			        });
+				}else{
+					alert('密码不一致，请重新输入！')
+				}
+			}
+        });
+        $('#power').click(function(){
+        	window.location.href = "power.html"
+        });
+      });
+    </script>
+  </body>
+</html>

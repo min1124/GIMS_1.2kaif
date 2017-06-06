@@ -1,0 +1,21 @@
+body {
+	background-color: #eee;
+}
+.form-control {
+	width: 100%;
+	border-bottom-left-radius: 0;
+	border-bottom-right-radius: 0;
+}
+
+.form-signin {
+	max-width: 330px;
+	margin: 150px auto;
+	padding: 15px;
+}
+
+#btlogin {
+	padding: 0;
+}
+#sign {
+	padding: 0;
+}

@@ -1,0 +1,76 @@
+---
+layout: default
+--- 
+
+	<section class="content">
+      <div class="row">
+        <div class="col-xs-5">
+          <div class="box">
+            <div class="box-header">
+                <h3 class="box-title">物料长代码:</h3>
+                <input type="text" id="code" class="form-control" style="float: right;">
+            </div><!-- /.box-header -->
+            <div class="box-body">
+              <button type="button" class="btn btn-info" id="search">查询</button>
+              <!-- <button type="button" class="btn btn-info">导出</button> -->
+              <p>
+                <input type="checkbox" id="box"><span>不显示‘不良品、呆滞品、隔离品、客退品库’</span>
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-xs-7">
+          <div class="box" >
+            <div class="box-header">
+                <h3 class="box-title" style="float: left;">BOM总代码信息</h3>
+                <div style="float: right;"><span>合计数量</span> <input type="text" id="total" readonly></div>
+            </div><!-- /.box-header -->
+             <div class="box-body">
+                <table id="example" class="table table-bordered table-striped">
+                  <thead>
+                    <tr>
+                      <th>物料代码</th>
+                      <th>仓库</th>
+                      <th>数量</th>
+                      <!-- <th>编辑</th>
+                      <th>删除</th> -->
+                    </tr>
+                  </thead>
+                </table>
+              </div><!-- /.box-body -->
+          </div>
+        </div>
+
+        <div class="col-xs-12">
+          <div class="box" style="overflow:scroll;">
+            <div class="box-header">
+              <h3 class="box-title" >BOM子项物料信息</h3>
+              
+            </div><!-- /.box-header -->
+                <div class="box-body">
+                  <table id="example1" class="table table-bordered table-striped">
+                    <thead>
+                      <tr>
+                      <!-- <th>BOM内码</th>
+                      <th>子料内码</th>
+                      <th>子料编号</th> -->
+                      <th>物料代码</th>
+                      <th>物料名称</th>
+                      <th>物料型号</th>
+                        <th>单位用量</th>
+                        <th>物料属性</th>
+                        <th>即时库存</th>
+                      <th>备注</th>
+                      </tr>
+                    </thead>
+                   
+                    
+                  </table>
+                </div><!-- /.box-body -->
+          </div><!-- /.box -->
+
+        </div><!-- /.col -->
+      </div><!-- /.row -->         
+    </section>      
+
+<script src="../../javascript/k3/bom.js"></script>  

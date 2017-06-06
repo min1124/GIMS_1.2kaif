@@ -1,0 +1,39 @@
+---
+layout: default
+--- 
+<div class="content-wrapper">
+	<div class="box">
+		<div class="box-header">
+			<div class="col-xs-3">
+				<button id="search" type="button" class="btn btn-info">查询</button>
+			</div>	
+			<div class="col-xs-3">
+				<span>物料代码</span>
+				<input type="text" id="fnumber">
+			</div>
+			<div class="col-xs-3">
+				<span>物料名称</span>
+				<input type="text" id="fname">
+			</div>
+			<div class="col-xs-3">
+				<span>物料型号</span>
+				<input type="text" id="fmodel">
+			</div>
+		</div>
+		<div class="box-body" style="overflow:scroll;">
+			<div class="col-xs-12">
+				<table id="example" class="table table-bordered " >
+                    <thead>
+			            <tr>
+			                <th>物料代码</th>
+			                <th>物料名称</th>
+			                <th>物料型号</th>
+			            </tr>
+			        </thead>
+                </table>
+			</div>
+		</div>
+		</div>
+	</div>
+</div>
+<script src="../../javascript/k3/icsearch.js"></script>

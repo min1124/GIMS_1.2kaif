@@ -1,0 +1,220 @@
+---
+layout: default
+--- 
+<style>
+  th, td { white-space: nowrap; }
+  /*#example  tr th{
+    width: 100px;
+  }*/
+</style>
+  <section class="content">
+    <div class="row" >
+      <div class="col-xs-10">
+        <div class="box" >
+          <div class="box-header">
+            <table id="example1" class="table table-bordered " style="table-layout:fixed;">
+              <thead>
+                <tr>
+                  <th>逻辑</th>
+                  <th>项目</th>
+                  <th>关系</th>
+                  <th>数值</th>
+                  <th><button class="addBtn"><i class="fa fa-fw fa-plus"></i></button></th>
+                </tr>
+                <tr>
+                  <th>
+                    <select style="width: 100%;" class="form-control">
+                      <option value=""></option>
+                      <option value="and">and</option>
+                      <option value="or">or</option>
+                    </select>
+                  </th>
+                  <th>
+                    <select style="width: 100%;" class="form-control" id="a">
+                      <option value="K3出货日期">K3出货日期</option>
+                      <option value="出库单号">出库单号</option>
+                      <option value="对应代码">对应代码</option>
+                      <option value="对应名称">对应名称</option>
+                      <option value="制单人">制单人</option>
+                      <option value="要求到货时间">要求到货时间</option>
+                      <option value="客户订单编号">客户订单编号</option>
+                      <option value="收货确认人">收货确认人</option>
+                      <option value="客户收货时间">客户收货时间</option>
+                      <option value="送货单号">送货单号</option>
+                      <option value="发货时间">发货时间</option>
+                      <option value="订单类型">订单类型</option>
+                      <option value="签收回执">签收回执</option>
+                      <option value="货运单号">货运单号</option>
+                      <option value="货运单位">货运单位</option>
+                      <option value="客户发货地址">客户发货地址</option>
+                    </select>
+                  </th>
+                  <th>
+                    <select style="width: 100%;" class="form-control">
+                      <option value="=">=</option>
+                      <option value="<"><</option>
+                      <option value="<="><=</option>
+                      <option value=">">></option>
+                      <option value=">=">>=</option>
+                      <option value="like">like</option>
+                    </select>
+                  </th>
+                  <th><input type="text" style="width: 100%;" class="form-control"></th>
+                  <th><button class="delBtn"><i class="fa fa-fw fa-minus"></i></button></th>
+                </tr>
+              </thead>
+            </table>
+          </div> 
+        </div> 
+      </div>
+      <div class="col-xs-2">
+        <div class="box-body">
+          <button class="btn btn-info" id="search">查询</button>
+        </div>
+      </div>
+    </div>
+    <div class="row" >
+      <div class="col-xs-7" >
+        <div class="box" style="height: 600px;overflow:scroll;">
+          <div class="box-header">
+            <span>总金额：</span>
+            <input type="text" id="total">
+          </div>
+          <div class="box-body">
+            <table id="example" class="table table-bordered ">
+              <thead>
+                <tr>
+                  <th>K3出货日期</th>
+                  <th>产品代码</th>
+                  <th>产品名称</th>
+                  <th>出库单号</th>
+                  <th>制单人</th>  
+                  <th>实发数量</th>
+                  <th>客户发货地址</th>                       
+                  <th>客户订单编号</th>
+                  <th>对应代码</th>                        
+                  <th>要求到货时间</th>
+                  <th>订单类型</th>
+                  <th>签收回执</th>
+                  <th>收货确认人</th>
+                  <th>客户收货时间</th>
+                  <th>货运单位</th>
+                  <th>货运单号</th>
+                  <th>发货时间</th>
+                  <th>送货单号</th>
+                  <th>销售金额</th>
+                </tr>
+              </thead>
+              
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="col-xs-5">
+        <ul id="myTab" class="nav nav-tabs">
+          <li class="active">
+            <a href="#shdh_1" data-toggle="tab">
+              送货单号
+            </a>
+          </li>
+          <li><a href="#hydw_1" data-toggle="tab">货运单位</a></li>
+          <li><a href="#qrsh_1" data-toggle="tab">收货确认</a></li>
+          <li><a href="#qshz_1" data-toggle="tab">签收回执</a></li>
+        </ul>
+        <div id="myTabContent" class="tab-content">
+          <div class="tab-pane fade in active" id="shdh_1">
+            <div class="box">
+              <div class="box-body">
+                <div class="col-xs-4">
+                  <span>送货单号:</span>
+                </div>
+                <div class="col-xs-4">
+                  <input type="text" class="form-control" id="shdh">
+                </div>
+                <div class="col-xs-4">
+                  <button class="btn btn-info plgx1">批量更新</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="tab-pane fade" id="hydw_1">
+            <div class="box">
+              <div class="box-body">
+                <div class="col-xs-12">
+                  <div class="col-xs-4">
+                    <span>货运单位:</span>
+                  </div>
+                  <div class="col-xs-4">
+                    <select id="hydw" name="hydw" class="form-control"></select>
+                  </div>
+                  <div class="col-xs-4">
+                  </div>
+                </div>
+                <div class="col-xs-12">
+                  <div class="col-xs-4">
+                    <span>货运单号:</span>
+                  </div>
+                  <div class="col-xs-4">
+                    <input type="text" class="form-control" id="hydh">
+                  </div>
+                  <div class="col-xs-4">
+                    <button class="btn btn-info plgx2">批量更新</button>
+                  </div>
+                </div>
+                <div class="col-xs-12">
+                  <div class="col-xs-4">
+                    <span>发货时间:</span>
+                  </div>
+                  <div class="col-xs-6">
+                    <input type="datetime-local" class="form-control" id="fhsj">
+                  </div>
+                </div>
+              </div>
+            </div> 
+          </div>
+          <div class="tab-pane fade" id="qrsh_1">
+            <div class="box">
+              <div class="box-body">
+                <div class="col-xs-12">
+                  <div class="col-xs-4">
+                    <span>收货确认人:</span>
+                  </div>
+                  <div class="col-xs-4">
+                    <input type="text" class="form-control" id="shqrr">
+                  </div>
+                  <div class="col-xs-4">
+                    <button class="btn btn-info plgx3">批量更新</button>
+                  </div>
+                </div>
+                <div class="col-xs-12">
+                  <div class="col-xs-4">
+                    <span>客户收货时间:</span>
+                  </div>
+                  <div class="col-xs-5">
+                    <input type="date" class="form-control" id="shsj">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="tab-pane fade" id="qshz_1">
+            <div class="box">
+              <div class="box-body">
+                <div class="col-xs-4">
+                  <span>签收回执:</span>
+                </div>
+                <div class="col-xs-4">
+                  <input type="text" class="form-control" id="qshz">
+                </div>
+                <div class="col-xs-4">
+                  <button class="btn btn-info plgx4">批量更新</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div><!-- /.row -->
+  </section>
+
+<script src="../../javascript/k3/receive.js"></script>

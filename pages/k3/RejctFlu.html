@@ -1,0 +1,445 @@
+---
+layout: default
+--- 
+<style>
+	th, td { white-space: nowrap; }
+	.selected{
+	background-color: #acbad4; 
+	}
+</style>
+	<section class="content">
+      <div class="row">
+        <div class="col-xs-12"> 
+          <div class="box" >
+            <div class="box-header">
+                <h3 class="box-title">报废单审批</h3>
+            </div><!-- /.box-header -->
+            <div class="box-body">
+                <table id="example" class="table table-bordered ">
+                  <thead>
+                    <tr>
+                      <th>单据编号</th>
+                      <th>单据类别</th>
+                      <th>制单人</th>
+                      <th>制造单号</th>
+                      <th>产品代码</th>
+                      <th>产品名称</th>
+                      <th>制造单数量</th>
+                      <th>入库数量</th>
+                      <!-- <th>需报废数量</th> -->
+                      <th>部门</th>
+                      <th>日期</th>
+                      <th>成品率</th>
+                      <th>报废类型</th>
+                      <th>报废类别</th>
+                      <th>报废部门负责人</th>
+                      <th>ME负责人</th>
+                      <th>品质负责人</th>
+                      <th>生管负责人</th>
+                      <th>报废金额</th>
+                      <th>财务负责人</th>
+                      <th>分管副总</th>
+                      <th>仓管员</th>
+                    </tr>
+                  </thead>                     
+                </table>
+            </div><!-- /.box-body -->
+          </div>
+        </div>
+      </div><!-- /.row -->  
+    </section>
+
+<!-- Modal new -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" >
+    <div class="modal-dialog" role="document" style="width: 70%">
+      <div class="modal-content" >
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h2 class="modal-title" id="myModalLabel" align="center">报废申请表</h2>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-xs-4">
+                <span>
+                  单据类别：
+                </span>
+                <select id="djlx" name="djlx" class="form-control" style="display:inline;width: 135px;height: 100%">
+                  <option value="制造单报废"> 制造单报废</option>
+                  <option value="非制造单报废">非制造单报废</option>
+                </select>
+            </div><!-- /.col-xs-4 -->
+            <div class="col-xs-4">                      
+                <span>
+                  日&emsp;&emsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;期：
+                </span>
+                <input type="date" id="rq" style="display:inline;width: 135px;height: 100%">                     
+            </div><!-- /.col-xs-4 -->
+            <div class="col-xs-4">
+              <span>
+                报废类型：
+              </span>
+              <select id="bflx" name="bflx" class="form-control" style="display:inline;width: 135px;height: 100%" >
+                <option value="A暂存报废">A暂存报废</option>
+                <option value="B完全报废">B完全报废</option>
+              </select>
+            </div><!-- /.col-xs-4 -->
+          </div>
+          <div class="row">
+            <div class="col-xs-4">
+              <span>
+                报废类别：
+              </span>
+              <select id="bflb" name="bflb" class="form-control" style="display:inline;width: 135px;height: 100%" >
+                <option value="成品报废">成品报废</option>
+                <option value="原材料报废">原材料报废</option>
+              </select>
+            </div><!-- /.col-xs-4 -->
+            <div class="col-xs-4">                      
+                <span>
+                  部门／班组：
+                </span>
+                <select id="bmbz" name="bmbz" class="form-control" style="display:inline;width: 135px;height: 100%">
+                </select>                    
+            </div><!-- /.col-xs-4 -->
+            <div class="col-xs-4">
+               <span>
+                  单据编号：
+                </span>
+                <input type="text" id="djbh" disabled="disabled">   
+            </div><!-- /.col-xs-4 -->
+          </div>
+          <div class="row">
+            <div class="col-xs-4">
+                <span>
+                  制造单号：
+                </span>
+                <input type="text" id="zzdh" >                      
+            </div><!-- /.col-xs-4 -->
+            <div class="col-xs-4">                      
+                <span>
+                  产品&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;代码：
+                </span>
+                <input type="text" id="cpdm" disabled="disabled">                      
+            </div><!-- /.col-xs-4 -->
+            <div class="col-xs-4">
+                <span >
+                  产品名称：
+                </span>
+                <input type="text" id="cpmc" disabled="disabled">                     
+            </div><!-- /.col-xs-4 -->
+          </div>
+          <div class="row">
+            <div class="col-xs-4">
+                  <span>
+                    制造数量：
+                  </span>
+                  <input type="text" id="zzsl" disabled="disabled">                      
+            </div><!-- /.col-xs-4 -->
+            <div class="col-xs-4">                      
+                <span>
+                  入库&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;数量：
+                </span>
+                <input type="text" id="rksl" disabled="disabled">                      
+            </div><!-- /.col-xs-4 -->
+            <div class="col-xs-4">
+                <span >
+                  成&nbsp;&nbsp;品&nbsp;&nbsp;&nbsp;率：
+                </span>
+                <input type="text" id="cpl" disabled="disabled">                     
+            </div><!-- /.col-xs-4 -->
+          </div>
+          <div class="row">
+            <div class="col-xs-12">
+              <div class="box" style="height: 400px;">
+                <div class="box-body">
+                  <table id="example1" class="table table-bordered " style="table-layout:fixed;">
+                    <thead>
+                      <tr>
+                        <th>物料代码</th>
+                        <th>物料名称</th>
+                        <th>报废数量</th>
+                        <th>报废原因</th>
+                        <th>不良现象代码</th>
+                        <th>报废类型</th>
+                        <th><button class="addBtn"><i class="fa fa-fw fa-plus"></i></button></th>
+                      </tr>
+                      <tr>
+                        <th><input type="text" style="width: 100%"></th>
+                        <th><input type="text" style="width: 100%"></th>
+                        <th><input type="text" style="width: 100%;"></th>
+                        <th><input type="text" style="width: 100%;"></th>
+                        <th><input type="text" style="width: 100%;"></th>
+                        <th><input type="text" style="width: 100%;"></th>
+                        <th><button class="delBtn"><i class="fa fa-fw fa-minus"></i></button></th>
+                      </tr>
+                    </thead>       
+                  </table>
+                </div> 
+              </div>                      
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <div class="col-xs-12">
+            <button type="button" class="btn btn-default " data-dismiss="modal">退出</button>
+            <button id="save" type="button" class="btn btn-primary pull-left">保存</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<!-- Modal -->
+
+<!-- Modal reject -->
+<div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" >
+        <div class="modal-dialog" role="document" style="width: 900px">
+          <div class="modal-content" >
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h2 class="modal-title" id="myModalLabel" align="center">报废申请表</h2>
+            </div>
+            <div class="modal-body">
+              <div class="row">
+                <div class="col-xs-4">
+                    <span>
+                      单据类别：
+                    </span>
+                    <input type="text" id="djlb1" disabled="disabled">
+                </div><!-- /.col-xs-4 -->
+                <div class="col-xs-4">                      
+                    <span>
+                      日&emsp;&emsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;期：
+                    </span>
+                    <input type="text" id="rq1" disabled="disabled">               
+                </div><!-- /.col-xs-4 -->
+                <div class="col-xs-4">
+                  <span>
+                    报废类型：
+                  </span>
+                  <input type="text" id="bflx1" disabled="disabled">
+                </div><!-- /.col-xs-4 -->
+              </div>
+              <div class="row">
+                <div class="col-xs-4">
+                  <span>
+                    报废类别：
+                  </span>
+                  <input type="text" id="bflb1" disabled="disabled">
+                </div><!-- /.col-xs-4 -->
+                <div class="col-xs-4">                      
+                    <span>
+                      部门／班组：
+                    </span>
+                    <input type="text" id="bmbz1" disabled="disabled">              
+                </div><!-- /.col-xs-4 -->
+                <div class="col-xs-4">
+                   <span>
+                      单据编号：
+                    </span>
+                    <input type="text" id="djbh1" disabled="disabled">   
+                </div><!-- /.col-xs-4 -->
+              </div>
+              <div class="row">
+                <div class="col-xs-4">
+                    <span>
+                      制造单号：
+                    </span>
+                    <input type="text" id="zzdh1" disabled="disabled">          
+                </div><!-- /.col-xs-4 -->
+                <div class="col-xs-4">                      
+                    <span>
+                      产品&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;代码：
+                    </span>
+                    <input type="text" id="cpdm1" disabled="disabled">          
+                </div><!-- /.col-xs-4 -->
+                <div class="col-xs-4">
+                    <span >
+                      产品名称：
+                    </span>
+                    <input type="text" id="cpmc1" disabled="disabled">                     
+                </div><!-- /.col-xs-4 -->
+              </div>
+              <div class="row">
+                <div class="col-xs-4">
+                      <span>
+                        制造数量：
+                      </span>
+                      <input type="text" id="zzsl1" disabled="disabled">   
+                </div><!-- /.col-xs-4 -->
+                <div class="col-xs-4">                      
+                    <span>
+                      入库&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;数量：
+                    </span>
+                    <input type="text" id="rksl1" disabled="disabled">          
+                </div><!-- /.col-xs-4 -->
+                <div class="col-xs-4">
+                    <span >
+                      成&nbsp;&nbsp;品&nbsp;&nbsp;&nbsp;率：
+                    </span>
+                    <input type="text" id="cpl1" disabled="disabled">              
+                </div><!-- /.col-xs-4 -->
+              </div>
+              <div class="row">
+                <div class="col-xs-12">
+                  <div class="box" style="height: 350px;overflow:scroll;">
+                    <div class="box-body">
+                      <table id="example2" class="table table-bordered ">
+                        <thead>
+                          <tr>
+                            <th>物料代码</th>
+                            <th>物料名称</th>
+                            <th>报废数量</th>
+                            <th>报废原因</th>
+                            <th>不良现象代码</th>
+                            <th>报废类型</th>
+                          </tr>
+                        </thead>       
+                      </table>
+                    </div> 
+                  </div>                      
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <div class="col-xs-4">
+                <span>
+                  申请人：
+                </span>
+                <input type="text" id="sqr" disabled="disabled">
+              </div>
+              <div class="col-xs-4">
+                <span>
+                  报废部门负责人：
+                </span>
+                <input type="text" id="fzr" disabled="disabled"> 
+              </div>
+              <div class="col-xs-4">
+                <button class="btn btn-primary" id="sh">审核</button>
+                <button class="btn btn-primary" id="gb">终止</button>
+              </div>
+
+              <div class="col-xs-8">
+                <span class="pull-left" style="width: 20%">
+                  ME意见：
+                </span>
+                <input type="text" id="me" class="pull-left" style="width: 80%"> 
+              </div>
+              <div class="col-xs-4">
+                <span>
+                  ME负责人：
+                </span>
+                <input type="text" id="mer" disabled="disabled"> 
+              </div>
+              
+              <div class="col-xs-8">
+                <span class="pull-left" style="width: 20%">
+                  品质意见：
+                </span>
+                <input type="text" id="pz" class="pull-left" style="width: 80%"> 
+              </div>
+              
+              <div class="col-xs-4">
+                <span>
+                  品质负责人：
+                </span>
+                <input type="text" id="pzr" disabled="disabled"> 
+              </div>
+              <div class="col-xs-8">
+                <span class="pull-left" style="width: 20%">
+                  生管意见：
+                </span>
+                <input type="text" id="sg" class="pull-left" style="width: 80%"> 
+              </div>
+             
+              <div class="col-xs-4">
+                <span>
+                  生管负责人：
+                </span>
+                <input type="text" id="sgr" disabled="disabled"> 
+              </div>
+              <div class="col-xs-5">
+                <span class="pull-left" style="width: 33%">
+                  财务意见：
+                </span>
+                <input type="text" id="cw" class="pull-left" style="width: 67%"> 
+              </div>
+              <div class="col-xs-3">
+                <span>
+                  报废金额：
+                </span>
+                <input type="text" id="bfje" style="width: 60%" disabled="disabled"> 
+              </div>
+              <div class="col-xs-4">
+                <span>
+                  财务负责人：
+                </span>
+                <input type="text" id="cwr" disabled="disabled" disabled="disabled"> 
+              </div>
+              <div class="col-xs-8">
+                <span class="pull-left" style="width: 20%">
+                  分管副总意见：
+                </span>
+                <input type="text" id="fgfz" class="pull-left" style="width: 80%"> 
+              </div>
+              
+              <div class="col-xs-4">
+                <span>
+                  分管副总：
+                </span>
+                <input type="text" id="fgfzr" disabled="disabled"> 
+              </div>
+<!--               <div class="col-xs-8">
+                <span class="pull-left" style="width: 20%">
+                  总经理意见：
+                </span>
+                <input type="text" id="zjl" class="pull-left" style="width: 80%"> 
+              </div>
+              
+              <div class="col-xs-4">
+                <span>
+                  总经理：
+                </span>
+                <input type="text" id="zjlr" disabled="disabled"> 
+              </div>
+ -->              <div class="col-xs-8">
+              <input hidden="hidden" type="text" id="fcloseflag" disabled="disabled"> 
+              </div>
+              <div class="col-xs-4">
+                <span>
+                  仓库确认：
+                </span>
+                <input type="text" id="ckqr" disabled="disabled"> 
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+<!-- Modal -->
+
+<!-- Modal plsh,fgfzyj -->
+<div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" >
+  <div class="modal-dialog" role="document" style="width: 900px">
+    <div class="modal-content" >
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h2 class="modal-title" id="myModalLabel" align="center">批量审核</h2>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-xs-8">
+            <span class="pull-left" style="width: 20%">
+              分管副总意见：
+            </span>
+            <input type="text" id="fgfzyj" class="pull-left" style="width: 80%"> 
+          </div>
+          <div class="col-xs-2">
+            <button class="btn btn-primary" id="plshqr">审核</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Modal -->
+
+<script src="../../javascript/k3/reject.js"></script>  

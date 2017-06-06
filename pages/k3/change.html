@@ -1,0 +1,165 @@
+---
+layout: default
+---
+<style>
+  th, td { white-space: nowrap; }
+  .selected{
+  background-color: #acbad4; 
+  }
+  .loading img{
+        margin-top:50%;
+        margin-left:50%;  
+        width: 50px;
+        height: 50px;
+      }
+</style>
+	<section class="content" >
+		<div class="box">
+			<div class="box-header">
+			  <h3 class="box-title">投料变更单审批</h3>
+			</div>
+			<div class="box-body" style="height: 600px;overflow:scroll;">
+				<table id="example" class="table table-bordered  table-hover">
+				  <thead>
+				    <tr>
+				      <th>单据编号</th>
+				      <th>制单日期</th>
+				      <th>制单人</th>
+				      <th>审核人</th>
+				      <th>审核日期</th>
+				      <th>ME审核人</th>
+				      <th>ME审核日期</th>
+				      <th>品质审核人</th>
+				      <th>品质审核日期</th>
+				      <th>生产任务单号</th>
+				      <th>产品代码</th>
+				      <th>产品名称</th>
+				      <th>生产单位</th>
+				      <th>生产数量</th>
+				      <th>生产投料单号</th>
+				      <th>生产投料行号</th>
+				      <th>变更标志</th>
+				      <th>变更原因</th>
+				      <th>物料代码</th>
+				      <th>物料名称</th>
+				      <th>单位用量</th>
+				      <th>单位</th>
+				      <th>标准用量</th>
+				      <th>损耗率</th>
+				      <th>损耗数量</th>
+				      <th>应该数量</th>
+				      <th>计划投料数量</th>
+				      <th>计划发料日期</th>
+				      <th>仓库</th>
+				      <th>批号</th>
+				      <th>变更人</th>
+				      <th>变更日期</th>
+				      <th>备注</th>
+				    </tr>
+				  </thead>       
+				</table>
+			</div>
+		</div>
+	</section>
+	<div class="modal fade" id="Modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" >
+        <div class="modal-dialog" role="document" style="width: 1000px;">
+            <div class="modal-content" >
+            	<div class="modal-header">
+                	<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                	<h2 class="modal-title" id="myModalLabel" align="center">投料变更单</h2>
+                </div>
+                <div class="modal-body">
+                	<div class="box">
+                  		<div class="box-header">
+                    		<div class="col-xs-6">
+	                     		<span>单据编号：</span>
+	                      		<input type="text" id="djbh">
+	                    	</div>
+	                    	<div class="col-xs-6">
+								<div class="" style="float: right;">
+									<span>ME审核日期：</span>
+		                        	<input type="text" id="me_1">
+								</div>	                    	
+	                    	</div>
+		                    <div class="col-xs-6">
+		                        <span>制单日期：</span>
+	                      		<input type="text" id="zdrq">
+		                    </div>
+		                    <div class="col-xs-6">
+			                    <div class="" style="float: right;">
+			                        <span>品质审核日期：</span>
+			                        <input type="text" id="pz_1">
+			                    </div>
+		                    </div>
+                  		</div>
+		                <div class="box-body" style="overflow: scroll;">
+		                    <table id="example1" class="table table-bordered  table-hover">
+		                      	<thead>
+			                        <tr>
+			                          <th>生产任务单号</th>
+			                          <th>产品代码</th>
+			                          <th>产品名称</th>
+			                          <th>生产单位</th>
+			                          <th>生产数量</th>
+			                          <th>生产投料单号</th>
+			                          <th>生产投料行号</th>
+			                          <th>变更标志</th>
+			                          <th>变更原因</th>
+			                          <th>物料代码</th>
+			                          <th>物料名称</th>
+			                          <th>单位用量</th>
+			                          <th>单位</th>
+			                          <th>标准用量</th>
+			                          <th>损耗率</th>
+			                          <th>损耗数量</th>
+			                          <th>应发数量</th>
+			                          <th>计划投料数量</th>
+			                          <th>计划发料日期</th>
+			                          <th>仓库</th>
+			                          <th>批号</th>
+			                          <th>变更人</th>
+			                          <th>变更时间</th>
+			                          <th>备注</th>
+			                        </tr>
+		                      	</thead>
+		                    </table>
+		                </div>
+                	</div>
+              	</div>
+              	<div class="modal-footer" >
+	                <div class="col-xs-12">
+		                <div class="col-xs-4">
+		                    <span>制单人：</span>
+		                    <input type="text" id="zdr_1">
+		                </div>
+	                  	<div class="col-xs-4">
+		                    <span>ME审核人:</span>
+		                    <input type="text" id="me_2">
+	                  	</div>
+	                    <div class="col-xs-4">
+	                    	<button class="btn btn-info" id="review_1">审&emsp;&emsp;核</button>
+	                  	</div>
+	                  	<div class="col-xs-4">
+	                    	<span>生管审核人:</span><input type="text" id="shr">
+	                  	</div>
+	                  	<div class="col-xs-4">
+	                    	<span>品质审核人:</span>
+	                    	<input type="text" id="pz_2">
+	                  	</div>
+	                  	<div class="col-xs-4">
+	                    	<button class="btn btn-info" id="pzreview_1">品质确认</button>
+	                  	</div>
+	                </div>
+              	</div>
+            </div>
+          </div>
+        </div>
+	</div>
+	<div class="modal fade" id="myModal" role="dialog" aria-labelledby="myModalLabel" >
+		<div class="modal-dialog" role="document" >
+  			<div class="loading">
+  				<img src='../../bootstrap/loading.gif' />
+  			</div>
+	  	</div>
+	</div>
+<script src="../../javascript/k3/change.js"></script>  

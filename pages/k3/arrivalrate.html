@@ -1,0 +1,50 @@
+---
+layout: default
+--- 
+<style>
+	th, td { white-space: nowrap; }
+	.loading img{
+        margin-top:50%;
+        margin-left:50%;  
+        width: 50px;
+        height: 50px;
+      }
+</style>
+
+	<section class="content" >
+    	<div class="tab-pane fade in active" id="order">
+        	<div class="box" >
+            	<div class="box-body" style="height: 600px;overflow:scroll;" >
+                	<div class="col-xs-12">
+						<table id="example" class="table table-bordered " >
+		                    
+		                </table>
+					</div>
+            	</div>
+            	<div class="box-footer">
+            		<div class="col-xs-4">
+                		<form id= "uploadForm">
+                			<div class="col-xs-7">
+								<input type="file" name="file" accept=".xls,.xlsx" style="display: inline;">
+							</div> 
+							<div class="col-xs-5">
+					          <input type="button" value="上传" class="btn btn-info" onclick="doUpload()" style="display: inline;"/> 
+					        </div> 
+					    </form>
+					</div>
+					<div class="col-xs-2">
+						<select name="" id="select_time" class="form-control"></select>
+					</div>
+            	</div>
+            </div>
+        </div>
+    </section>
+
+<div class="modal fade" id="myModal" role="dialog" aria-labelledby="myModalLabel" >
+	<div class="modal-dialog" role="document" >
+			<div class="loading">
+				<img src='../../bootstrap/loading.gif' />
+			</div>
+  	</div>
+</div>
+<script src="../../javascript/k3/arrivalrate.js"></script>

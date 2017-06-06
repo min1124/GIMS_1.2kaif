@@ -1,0 +1,148 @@
+---
+layout: default
+--- 
+<section class="content">
+	<div class="row">
+		<div class="col-xs-12">  
+			<div class="box" >
+				<div class="box-header">
+					<h3 class="box-title">K3代码维护</h3>
+				</div>
+				<div class="box-body">
+					<table id="example" class="table table-bordered table-striped">
+						<thead>
+							<tr>
+								<th>ID</th>
+								<th>customer_number</th>
+								<th>product_model</th>
+								<th>fnumber</th>
+								<th>customer_code</th>
+								<th>product_line</th>
+								<th>customer_name</th>
+								<th>product_status</th>
+								<th>shipping_or_not</th>
+								<th>新增日期</th>
+								<th>备注</th>
+							</tr>
+						</thead>
+
+
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+</section> 
+
+<!-- Modal new -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" >
+	<div class="modal-dialog" role="document" style="width: 70%">
+		<div class="modal-content" >
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h2 class="modal-title" id="myModalLabel" align="center">K3代码新增</h2>
+			</div>
+			<div class="modal-body">
+				<table>
+					<tr>
+						<td style="width: 25%;text-align:right;">
+							<span>customer_number：</span>
+						</td>
+						<td style="width: 25%;text-align:left;">
+							<input type="text" id="customerNumber">
+						</td>
+						<td style="width: 25%;text-align:right;">
+							<span style="">product_model：</span>
+						</td>
+						<td style="width: 25%;text-align:left;">
+							<input type="text" id="productModel">
+						</td>
+					</tr>
+					<tr>
+						<td style="text-align:right;">
+							<span>fnumber：</span>
+						</td>
+						<td style="text-align:left;">
+							<input type="text" id="fnumber">
+						</td>
+						<td style="text-align:right;">
+							<span style="">customer_code：</span>
+						</td>
+						<td style="text-align:left;">
+							<input type="text" id="customerCode">
+						</td>
+					</tr>
+					<tr>
+						<td style="text-align:right;">
+							<span>product_line：</span>
+						</td>
+						<td style="text-align:left;">
+							<input type="text" id="productLine">
+						</td>
+						<td style="text-align:right;">
+							<span style="">customer_name：</span>
+						</td>
+						<td style="text-align:left;">
+							<input type="text" id="customerName">
+						</td>
+					</tr>
+					<tr>
+						<td style="text-align:right;">
+							<span>product_status：</span>
+						</td>
+						<td style="text-align:left;">
+							<input type="text" id="productStatus">
+						</td>
+						<td style="text-align:right;">
+							<span style="">shipping_or_not：</span>
+						</td>
+						<td style="text-align:left;">
+							<input type="text" id="shippingOrNot">
+						</td>
+					</tr>
+<!-- 					<tr>
+						<td style="width: 25%;text-align:right;">
+							<span>新增日期：</span>
+						</td>
+						<td style="width: 75%;text-align:left;">
+							<input type="text" id="updateDate">
+						</td>
+					</tr>
+ --><!-- 					<tr>
+						<td style="width: 25%;text-align:right;">
+							<span>备注：</span>
+						</td>
+						<td style="width: 75%;text-align:left;">
+							<input type="text" id="f11">
+						</td>
+					</tr>
+ -->					
+ 					<tr>
+						<td style="text-align:right;">
+							<span>新增日期：</span>
+						</td>
+						<td colspan="3" style="text-align:left;">
+							<textarea rows="2" cols="80%" id="updateDate"></textarea>
+						</td>
+					</tr>
+					<tr>
+						<td style="text-align:right;">
+							<span>备注：</span>
+						</td>
+						<td colspan="3" style="text-align:left;">
+							<textarea rows="2" cols="80%" id="f11"></textarea>
+						</td>
+					</tr>
+				</table>
+			</div>
+			<div class="modal-footer">
+				<div class="col-xs-12">
+					<button type="button" class="btn btn-default " data-dismiss="modal">退出</button>
+					<button id="save" type="button" class="btn btn-primary pull-left">保存</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- Modal -->
+<script src="../../javascript/k3/fnumber.js"></script>  
