@@ -1,5 +1,3 @@
-// var ip = 'http://localhost:3000/' 
-//var ip = 'http://172.16.20.4:3000/'
 var table
 var token 
 var name 

@@ -1,6 +1,4 @@
 jQuery.support.cors = true;
-// var ip = 'http://localhost:3000/'
-//var ip = 'http://192.168.7.82:3001/'
 var table
 var table1
 var type ="hw"
