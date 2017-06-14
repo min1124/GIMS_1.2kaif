@@ -30,6 +30,7 @@ layout: default
                 <table id="example" class="table table-bordered  table-hover">
                   <thead>
                     <tr>
+                      <th>配料时间</th>
                       <th>制造单号</th>
                       <th>产品代码</th>
                       <th>生产车间</th>
@@ -38,8 +39,8 @@ layout: default
                       <th>产品名称</th>
                       <th>产品要求</th>
                       <th>制单人</th>
-                      <th>包装要求</th>
-                      <th>批号</th>
+<!--                       <th>包装要求</th>
+ -->                      <th>批号</th>
                       <th>工程师</th>
                       <th>品质工程师</th>
                       <th>下单日期</th>
@@ -284,10 +285,17 @@ layout: default
                   <div class="col-xs-12">
                     <div class="input-group">
                       <span class="input-group-addon">
+                        配料时间:
+                      </span>
+                      <input id="plsj" type="text" class="form-control" aria-label="...">
+                    </div><!-- /input-group -->
+
+                    <!-- <div class="input-group">
+                      <span class="input-group-addon">
                         包装要求:
                       </span>
                       <input id="bzyq" type="text" class="form-control" aria-label="...">
-                    </div><!-- /input-group -->
+                    </div> --><!-- /input-group -->
                   </div>
                   <div class="col-xs-12">
                     <div class="box" style="overflow:scroll;">

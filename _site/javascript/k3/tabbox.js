@@ -1,5 +1,3 @@
-// var ip = 'http://localhost:3000/'
-//var ip = 'http://192.168.7.82:3001/'
 var hash
 var table
 var sumnum = 0

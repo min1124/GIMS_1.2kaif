@@ -8,7 +8,6 @@ $(function() {
 		"bDestroy":true,
     	"paging": false,
     	"lengthChange": false,
-    	//"searching": false,
     	"ordering": true,
     	"info": true,
     	"autoWidth": false,
@@ -116,18 +115,18 @@ $(function() {
 
 function initComplete(){
     var dataPlugin1='<div class="btn-group pull-left" role="group" aria-label="...">'+
-        '<button type="button" class="btn btn-default" id="add">新增</button>'+
-        '<button type="button" class="btn btn-default" id="delete">删除</button>'+
-        '</div>'
-    var dataPlugin2 = '<div id="cwcx" class=" pull-left dateRange"> '+
+                        '<button type="button" class="btn btn-default" id="add">新增</button>'+
+                        '<button type="button" class="btn btn-default" id="delete">删除</button>'+
+                    '</div>'
+    var dataPlugin2='<div id="cwcx" class=" pull-left dateRange"> '+
                         '<span>仓位：</span>'+
                         '<select id="cwcxsel" name="cwcxsel" class="form-control" style="display:inline;width: 140px;height: 100%">'+
-                          '<option selected="selected" value="all">全部</option>'+
-                          '<option value="VMI">VMI</option>'+
-                          '<option value="BHUB">BHUB</option>'+
-                          '<option value="B">B</option>'+
+                            '<option selected="selected" value="all">全部</option>'+
+                            '<option value="VMI">VMI</option>'+
+                            '<option value="BHUB">BHUB</option>'+
+                            '<option value="B">B</option>'+
                         '</select>'+
-                      '</div>';
+                    '</div>';
     $('.clear').append(dataPlugin1);
     $('.clear').append(dataPlugin2);
     $('#cwcx').css("margin-left","400px"); 

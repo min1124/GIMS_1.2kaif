@@ -2,9 +2,11 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
+    <!-- bootstrap不支持IE的兼容模式，因此加此行，在IE运行最新的渲染模式 -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title></title>
     <!-- Tell the browser to be responsive to screen width -->
+    <!-- 初始化移动浏览显示 宽度为设备的宽度，页面加载时，缩放比率为1，也就是不缩放 -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.5 -->
     <link rel="stylesheet" href="../../bootstrap/css/bootstrap.min.css">
@@ -38,8 +40,8 @@
     
     <!-- jQuery 2.1.4 -->
     <script src="../../plugins/jQuery/jquery-1.11.0.min.js"></script>
-
-
+    <!-- bootstrap模板为使IE6、7、8版本（IE9以下版本）浏览器兼容html5新增的标签，引入下面代码文件即可。 -->
+    <!-- bootstrap模板为使IE6、7、8版本（IE9以下版本）浏览器兼容css3样式，引入下面代码文件即可。 -->
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -78,6 +80,7 @@
                 <table id="example" class="table table-bordered  table-hover">
                   <thead>
                     <tr>
+                      <th>配料时间</th>
                       <th>制造单号</th>
                       <th>产品代码</th>
                       <th>生产车间</th>
@@ -86,8 +89,8 @@
                       <th>产品名称</th>
                       <th>产品要求</th>
                       <th>制单人</th>
-                      <th>包装要求</th>
-                      <th>批号</th>
+<!--                       <th>包装要求</th>
+ -->                      <th>批号</th>
                       <th>工程师</th>
                       <th>品质工程师</th>
                       <th>下单日期</th>
@@ -332,10 +335,17 @@
                   <div class="col-xs-12">
                     <div class="input-group">
                       <span class="input-group-addon">
+                        配料时间:
+                      </span>
+                      <input id="plsj" type="text" class="form-control" aria-label="...">
+                    </div><!-- /input-group -->
+
+                    <!-- <div class="input-group">
+                      <span class="input-group-addon">
                         包装要求:
                       </span>
                       <input id="bzyq" type="text" class="form-control" aria-label="...">
-                    </div><!-- /input-group -->
+                    </div> --><!-- /input-group -->
                   </div>
                   <div class="col-xs-12">
                     <div class="box" style="overflow:scroll;">

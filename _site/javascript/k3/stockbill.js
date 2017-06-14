@@ -1,5 +1,3 @@
-// var url ='http://localhost:3000/';
-//var url ='http://192.168.7.82:3001/';
 var name
 var token
 var table

@@ -51,6 +51,7 @@
         }  
       }, 
       "aoColumns": [
+        { "data": "配料时间" },
         { "data": "制造单号" },
         { "data": "产品代码" },
         { "data": "生产车间" },
@@ -60,7 +61,7 @@
         { "data": "产品要求" },
         // { "data": "产品规格" },
         { "data": "制单人" },
-        { "data": "包装要求" },
+        // { "data": "包装要求" },
         { "data": "批号" },
         { "data": "工程师" },
         { "data": "品质工程师" },
@@ -276,7 +277,7 @@
   })
   $(document).on("dblclick","#example tbody tr",function() {
     
-      var a=$(this).children('td').eq(0).text();
+      var a=$(this).children('td').eq(1).text();
       form(a)
     
   });
@@ -620,7 +621,8 @@ function form(sql){//弹出model
         $("#ph").val(rs.data[0].批号)//批号赋值
         $("#cpyq").val(rs.data[0].产品要求)//产品要求赋值
         $("#kh").val(rs.data[0].客户)//客户赋值
-        $("#bzyq").val(rs.data[0].包装要求)//包装要求赋值
+        // $("#bzyq").val(rs.data[0].包装要求)//包装要求赋值
+        $("#plsj").val(rs.data[0].配料时间)//配料时间赋值
         $("#zdr").val(rs.data[0].制单人)//制单人赋值
         $("#gcs").val(rs.data[0].工程师)//制单人赋值
         $("#pzgcs").val(rs.data[0].品质工程师)//制单人赋值-----------------

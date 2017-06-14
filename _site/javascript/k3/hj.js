@@ -1,7 +1,5 @@
 var table
 jQuery.support.cors = true;
-// var url = "http://localhost:3000/"
-//var url = 'http://192.168.7.82:3001/'
 $(function () {
 var token = getCookie('token');
 var name = getCookie('name');

@@ -112,7 +112,7 @@ $(function () {
       ]
 
     });
-     $('#example tbody').on('click', 'tr', function (){//选中某行
+    $('#example tbody').on('click', 'tr', function (){//选中某行
         $('.selected').toggleClass('selected');
         $(this).toggleClass('selected');
     });

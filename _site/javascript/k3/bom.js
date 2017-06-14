@@ -10,9 +10,6 @@ $(function () {
      }else{
       var checkbox=1
      }
-       
-      //var url1='http://192.168.7.82:3001/bom/bomc';
-      //var url='http://192.168.7.82:3001/bom/bomp';
       var data1 = {
         sql: a,
         token: token,
