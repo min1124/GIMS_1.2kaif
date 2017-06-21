@@ -37,6 +37,7 @@
              d.zzdh=$('#zzdh1').val();
              d.starttime = $('#starttime').val();
              d.endtime = $('#endtime').val();
+             d.sccjSel = $('#sccjSel').val();
              d.type = type;
         },  
         'type': 'POST',
@@ -415,14 +416,34 @@ function initComplete(){ //初始化表格
   var dataPlugin2 ='<div id="time" class=" pull-left dateRange"> '+
                   '<span>开始时间：</span><input type="date" id="starttime"> ——<span>结束时间：</span><input type="date" id="endtime">'+
                   '</div>';
+  var dataPlugin3 = '<div id="sccjDiv" class=" pull-left dateRange"> '+
+                      '<span>生产车间：</span>'+
+                      '<select id="sccjSel" name="sccjSel" class="form-control" style="display:inline;width: 120px;height: 100%">'+
+                        '<option value="all">全部</option>'+
+                        '<option value="ME车间">ME车间</option>'+
+                        '<option value="TO生产部">TO生产部</option>'+
+                        '<option value="管芯生产部">管芯生产部</option>'+
+                        '<option value="模块生产一部">模块生产一部</option>'+
+                        '<option value="器件生产一部">器件生产一部</option>'+
+                        '<option value="研发车间(正源)">研发车间(正源)</option>'+
+                        '<option value="子系统BOB车间">子系统BOB车间</option>'+
+                      '</select>'+
+                    '</div>';
   // $('#mytoolbox1').append(dataPlugin1); 
   $('.clear').append(dataPlugin1);          
   $('.clear').append(dataPlugin2);
+  $('.clear').append(dataPlugin3);
   
   $('#time').css("margin-left","20px"); 
+  $('#sccjDiv').css("margin-left","20px");
   $('#search').click(function(){
     table.ajax.reload();
   });
+
+  $(document).on("change","#sccjSel",function(){//单据状态下拉选项
+    table.ajax.reload();
+  });
+
 }
 function review(stype,token,name){//任务单审核
   var a=$("#zzdh").val()
