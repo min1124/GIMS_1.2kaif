@@ -16,6 +16,7 @@ var language= { //国际化
 
 var ip = 'http://localhost:3000/';
 //var ip = 'http://192.168.7.82:3001/';
+//var ip = 'http://192.168.7.82:4000/';
 
 function getCookie(name)
 {
