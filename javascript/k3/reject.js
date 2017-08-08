@@ -65,6 +65,7 @@ $(function () {
                d.djzt = $('#djzt').val();
                d.bfjecx = $('#bfjecx').val();
                d.bflbcx = $('#bflbcx').val();
+               d.bfbmcx = $('#bfbmcx').val();
           }
         } ,
         'searching':true,
@@ -96,18 +97,24 @@ $(function () {
           { "data": "产品名称" },
           { "data": "制造单数量" },
           { "data": "入库数量" },
-          // { "data": "需报废数量" },
-          { "data": "部门" },
-          { "data": "日期" },
           { "data": "成品率" },
+          // { "data": "需报废数量" },
+          { "data": "日期" },
+          { "data": "部门" },
           { "data": "报废类型" },
           { "data": "报废类别" },
+          { "data": "报废物料代码" },
+          { "data": "报废物料名称" },
+          { "data": "报废数量" },
+          { "data": "报废原因" },
+          { "data": "不良现象代码" },
+          { "data": "关闭标志" },
           { "data": "报废部门负责人" },        
           { "data": "ME负责人" },
           { "data": "品质负责人" },
           { "data": "生产管理负责人" },
-          { "data": "报废金额" },
           { "data": "财务负责人" },
+          { "data": "报废金额" },
           { "data": "分管副总" },
           { "data": "仓管员" },
       ]
@@ -141,7 +148,7 @@ $(function () {
         case "模块生产二部":
             Dept = "MK";
             break;
-        case "器件生产一部":
+        case "器件生产部":
             Dept = "QJ";
             break;
         case "TO生产部":
@@ -536,6 +543,34 @@ $(function () {
             alert(rs);
             if("保存成功"==rs){
               $('#myModal').modal('hide');
+              $('#djlx').val('制造单报废');
+              $('#bflx').val('A暂存报废');
+              $('#bflb').val('成品报废');
+              //$('#rq').val();
+              $('#djbh').val('');
+              $('#bmbz').val('');
+              $('#zzdh').val('');
+              $('#cpdm').val('');
+              $('#cpmc').val('');
+              $('#zzsl').val('');
+              $('#rksl').val('');
+              $('#cpl').val('');
+              for(var i = 0; i < 6; i++) {
+                textinputs[i].value = '';
+              }
+              var ij = textinputs.length/6;
+              if(ij > 1){
+                for(var j = ij; j >1; j--) {
+                  table1.getElementsByTagName("tr")[j].parentNode.removeChild(table1.getElementsByTagName("tr")[j]);
+                }
+              }
+              
+              // for(var i = 6; i < textinputs.length; i++) {
+              //   if(0==i%6){
+              //     //table1.getElementsByTagName("thead")[0].removeChild(table1.getElementsByTagName("tr")[2]); 
+              //     table1.getElementsByTagName("tr")[i/6+1].parentNode.removeChild(table1.getElementsByTagName("tr")[2]);
+              //   }
+              // }
               table.ajax.reload();
             }   
           }
@@ -787,7 +822,8 @@ function initComplete(){ //初始化表格
                             '<th style="width: 17%;">报废金额：</th>'+
                             '<th style="width: 28%;">开始时间：</th>'+
                             '<th style="width: 28%;">结束时间：</th>'+
-                            '<th style="width: 28%;">报废类别：</th>'+
+                            '<th style="width: 20%;">报废类别：</th>'+
+                            '<th style="width: 17%;">部门：</th>'+
                             // '<th style="width: 10%;"></th>'+
                           '</tr>'+
                           '<tr>'+
@@ -827,10 +863,19 @@ function initComplete(){ //初始化表格
                                 '<option value="原材料报废">原材料报废</option>'+
                               '</select>'+
                             '</th>'+
+                            '<th>'+
+                              '<select id="bfbmcx" name="bfbmcx" class="form-control" style="display:inline;width: 70px;height: 100%">'+
+                                '<option value="all"></option>'+
+                                '<option value="模块">模块</option>'+
+                                '<option value="器件">器件</option>'+
+                                '<option value="TO">TO</option>'+
+                                '<option value="管芯">管芯</option>'+
+                              '</select>'+
+                            '</th>'+
                             // '<th><button type="button" class="btn btn-default" id="true">确定</button></th>'+
                           '</tr>'+
                           '<tr>'+
-                            '<th colspan="5">'+
+                            '<th colspan="6">'+
                               '<button type="button" class="btn btn-default" id="add">增加</button>'+
                               '<button type="button" class="btn btn-default" id="delete">删除</button>'+
                               '<button type="button" class="btn btn-default" id="plsh">批量审核</button>'+
@@ -858,6 +903,10 @@ function initComplete(){ //初始化表格
   });
 
   $(document).on("change","#bflbcx",function(){//报废类别下拉选项
+    table.ajax.reload();
+  });
+
+  $(document).on("change","#bfbmcx",function(){//报废部门下拉选项
     table.ajax.reload();
   });
 

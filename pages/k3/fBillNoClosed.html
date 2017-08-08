@@ -1,0 +1,55 @@
+---
+layout: default
+--- 
+
+<section class="content">
+    <div class="row">
+	    <div class="col-xs-12">  
+	        <div class="box" >
+	            <div class="box-header">
+	                <h3 class="box-title">VMI发货通知单关闭</h3>
+	            </div><!-- /.box-header -->
+	            <div class="box-body">
+	                <table id="example" class="table table-bordered table-striped">
+	                  	<thead>
+	                    	<tr>
+	                    		<th>ID</th>
+	                     		<th>单据编号</th>
+	                      	<th>关闭日期</th>
+	                    	</tr>
+	                  	</thead>
+	                </table>
+	            </div>
+	        </div>
+	    </div>
+    </div>
+</section> 
+
+<!-- Modal new -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" >
+    <div class="modal-dialog" role="document" style="width: 70%">
+      <div class="modal-content" >
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h2 class="modal-title" id="myModalLabel" align="center">VMI发货通知单关闭</h2>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-xs-6">
+              <span>单据编号：</span>
+              <input type="text" id="djbh">
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <div class="col-xs-12">
+            <button type="button" class="btn btn-default " data-dismiss="modal">退出</button>
+            <button id="save" type="button" class="btn btn-primary pull-left">保存</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<!-- Modal -->
+
+<script src="../../javascript/k3/fBillNoClosed.js"></script> 

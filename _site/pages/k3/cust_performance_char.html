@@ -54,92 +54,51 @@
 <body>
    
     <style>
-	th, td { white-space: nowrap; }
+  th, td { white-space: nowrap; }
+  .selected{
+  background-color: #acbad4; 
+  }
 </style>
 
-	<section class="content" >
-		<ul id="myTab" class="nav nav-tabs">
-            <li class="active"><a href="#order" data-toggle="tab" id="hw">Hisi_ASN</a></li>
-            <li><a href="#order-1" data-toggle="tab" id="other">Hisi_Move</a></li>
-        </ul>
-		<div id="myTabContent" class="tab-content">
-	    	<div class="tab-pane fade in active" id="order">
-	        	<div class="box" >
-	        		<div class="box-header">
-	        			<button id="confirm">确定</button>
-	        			<input type="text" id="number">
-	        		</div>
-	            	<div class="box-body" style="height: 600px;overflow:scroll;" >
-	                	<div class="col-xs-12">
-							<table id="example" class="table table-bordered " >
-			                    <thead>
-						            <tr>
-						                <th>PO#</th>
-						                <th>W/O#</th>
-						                <th>ITEM</th>
-						                <th>C_ITEM</th>
-						                <th>PART NO</th>
-						                <th>Vendor Device</th>
-						                <th>Hisi Lot#</th>
-						                <th>Hisi Sub-Lot#</th>
-						                <th>Vendor Lot#</th>
-						                <th>Wafer ID</th>
-						                <th>Die Qty</th>
-						                <th>Bin</th>
-						                <th>Packing#</th>
-						                <th>Carton#.</th>
-						                <th>Gross Weight</th>
-						                <th>Net Weight</th>
-						                <th>Volume</th>
-						                <th>Origin</th>
-						                <th>Ship To</th>
-						                <th>Date Code</th>
-						                <th>Test Program</th>
-						            </tr>
-						        </thead>
-			                </table>
-						</div>
-	            	</div>
-	            	<div class="box-footer">
-	            		
-	            	</div>
-	            </div>
-	        </div>
-	        <div class="tab-pane fade" id="order-1">
-	        	<div class="box" >
-	        		<div class="box-header"></div>
-	            	<div class="box-body" style="height: 600px;overflow:scroll;" >
-	                	<div class="col-xs-12">
-							<table id="example1" class="table table-bordered " >
-			                    <thead>
-						            <tr>
-						            	<th>W/O#</th>
-						                <th>PO#</th>
-						                <th>Device Name</th>
-						                <th>Hisi Lot#</th>
-						                <th>Hisi Sub-Lot#</th>
-						                <th>Vendor Lot#</th>
-						                <th>Process</th>
-						                <th>In Date</th>
-						                <th>Out Date</th>
-						                <th>In Qty</th>
-						                <th>Good Qty</th>
-						                <th>Bad Qty</th>
-						                <th>Loss Qty</th>
-						            </tr>
-						        </thead>
-			                </table>
-						</div>
-	            	</div>
-	            	<div class="box-footer">
-	            		
-	            	</div>
-	            </div>
-	        </div>
-	    </div>
-    </section>
-
-<script src="../../javascript/k3/delivery2.js"></script>
+<section class="content" >
+	<div id="myTabContent" class="tab-content" style="display: inline;">
+		<div class="tab-pane fade in active" id="order">
+			<div class="box" >
+				<div class="box-header">
+                	<h3 class="box-title">客户性能特征对应表</h3>
+            	</div>
+				<div class="box-body" style="height: 550px;overflow:scroll;" >
+					<div class="col-xs-12">
+						<table id="example" class="table table-bordered " >
+							<thead>
+								<tr>
+									<th>ID</th>
+									<th>产品型号后缀编码</th>
+									<th>客户代码</th>
+									<th>添加日期</th>
+									<th>添加原因</th>
+								</tr>
+							</thead> 
+						</table>
+					</div>
+				</div>
+				<div class="box-footer">
+					<div class="col-xs-4">
+						<form id= "uploadForm">
+							<div class="col-xs-7">
+								<input type="file" name="file" accept=".xls,.xlsx" style="display: inline;">
+							</div> 
+							<div class="col-xs-5">
+								<input type="button" value="上传" class="btn btn-info" onclick="doUpload()" style="display: inline;"/> 
+							</div> 
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+<script src="../../javascript/k3/cust_performance_char.js"></script>
 
 
     <script src="../../javascript/gims_public.js"></script>

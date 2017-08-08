@@ -3,6 +3,7 @@ var table
 var table1
 var type ="hw"
 var data1 = [
+                { "data": "creation_date" },
                 { "data": "id" },
                 { "data": "date" },
                 { "data": "business_mode" },
@@ -12,13 +13,12 @@ var data1 = [
                 { "data": "customer_item" },
                 {},
                 { "data": "qty_request" },
-                { "data": "num" },
                 { "data": "num1" },
+                { "data": "num" },
                 { "data": "qty" },
                 { "data": "request_date" },
                 { "data": "task_num" },
                 { "data": "unit_price" },
-                { "data": "creation_date" },
                 // { "data": "flag"}
             ]
 $(function(){
@@ -34,6 +34,7 @@ $(function(){
                 "lengthChange": false,
                 "paging": true,
                 "searching": true,
+                "order": [[ 1, "asc" ]],
                 "oLanguage": language, 
                 initComplete:initComplete1,
                 "dom": 'T<"clear1">lfrtip',
@@ -55,7 +56,7 @@ $(function(){
                 }, 
                 "aoColumnDefs":[
                     {
-                        "targets": 8,//编辑
+                        "targets": 9,//编辑
                         "data": null,
                         // "defaultContent": "<span style='width:18px;overflow:hidden;'>"+
                         // "<select  class='form-control k3' style='display: inline;width: 100px;height: 26px' onchange='this.parentNode.nextSibling.value=this.value'></select>"+
@@ -76,6 +77,7 @@ $(function(){
                     }
                 },
                 "aoColumns":[
+                    { "data": "creation_date" },
                     { "data": "id" },
                     { "data": "customer_name" },
                     { "data": "ghdw_name" },
@@ -87,15 +89,14 @@ $(function(){
                     { "data": "customer_item" },
                     {},
                     { "data": "qty_request" },
-                    { "data": "num" },
                     { "data": "num1" },
+                    { "data": "num" },
                     { "data": "qty" },
                     { "data": "request_date" },
                     { "data": "task_num" },
                     { "data": "unit_price" },
                     { "data": "vendor_name"},
                     { "data": "date" },
-                    { "data": "creation_date" },
                 ],
             })
         }else{
@@ -108,7 +109,7 @@ $(function(){
         "paging": true,
         "lengthChange": false,
         "searching": true,
-        "ordering": true,
+        "order": [[ 1, "asc" ]],
         // "pagingType": "simple_numbers",
         // "bServerSide" : true,//服务端分页
         "info": true,
@@ -125,7 +126,7 @@ $(function(){
                 for (var i = 0; i < 15; i++) {  
                     $('td', row).eq(i).css('font-weight', "bold").css("color", "red");  
                 }  
-                console.log(data)
+                // console.log(data)
             }  
         },
         "tableTools": {
@@ -145,6 +146,7 @@ $(function(){
           'data': function ( d ) {
             d.starttime = $('#starttime').val();
             d.endtime = $('#endtime').val();
+            d.ddztsel = $('#ddztsel').val();
             d.name = name;
             d.token = token;
             d.type = type;
@@ -152,7 +154,7 @@ $(function(){
           'type': 'post' 
         } , 
         "aoColumnDefs":[
-          { "aTargets" :　[2],
+          { "aTargets" :　[3],
             "mRender" : function(data, type, full){
                 switch (data){
                     case "Normal":
@@ -176,7 +178,7 @@ $(function(){
             }
           },
           {
-            "targets": 7,//编辑
+            "targets": 8,//编辑
             "data": null,
             // "defaultContent": "<select  class='form-control k3' style='display: inline;width: 100px;height: 26px'></select>"
             "defaultContent":'<table  class="table table-bordered k3" ></table>',
@@ -186,8 +188,8 @@ $(function(){
     });
     $(document).on("dblclick","#example1 tbody tr",function(){//其它客户选中某行
 
-        var po_number =$(".selected").children('td').eq(4).text();
-        if($(this).children('td').eq(4).text()==po_number){
+        var po_number =$(".selected").children('td').eq(5).text();
+        if($(this).children('td').eq(5).text()==po_number){
             if ($(this).hasClass('selected') ){
                 $(this).removeClass('selected');
             } else{
@@ -198,10 +200,10 @@ $(function(){
             $(this).addClass('selected');
         }
         
-        var customer_number=$(this).children('td').eq(7).text();
-        var type=$(this).children('td').eq(3).text();
+        var customer_number=$(this).children('td').eq(8).text();
+        var type=$(this).children('td').eq(4).text();
         var select = $(this).children().find('.k3')
-        var id  = $(this).children('td').eq(0).text();
+        var id  = $(this).children('td').eq(1).text();
         if (select[0].rows.length != 0 ) {
 
         }else{
@@ -243,8 +245,8 @@ $(function(){
         }
     });
     $('#example tbody').on('dblclick', 'tr', function () {//大客户table选中某行
-        var po_number =$(".selected").children('td').eq(3).text();
-        if($(this).children('td').eq(3).text()==po_number){
+        var po_number =$(".selected").children('td').eq(4).text();
+        if($(this).children('td').eq(4).text()==po_number){
             if ($(this).hasClass('selected') ){
                 $(this).removeClass('selected');
             } else{
@@ -257,9 +259,9 @@ $(function(){
                 $(this).addClass('selected');
         }
         // alert($(this).children('td').eq(3).text())
-        var customer_number=$(this).children('td').eq(6).text();
-        var order_type = $(this).children('td').eq(2).text();
-        var id  = $(this).children('td').eq(0).text();
+        var customer_number=$(this).children('td').eq(7).text();
+        var order_type = $(this).children('td').eq(3).text();
+        var id  = $(this).children('td').eq(1).text();
         var select = $(this).children().find('.k3')
         if (select[0].rows.length != 0 ) {
             
@@ -322,20 +324,20 @@ $(function(){
         var qty = new Array()//剩余数量
         var k = 0
         var qty2 = 0
-        var ghdw = td.eq(3).text();//订单类型
-        var po_number = td.eq(4).text();
+        var ghdw = td.eq(4).text();//订单类型
+        var po_number = td.eq(5).text();
         for(var i = 0; i < td.length/19; i++){
             // id = td.eq(i*14+0).text() +" " +id
             var num2 = 0
-            fnumber = td.eq(i*19+8).find('input')//td.eq(i*14+8).find('.fnumber').val() +" " +fnumber
+            fnumber = td.eq(i*19+9).find('input')//td.eq(i*14+8).find('.fnumber').val() +" " +fnumber
             for(var j = 0; j < fnumber.length/3; j++){
                 if(fnumber[0+j*3].checked==true){
-                    id[k] = td.eq(i*19+0).text() 
+                    id[k] = td.eq(i*19+1).text() 
                     k3fn[k] = fnumber[1+j*3].value
                     num[k] = (fnumber[2+j*3].value)
-                    qty[k] = td.eq(i*19+11).text()
+                    qty[k] = td.eq(i*19+13).text()
                     k++
-                    qty2 = parseInt(td.eq(i*19+11).text())
+                    qty2 = parseInt(td.eq(i*19+13).text())
                     var num1 = parseInt(fnumber[2+j*3].value)
                     num2 = num2 + num1
                 }
@@ -552,17 +554,17 @@ $(function(){
         var num = new Array()
         for(var i = 0; i < td.length/16; i++) {
             // for (j = 0; j<)
-            // fnumber = td.eq(i*16+7).find('.k3')[0].val() +" " +fnumber
+            // fnumber = td.eq(i*15+7).find('.k3')[0].val() +" " +fnumber
             var num2 = 0
-            fnumber = td.eq(i*16+7).find('input')
+            fnumber = td.eq(i*16+8).find('input')
             for(var j = 0; j < fnumber.length/3; j++){
                 if(fnumber[0+j*3].checked==true){
-                    id[k] = td.eq(i*16+0).text() 
+                    id[k] = td.eq(i*16+1).text() 
                     k3fn[k] = (fnumber[1+j*3].value)
                     num[k] = (fnumber[2+j*3].value)
-                    qty[k] = td.eq(i*16+10).text()
+                    qty[k] = td.eq(i*16+12).text()
                     k++
-                    qty2 = parseInt(td.eq(i*16+10).text())
+                    qty2 = parseInt(td.eq(i*16+12).text())
                     var num1 = parseInt(fnumber[2+j*3].value)
                     num2 = num2 + num1
                     
@@ -573,8 +575,8 @@ $(function(){
                 flag = 1
             }
         }
-        var ghdw = td.eq(2).text();//订单类型
-        var po_number = td.eq(3).text();
+        var ghdw = td.eq(3).text();//订单类型
+        var po_number = td.eq(4).text();
         // console.log(id)
         // console.log(num)
         // console.log(k3fn)
@@ -683,7 +685,7 @@ $(function(){
                             '<th><input type="text" value='+rs.data1[i][0].fenlei+'></th>'+
                           '</tr>'
                     if(type=='zx'){
-                        if(rs.data2[i].business_mode=='VCI-VRN'||rs.data2[i].business_mode=='VCI-PO'||rs.data2[i].business_mode=='HUB补货' ||rs.data2[i].business_mode=='VMI补货'){
+                        if(rs.data2[i].business_mode=='VMI补货'||rs.data2[i].business_mode=='HUB补货'){
 
                         }else{
                             if (parseFloat(rs.data8[i][0].fprice)-parseFloat(rs.data2[i].unit_price).toFixed(5)==0){
@@ -708,8 +710,20 @@ $(function(){
                         }else{
                             $('#example2 tbody').append(row4) 
                         }
-                    }else {
+                    }else if(type=='fh'){
+                        if(rs.data2[i].business_mode=='VMI补货'){
 
+                        }else{
+                            if (parseFloat(rs.data8[i][0].fprice)-(parseFloat(rs.data2[i].unit_price)*1.17).toFixed(5)==0){
+
+                            }else{
+                                // alert(parseFloat(rs.data8[i][0].fprice)-(parseFloat(rs.data2[i].unit_price)*1.17).toFixed(5))
+                                flag = 1
+                                alert(rs.data1[i][0].fnumber+'价格与订单不匹配')
+                            }
+                        }
+                        $('#example2 tbody').append(row1) 
+                    }else {
                         if(rs.data2[i].business_mode=='VCI-VRN'||rs.data2[i].business_mode=='VCI-PO'){
 
                         }else{
@@ -1055,17 +1069,37 @@ function doUpload() {
 
 function initComplete(){ //大客户订单初始化
 
-    var dataPlugin1='<div class="btn-group pull-left" role="group" aria-label="...">'+
-        '<button type="button" class="btn btn-default" id="true">确定</button>'+
-        '<button type="button" class="btn btn-default" id="order-update1">变更</button>'+
-        '<button type="button" class="btn btn-default" onclick="order_close()">关闭</button>'+
-        '<button type="button" class="btn btn-default" onclick="order_open()">反关闭</button>'+
-        '</div>'
-    var dataPlugin2 ='<div id="time" class=" pull-left dateRange" style="margin-left:200px;"> '+
-            '<span>开始时间：</span><input type="date" id="starttime"> ——<span>结束时间：</span><input type="date" id="endtime">'+
-            '</div>';
+    var dataPlugin1 = '<div id="dataPlugin1" class="btn-group pull-left" role="group" aria-label="..." style="width: 75%;">'+
+                      '<table id="exampleQuery" class="table table-bordered " style="table-layout:fixed;">'+
+                        '<thead>'+
+                          '<tr>'+
+                            '<th style="width: 33%;">开始时间：</th>'+
+                            '<th style="width: 33%;">结束时间：</th>'+
+                            '<th style="width: 33%;">订单状态：</th>'+
+                          '</tr>'+
+                          '<tr>'+
+                            '<th><input type="date" id="starttime"></th>'+
+                            '<th><input type="date" id="endtime"></th>'+
+                            '<th>'+
+                              '<select id="ddztsel" name="ddztsel" class="form-control" style="display:inline;width: 140px;height: 100%">'+
+                                '<option selected="selected" value="all">全部</option>'+
+                                '<option value="未执行完订单">未执行完订单</option>'+
+                                '<option value="己执行完订单">己执行完订单</option>'+
+                              '</select>'+
+                            '</th>'+
+                          '</tr>'+
+                          '<tr>'+
+                            '<th colspan="3">'+
+                              '<button type="button" class="btn btn-default" id="true">确定</button>'+
+                              '<button type="button" class="btn btn-default" id="order-update1">变更</button>'+
+                              '<button type="button" class="btn btn-default" onclick="order_close()">关闭</button>'+
+                              '<button type="button" class="btn btn-default" onclick="order_open()">反关闭</button>'+
+                            '</th>'+
+                          '</tr>'+
+                        '</thead>'+
+                      '</table>'+
+                    '</div>'
     $('.clear').append(dataPlugin1);
-    $('.clear').append(dataPlugin2); 
     $('#true').click(function(){
         table.ajax.reload();
     }); //初始化函数
@@ -1118,7 +1152,7 @@ function compare(arr2,arr1){
     return flag
 }
 function order_close(){//关闭按钮
-    var id =$(".selected").children('td').eq(0).text();
+    var id =$(".selected").children('td').eq(1).text();
     if (id==""){
         alert('请选择一行')
     }else{
@@ -1141,7 +1175,7 @@ function order_close(){//关闭按钮
     }
 }
 function order_open(){//反关闭按钮
-    var id =$(".selected").children('td').eq(0).text();
+    var id =$(".selected").children('td').eq(1).text();
     if (id==""){
         alert('请选择一行')
     }else{

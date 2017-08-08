@@ -14,9 +14,9 @@ var language= { //国际化
                 "sProcessing": "<img src='./loading.gif' />" 
 }
 
-var ip = 'http://localhost:3000/';
-//var ip = 'http://192.168.7.82:3001/';
-//var ip = 'http://192.168.7.82:4000/';
+var ip = 'http://localhost:3000/';//本机
+//var ip = 'http://192.168.7.82:3001/';//正式机
+//var ip = 'http://192.168.7.82:4000/';//测试机
 
 function getCookie(name)
 {

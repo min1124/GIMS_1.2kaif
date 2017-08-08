@@ -84,6 +84,8 @@ $(function(){
 		    		power('1-11',rs.k3.t_cancel_auth)
 		    		power('1-12',rs.k3.t_icsearch_auth)
 		    		power('1-13',rs.k3.t_fnumber_auth)
+		    		power('1-14',rs.k3.t_seoutstock_auth)
+		    		power('1-15',rs.k3.t_perfchar_auth)
 		    	}
 		    	if (rs.icmo==null){
 
