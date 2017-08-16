@@ -15,6 +15,29 @@ $(function () {
     "scrollX": true,  
     initComplete:initComplete,
     "dom": 'T<"clear">lfrtip',
+    "createdRow": function (row, data, dataIndex) {  
+      var date1 = new Date();
+      var date2 = new Date(date1);
+      date2.setDate(date1.getDate()+7);
+
+      var seperator1 = "-";
+      var month = date2.getMonth() + 1;
+      var strDate = date2.getDate();
+      if (month >= 1 && month <= 9) {
+        month = "0" + month;
+      }
+      if (strDate >= 0 && strDate <= 9) {
+        strDate = "0" + strDate;
+      }
+      var currentdate = date2.getFullYear() + seperator1 + month + seperator1 + strDate;
+      if(data.kcxhjz_date != null && data.kcxhjz_date != ""){
+        if ((data.kcxhjz_date <= currentdate) && ('Y' == data.shipping_or_not)) {  
+          for (var i = 0; i < 17; i++) {  
+            $('td', row).eq(i).css('font-weight', "bold").css("color", "red");  
+          }  
+        } 
+      }
+    },
     "tableTools": {
       "sSwfPath": "../../plugins/datatables/extensions/TableTools/swf/copy_csv_xls_pdf.swf",
       "aButtons": [{

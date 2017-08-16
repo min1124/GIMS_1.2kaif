@@ -148,6 +148,9 @@ $(function () {
         case "模块生产二部":
             Dept = "MK";
             break;
+        case "模块生产部":
+            Dept = "MK";
+            break;
         case "器件生产部":
             Dept = "QJ";
             break;

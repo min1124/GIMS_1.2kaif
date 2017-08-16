@@ -423,8 +423,8 @@ function initComplete(){ //初始化表格
                         '<option value="ME车间">ME车间</option>'+
                         '<option value="TO生产部">TO生产部</option>'+
                         '<option value="管芯生产部">管芯生产部</option>'+
-                        '<option value="模块生产一部">模块生产一部</option>'+
-                        '<option value="器件生产一部">器件生产一部</option>'+
+                        '<option value="模块">模块生产部</option>'+
+                        '<option value="器件">器件生产部</option>'+
                         '<option value="研发车间(正源)">研发车间(正源)</option>'+
                         '<option value="子系统BOB车间">子系统BOB车间</option>'+
                       '</select>'+

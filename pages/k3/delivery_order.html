@@ -1,0 +1,91 @@
+---
+layout: default
+--- 
+
+<section class="content">
+    <div class="row">
+	    <div class="col-xs-12">  
+	        <div class="box" >
+	            <div class="box-header">
+	                <h3 class="box-title">烽火交货单</h3>
+	            </div><!-- /.box-header -->
+	            <div class="box-body">
+	                <table id="example" class="table table-bordered table-striped">
+	                  	<thead>
+                        	<tr>
+                          		<th colspan="11">
+                          			<h3 class="text-center">武汉烽火通信科技股份有限公司系统设备制造部交货单</h3>
+                          		</th>
+                        	</tr>
+                        	<tr>
+                          		<th colspan="11">供应商：武汉正源光子技术有限公司</th>
+                        	</tr>
+	                    	<tr>
+                          		<th><button class="addBtn"><i class="fa fa-fw fa-plus"></i></button></th>
+                          		<th>出库单号</th>
+	                     		<th>合同号</th>
+                          		<th>行号</th>
+	                      		<th>烽火物料号</th>
+	                      		<th>物料描述</th>
+                          		<th>箱号</th>
+                          		<th>每箱数量</th>
+                          		<th>总数量</th>
+                          		<th>备注</th>
+                          		<th>产品批号</th>
+	                    	</tr>
+	                  	</thead>
+	                  	<tfoot>
+	                  		<tr>
+				                <th></th>
+				                <th></th>
+				                <th></th>
+				                <th></th>
+				                <th></th>
+				                <th class="text-right">总箱数：</th>
+				                <th><input type="text" id="zxs" style="display:inline;width: 100%;height: 100%"></th>
+				                <th class="text-right">合计：</th>
+				                <th><input type="text" id="hj" style="display:inline;width: 100%;height: 100%"></th>
+				                <th></th>
+				                <th></th>
+				            </tr>
+							<tr>
+    							<th class="text-right" colspan="1">收货人：</th>
+							    <th colspan="10"></th>
+							</tr>
+							<tr>
+    							<th class="text-right" colspan="1">日期：</th>
+							    <th colspan="4"></th>
+							    <th class="text-right" colspan="1">日期：</th>
+							    <th colspan="5"></th>
+							</tr>
+							<tr>
+    							<th colspan="11">
+    								<button id="excel" type="button" class="btn btn-primary pull-left">Excel导出</button>
+    							</th>
+							</tr>
+						</tfoot>
+						<tbody>
+				            <tr>
+				                <th><button class="delBtn"><i class="fa fa-fw fa-minus"></i></button></th>
+				                <th><input type="text" id="ckdh" style="width: 100%"></th>
+				                <th><input type="text" id="hth" disabled="disabled" style="width: 100%"></th>
+				                <th><input type="text" id="hh" disabled="disabled" style="width: 100%;"></th>
+				                <th><input type="text" id="wldm" disabled="disabled" style="width: 100%"></th>
+				                <th><input type="text" id="wlms" disabled="disabled" style="width: 100%"></th>
+				                <th>
+				                	<input type="text" id="xh" style="width: 48%">/
+				                	<input type="text" id="xs" style="width: 48%">
+				                </th>
+				                <th><input type="text" id="mxsl" style="width: 100%"></th>
+				                <th><input type="text" id="zsl" style="width: 100%"></th>
+				                <th><input type="text" id="bz" disabled="disabled" style="width: 100%"></th>
+				                <th><input type="text" id="cpph" disabled="disabled" style="width: 100%"></th>
+				            </tr>
+				        </tbody>
+	                </table>
+	            </div>
+	        </div>
+	    </div>
+    </div>
+</section> 
+<script src="../../javascript/k3/delivery_order.js"></script> 

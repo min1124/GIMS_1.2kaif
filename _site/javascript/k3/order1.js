@@ -40,7 +40,7 @@ $(function(){
                 "dom": 'T<"clear1">lfrtip',
                 "createdRow": function (row, data, dataIndex) {  
                     if (data.flag == "1") {  
-                        for (var i = 0; i < 15; i++) {  
+                        for (var i = 0; i < 19; i++) {  
                             $('td', row).eq(i).css('font-weight', "bold").css("color", "red");  
                         }  
                     }  
@@ -121,12 +121,10 @@ $(function(){
         //        "<'foot'<'col-sm-6'i><'col-sm-6'p>>", 
         "dom": 'T<"clear">lfrtip',
         "createdRow": function (row, data, dataIndex) {  
-            
             if (data.flag == "1") {  
-                for (var i = 0; i < 15; i++) {  
+                for (var i = 0; i < 16; i++) {  
                     $('td', row).eq(i).css('font-weight', "bold").css("color", "red");  
                 }  
-                // console.log(data)
             }  
         },
         "tableTools": {
