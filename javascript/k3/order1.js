@@ -2,25 +2,110 @@ jQuery.support.cors = true;
 var table
 var table1
 var type ="hw"
+
+//大客户
 var data1 = [
-                { "data": "creation_date" },
-                { "data": "id" },
-                { "data": "date" },
-                { "data": "business_mode" },
-                { "data": "po_number" },
-                { "data": "po_line_num" },
-                { "data": "supplier_item" },
-                { "data": "customer_item" },
-                {},
-                { "data": "qty_request" },
-                { "data": "num1" },
-                { "data": "num" },
-                { "data": "qty" },
-                { "data": "request_date" },
-                { "data": "task_num" },
-                { "data": "unit_price" },
-                // { "data": "flag"}
-            ]
+    { "data": "creation_date" },
+    { "data": "id" },
+    { "data": "date" },
+    { "data": "business_mode" },
+    { "data": "po_number" },
+    { "data": "po_line_num" },
+    { "data": "supplier_item" },
+    { "data": "customer_item" },
+    {},
+    { "data": "qty_request" },
+    { "data": "num1" },
+    { "data": "num" },
+    { "data": "qty" },
+    { "data": "request_date" },
+    { "data": "task_num" },
+    { "data": "unit_price" },
+    // { "data": "flag"}
+]
+//大客户
+table=$('#example').DataTable({
+    "bDestroy":true,
+    "paging": true,
+    "lengthChange": false,
+    "searching": true,
+    "order": [[ 1, "asc" ]],
+    // "pagingType": "simple_numbers",
+    // "bServerSide" : true,//服务端分页
+    "info": true,
+    "autoWidth": false,
+    initComplete:initComplete,
+    "oLanguage": language, 
+    // "dom": "<'row'<'col-sm-3'l<'#mytoolbox1'>><'col-sm-9'f<'#mytoolbox2'>r>"+
+    //        "t"+
+    //        "<'foot'<'col-sm-6'i><'col-sm-6'p>>", 
+    "dom": 'T<"clear">lfrtip',
+    "createdRow": function (row, data, dataIndex) {  
+        if (data.flag == "1") {  
+            for (var i = 0; i < 16; i++) {  
+                $('td', row).eq(i).css('font-weight', "bold").css("color", "red");  
+            }  
+        }  
+    },
+    "tableTools": {
+        "sSwfPath": "../../plugins/datatables/extensions/TableTools/swf/copy_csv_xls_pdf.swf",
+        "aButtons": [{
+            "sExtends": "xls",
+            "sButtonText": "导出Excel",
+        }],
+    }, 
+    'ajax': {
+        'url':ip+"order/index",
+        'error':function(rs){
+            error(rs)
+        },
+        'data': function ( d ) {
+            d.starttime = $('#starttime').val();
+            d.endtime = $('#endtime').val();
+            d.ddztsel = $('#ddztsel').val();
+            d.name = name;
+            d.token = token;
+            d.type = type;
+        } ,
+        'type': 'post' 
+    } , 
+    "aoColumnDefs":[
+        { 
+            "aTargets" :　[3],
+            "mRender" : function(data, type, full){
+                switch (data){
+                    case "Normal":
+                        return "普通销售"
+                        break;
+                    case "DUN":
+                        return "普通销售"
+                        break;
+                    case "VCI-VRN":
+                        return "VMI补货"
+                        break;
+                    case "VCI-CA":
+                        return "VMI结算"
+                        break;
+                    case "VCI-PO":
+                        return "VMI补货"
+                        break;
+                    default:
+                        return data
+                }
+            }
+        },
+        {
+            "targets": 8,//编辑
+            "data": null,
+            // "defaultContent": "<select  class='form-control k3' style='display: inline;width: 100px;height: 26px'></select>"
+            "defaultContent":'<table  class="table table-bordered k3" ></table>',
+        },
+    ],
+        
+    "aoColumns": data1//加载table //获取table
+});
+
+//其他客户
 $(function(){
     var token = getCookie('token');
     var name = getCookie('name');
@@ -46,13 +131,13 @@ $(function(){
                     }  
                 },
                 "tableTools": {
-                  "sSwfPath": "../../plugins/datatables/extensions/TableTools/swf/copy_csv_xls_pdf.swf",
-                  "aButtons": [
-                    {
-                    "sExtends": "xls",
-                    "sButtonText": "导出Excel",
-                    }
-                  ],
+                    "sSwfPath": "../../plugins/datatables/extensions/TableTools/swf/copy_csv_xls_pdf.swf",
+                    "aButtons": [
+                        {
+                            "sExtends": "xls",
+                            "sButtonText": "导出Excel",
+                        }
+                    ],
                 }, 
                 "aoColumnDefs":[
                     {
@@ -104,86 +189,7 @@ $(function(){
             table.ajax.reload();
         }
     })
-    table=$('#example').DataTable({
-        "bDestroy":true,
-        "paging": true,
-        "lengthChange": false,
-        "searching": true,
-        "order": [[ 1, "asc" ]],
-        // "pagingType": "simple_numbers",
-        // "bServerSide" : true,//服务端分页
-        "info": true,
-        "autoWidth": false,
-        initComplete:initComplete,
-        "oLanguage": language, 
-        // "dom": "<'row'<'col-sm-3'l<'#mytoolbox1'>><'col-sm-9'f<'#mytoolbox2'>r>"+
-        //        "t"+
-        //        "<'foot'<'col-sm-6'i><'col-sm-6'p>>", 
-        "dom": 'T<"clear">lfrtip',
-        "createdRow": function (row, data, dataIndex) {  
-            if (data.flag == "1") {  
-                for (var i = 0; i < 16; i++) {  
-                    $('td', row).eq(i).css('font-weight', "bold").css("color", "red");  
-                }  
-            }  
-        },
-        "tableTools": {
-          "sSwfPath": "../../plugins/datatables/extensions/TableTools/swf/copy_csv_xls_pdf.swf",
-          "aButtons": [
-            {
-            "sExtends": "xls",
-            "sButtonText": "导出Excel",
-            }
-          ],
-        }, 
-        'ajax': {
-          'url':ip+"order/index",
-          'error':function(rs){
-            error(rs)
-          },
-          'data': function ( d ) {
-            d.starttime = $('#starttime').val();
-            d.endtime = $('#endtime').val();
-            d.ddztsel = $('#ddztsel').val();
-            d.name = name;
-            d.token = token;
-            d.type = type;
-          } ,
-          'type': 'post' 
-        } , 
-        "aoColumnDefs":[
-          { "aTargets" :　[3],
-            "mRender" : function(data, type, full){
-                switch (data){
-                    case "Normal":
-                        return "普通销售"
-                        break;
-                    case "DUN":
-                        return "普通销售"
-                        break;
-                    case "VCI-VRN":
-                        return "VMI补货"
-                        break;
-                    case "VCI-CA":
-                        return "VMI结算"
-                        break;
-                    case "VCI-PO":
-                        return "VMI补货"
-                        break;
-                    default:
-                        return data
-                }
-            }
-          },
-          {
-            "targets": 8,//编辑
-            "data": null,
-            // "defaultContent": "<select  class='form-control k3' style='display: inline;width: 100px;height: 26px'></select>"
-            "defaultContent":'<table  class="table table-bordered k3" ></table>',
-          },
-        ],
-        "aoColumns": data1//加载table //获取table
-    });
+    
     $(document).on("dblclick","#example1 tbody tr",function(){//其它客户选中某行
 
         var po_number =$(".selected").children('td').eq(5).text();

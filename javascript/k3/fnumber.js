@@ -131,12 +131,12 @@ $(function () {
             type:"POST",
             data:data0,
             success:function(rs){
-              if(rs.data[0]!=null){
-                $("#customerCode").val(rs.data[0].客户代码C)
+              if(rs.dataA[0]!=null){
+                $("#customerCode").val(rs.dataA[0].客户代码)
                 var data1={
                   name:name,
                   token:token,
-                  sql:rs.data[0].客户代码C,
+                  sql:rs.dataA[0].客户代码,
                 }
                 $.ajax({
                   url:ip+'fnumber/customerCode',
@@ -144,22 +144,28 @@ $(function () {
                   data:data1,
                   success:function(rs1){
                     if(rs1.data1!=null && rs1.data1.length==1 && rs1.data1[0]!=null){
-                      $("#customerName").val(rs1.data1[0].客户名称C)
+                      $("#customerName").val(rs1.data1[0].客户名称)
                     }else if(rs1.data1!=null && rs1.data1.length>1){
+                      $("#customerName").val('');
                       alert("客户代码"+rs.data[0].客户代码C+"存在多个客户名称，请核实！");
                     }else{
-                      $("#customerName").val("")
+                      $("#customerName").val('');
+                      alert("物料代码"+$(this).val()+"无对应客户名称，请核实！");
                     }
                   }
                 });
-                $("#productModelZy").val(rs.data[0].物料名称)
-                $("#customerNumber").val(rs.data[0].客户代码)
-                $("#productModel").val(rs.data[0].客户型号)
               }else{
-                $("#customerCode").val("")
-                $("#productModelZy").val("")
-                $("#customerNumber").val("")
-                $("#productModel").val("")
+                $("#customerCode").val('');
+                alert("物料代码"+$(this).val()+"无对应客户代码，请核实！");
+              }
+              if(rs.dataB[0]!=null){
+                $("#productModelZy").val(rs.dataB[0].物料名称);
+                $("#customerNumber").val(rs.dataB[0].客户代码);
+                $("#productModel").val(rs.dataB[0].客户型号);
+              }else{
+                $("#productModelZy").val('');
+                $("#customerNumber").val('');
+                $("#productModel").val('');
               }
             }
           });
@@ -208,52 +214,64 @@ $(function () {
       if(""==fnumber){
         alert("请填写产品代码！");
       }else{
-        var data={
-          name:name,
-          token:token,
-          source:source,
-          sourceCode:sourceCode,
-          customerCode:customerCode,
-          customerName:customerName,
-          fnumber:fnumber,
-          productModelZy:productModelZy,
-          customerNumber:customerNumber,
-          productModel:productModel,
-          productLine:productLine,
-          productStatus:productStatus,
-          shippingOrNot:shippingOrNot,
-          costPriority:costPriority,
-          f11:f11,
-          kcxhjzDate:kcxhjzDate,
-          note:note,
+        var flag = true;
+        if(""==customerCode){
+          if(!confirm('客户代码为空，确定保存吗?')){ 
+            flag = false; 
+          } 
+        } else if(""==customerName){
+          if(!confirm('客户名称为空，确定保存吗?')){ 
+            flag = false; 
+          } 
         }
-        $.ajax({
-          url:ip+'fnumber/save',
-          type:"POST",
-          data:data,
-          success:function(rs){
-            alert(rs);
-            if("保存成功"==rs){
-              $('#myModal').modal('hide');
-              table.ajax.reload();
-              $('#source').val('');
-              $('#sourceCode').val('');
-              $('#customerCode').val('');
-              $('#customerName').val('');
-              $('#fnumber').val('');
-              $('#productModelZy').val('');
-              $('#customerNumber').val('');
-              $('#productModel').val('');
-              $('#productLine').val('');
-              $('#productStatus').val('');
-              $('#shippingOrNot').val('');
-              $('#costPriority').val('');
-              $('#f11').val('');
-              $('#kcxhjzDate').val('');
-              $('#note').val('');
-            }   
+        if(flag){
+          var data={
+            name:name,
+            token:token,
+            source:source,
+            sourceCode:sourceCode,
+            customerCode:customerCode,
+            customerName:customerName,
+            fnumber:fnumber,
+            productModelZy:productModelZy,
+            customerNumber:customerNumber,
+            productModel:productModel,
+            productLine:productLine,
+            productStatus:productStatus,
+            shippingOrNot:shippingOrNot,
+            costPriority:costPriority,
+            f11:f11,
+            kcxhjzDate:kcxhjzDate,
+            note:note,
           }
-        });
+          $.ajax({
+            url:ip+'fnumber/save',
+            type:"POST",
+            data:data,
+            success:function(rs){
+              alert(rs);
+              if("保存成功"==rs){
+                $('#myModal').modal('hide');
+                table.ajax.reload();
+                $('#source').val('');
+                $('#sourceCode').val('');
+                $('#customerCode').val('');
+                $('#customerName').val('');
+                $('#fnumber').val('');
+                $('#productModelZy').val('');
+                $('#customerNumber').val('');
+                $('#productModel').val('');
+                $('#productLine').val('');
+                $('#productStatus').val('');
+                $('#shippingOrNot').val('');
+                $('#costPriority').val('');
+                $('#f11').val('');
+                $('#kcxhjzDate').val('');
+                $('#note').val('');
+              }   
+            }
+          });
+        }
       }
     }
   });

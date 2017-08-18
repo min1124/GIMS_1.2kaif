@@ -4,48 +4,6 @@ $(function() {
 	var name = getCookie("name");
 	var token = getCookie("token");
 
-	// table = $("#example").DataTable({
-	// 	"bDestroy":true,
- //    	"paging": false,
- //    	"lengthChange": false,
- //    	"ordering": true,
- //    	"info": true,
- //    	"autoWidth": false,
- //        "searching": true,
- //        // "columnDefs": [{
- //        //     "visible": false,
- //        //     "targets": -1
- //        // }],
- //    	initComplete:initComplete,
- //    	"dom": 'T<"clear">lfrtip',
- //    	"tableTools": {
- //        	"sSwfPath": "../../plugins/datatables/extensions/TableTools/swf/copy_csv_xls_pdf.swf",
- //        	"aButtons": [{
- //                "sExtends": "xls",
- //          		"sButtonText": "导出Excel",
- //          	}],
- //    	}, 
- //    	"oLanguage":language,
- //    });
-
-    $('#example tbody').on('click','tr',function(){//单击选中某行
-        $('.selected').toggleClass('selected');
-        $(this).toggleClass('selected');
-    });
-
-    $(document).on('click','#addBtn',function(){//增行
-        var id = $('.selected').children('td').eq(0).text();
-        if(id == ""){
-            alert("请先选择一行!");
-        }else{
-            var row1 = $('.selected');  
-            var row2 = row1.clone();  
-            $(row2.children()[0]).html(parseInt(id)+1);
-            var rowNode = table.row.add(row2).draw().node();  
-            row1.after(rowNode);  
-            row1.toggleClass('selected');
-        }
-    });
     $('.addBtn').click(function (){ //添加行按钮
         var row='<tr>'+
                   '<th><button class="delBtn"><i class="fa fa-fw fa-minus"></i></button></th>'+
@@ -72,8 +30,8 @@ $(function() {
         }
 
         var zsl = 0;
-        if(ths.eq(8).children('input').val()){
-            zsl = ths.eq(8).children('input').val();
+        if(ths.find("input[id='zsl']").val()){
+            zsl = ths.find("input[id='zsl']").val();
         }
 
         hj = parseInt(hj) - parseInt(zsl);
@@ -82,20 +40,9 @@ $(function() {
         makeZXS();
     });
 
-    $('#delete').click(function (){//删除行
-        var id = $('.selected').children('td').eq(0).text();
-        if(id == ""){
-            alert("请先选择一行!");
-        }else{
-            var row1 = $('.selected');  
-            row1.remove();  
-            row1.toggleClass('selected');
-        }
-    });
-
     $(document).on("change","#ckdh",function(){//填写出库单号，带出合同号，行号，物料号，物料描述，总数量，备注
         var ths = $(this).parent().parent().children('th')
-        var ckdh = ths.eq(1).children('input').val();
+        var ckdh = ths.find("input[id='ckdh']").val();
 
         var hj = 0;
         if($('#hj').val()){
@@ -103,19 +50,25 @@ $(function() {
         }
 
         var zsl = 0;
-        if(ths.eq(8).children('input').val()){
-            zsl = ths.eq(8).children('input').val();
+        if(ths.find("input[id='zsl']").val()){
+            zsl = ths.find("input[id='zsl']").val();
         }
 
         if(""==ckdh){
             alert("请填写出库单号！");
-            ths.eq(2).children('input').val('')//合同号
-            ths.eq(3).children('input').val('')//行号
-            ths.eq(4).children('input').val('')//物料号
-            ths.eq(5).children('input').val('')//物料描述
-            ths.eq(8).children('input').val('')//总数量
-            ths.eq(9).children('input').val('')//备注
-                
+            ths.find("input[id='hth']").val('');//合同号
+            ths.find("input[id='hh']").val('');//行号
+            ths.find("input[id='wldm']").val('');//物料号
+            ths.find("input[id='wlms']").val('');//物料描述
+            ths.find("input[id='zsl']").val('');//总数量
+            ths.find("input[id='bz']").val('');//备注
+
+            ths.find("input[id='xh']").val('');//箱号分子：xh/xs
+            ths.find("input[id='xs']").val('');//箱号分母：xh/xs
+            makeZXS();
+
+            ths.find("input[id='mxsl']").val('');//每箱数量：mxsl
+            
             hj = parseInt(hj) - parseInt(zsl);
             $('#hj').val(hj);//合计
         }else{
@@ -132,22 +85,28 @@ $(function() {
                 },
                 'success': function(rs){
                     if (rs.data[0]!=null){
-                        ths.eq(2).children('input').val(rs.data[0].合同号)//合同号
-                        ths.eq(3).children('input').val(rs.data[0].行号)//行号
-                        ths.eq(4).children('input').val(rs.data[0].物料号)//物料号
-                        ths.eq(5).children('input').val(rs.data[0].物料描述)//物料描述
-                        ths.eq(8).children('input').val(rs.data[0].总数量)//总数量
-                        ths.eq(9).children('input').val(rs.data[0].备注)//备注
+                        ths.find("input[id='hth']").val(rs.data[0].合同号)//合同号
+                        ths.find("input[id='hh']").val(rs.data[0].行号)//行号
+                        ths.find("input[id='wldm']").val(rs.data[0].物料号)//物料号
+                        ths.find("input[id='wlms']").val(rs.data[0].物料描述)//物料描述
+                        ths.find("input[id='zsl']").val(rs.data[0].总数量)//总数量
+                        ths.find("input[id='bz']").val(rs.data[0].备注)//备注
 
                         hj = parseInt(hj) - parseInt(zsl) + parseInt(rs.data[0].总数量);
                         $('#hj').val(hj);//合计
                     }else{
-                        ths.eq(2).children('input').val('')//合同号
-                        ths.eq(3).children('input').val('')//行号
-                        ths.eq(4).children('input').val('')//物料号
-                        ths.eq(5).children('input').val('')//物料描述
-                        ths.eq(8).children('input').val('')//总数量
-                        ths.eq(9).children('input').val('')//备注
+                        ths.find("input[id='hth']").val('');//合同号
+                        ths.find("input[id='hh']").val('');//行号
+                        ths.find("input[id='wldm']").val('');//物料号
+                        ths.find("input[id='wlms']").val('');//物料描述
+                        ths.find("input[id='zsl']").val('');//总数量
+                        ths.find("input[id='bz']").val('');//备注
+
+                        ths.find("input[id='xh']").val('');//箱号分子：xh/xs
+                        ths.find("input[id='xs']").val('');//箱号分母：xh/xs
+                        makeZXS();
+
+                        ths.find("input[id='mxsl']").val('');//每箱数量：mxsl
                             
                         hj = parseInt(hj) - parseInt(zsl);
                         $('#hj').val(hj);//合计
@@ -157,69 +116,94 @@ $(function() {
         }
     });
 
-    $(document).on("change","#xh",function(){//箱号：xh/xs
-        makeZXS();
+    $(document).on("change","#xh",function(){//箱号分子：xh/xs
+        var ths = $(this).parent().parent().children('th')
+        var xh = ths.find("input[id='xh']").val();
+        var re = /^\d+$/;  
+        if(!re.test(xh)){
+            alert("箱号分子必须为非负整数！");
+            ths.find("input[id='xh']").val('');
+        }   
+        makeZXS(); 
     });
 
-    $(document).on("change","#xs",function(){//箱号：xh/xs
-        makeZXS();
+    $(document).on("change","#xs",function(){//箱号分母：xh/xs
+        var ths = $(this).parent().parent().children('th')
+        var xs = ths.find("input[id='xs']").val();
+        var re = /^[0-9]*[1-9][0-9]*$/;  
+        if(!re.test(xs)){
+            alert("箱号分母必须为正整数！");
+            ths.find("input[id='xs']").val('');
+        }   
+        makeZXS(); 
+    });
+
+    $(document).on("change","#mxsl",function(){//每箱数量：mxsl
+        var ths = $(this).parent().parent().children('th')
+        var mxsl = ths.find("input[id='mxsl']").val();
+        var re = /^[0-9]*[1-9][0-9]*$/;  
+        if(!re.test(mxsl)){
+            alert("每箱数量必须为正整数！");
+            ths.find("input[id='mxsl']").val('');
+        }   
     });
 
     $(document).on('click','#excel',function(){//单击Excel导出按钮
-        var inputTbody = new Array()
-        var inputTfoot = new Array()
-        // 获取table对象
-        var table1 = document.getElementById('example');
-        // 获取 table 内的全部 tbody
-        var tbodys = table1.getElementsByTagName('tbody');
-        if(tbodys && tbodys.length>0){
-            var tbody = tbodys[0];
-            // 获取 tbody 内的全部 input
-            var textinputsTbody = tbody.getElementsByTagName('input');
-            for(var i = 0; i < textinputsTbody.length; i++) {
-                inputTbody[i]=textinputsTbody[i].value;
-            }
+        var inputTbody = new Array();
+        var inputTfoot = {};
 
-            // 获取 table 内的全部 tbody
-            var tfoots = table1.getElementsByTagName('tfoot');
-            var tfoot = tfoots[0];
-            // 获取 tbody 内的全部 input
-            var textinputsTfoot = tfoot.getElementsByTagName('input');
-            for(var i = 0; i < textinputsTfoot.length; i++) {
-                inputTfoot[i]=textinputsTfoot[i].value;
+        // 获取table对象
+        var table1 = $('#example');
+        // 获取 table 内的全部 tbody
+        var tbody = table1.children('tbody');
+        // 获取 tbody 内的全部 tr
+        var trs = tbody.find('tr');
+        trs.each(function (index) {  
+            var ths = $(this).find("th");  
+            var input = {};
+            input["hth"]  = ths.find("input[id='hth']").val();  //合同号
+            input["hh"]   = ths.find("input[id='hh']").val();   //行号
+            input["wldm"] = ths.find("input[id='wldm']").val(); //物料号
+            input["wlms"] = ths.find("input[id='wlms']").val(); //物料描述
+            input["xh"]   = ths.find("input[id='xh']").val();   //箱号分子
+            input["xs"]   = ths.find("input[id='xs']").val();   //箱号分母
+            input["mxsl"] = ths.find("input[id='mxsl']").val(); //每箱数量
+            input["zsl"]  = ths.find("input[id='zsl']").val();  //总数量
+            input["bz"]   = ths.find("input[id='bz']").val();   //备注
+            input["cpph"] = ths.find("input[id='cpph']").val(); //产品批号
+            inputTbody[index] = input;
+        });  
+
+        // 获取 table 内的全部 tfoot
+        var tfoot = table1.children('tfoot');
+        // 获取 tfoot 内的全部 input
+        var zstr = tfoot.find("tr[id='zstr']");
+        var ths = zstr.find("th");
+
+        inputTfoot["zxs"] = ths.find("input[id='zxs']").val(); //总箱数
+        inputTfoot["hj"]  = ths.find("input[id='hj']").val();  //合计
+
+        $.ajax({
+            'url': ip+'deliveryorder/index',   
+            'type': 'post',
+            'data': {
+                token: token,
+                name: name,
+                inputsTbody: inputTbody,
+                inputsTfoot: inputTfoot,
+            },
+            'error':function(rs){
+                alert('网络故障，请刷新重试')
+            },
+            'success': function(rs){
+                window.open(ip+rs, "_self"); 
+                //window.location.href = ip+rs;
+                alert("下载成功！");
             }
-            $.ajax({
-                'url': ip+'deliveryorder/index',   
-                'type': 'post',
-                'data': {
-                  token: token,
-                  name: name,
-                  inputsTbody: inputTbody,
-                  inputsTfoot: inputTfoot,
-                },
-                'error':function(rs){
-                  alert('网络故障，请刷新重试')
-                },
-                'success': function(rs){
-                    window.open(ip+rs, "_self"); 
-                    //window.location.href = ip+rs;
-                    alert("下载成功！");
-                }
-            });
-        }else{
-            alert("请至少填写一条交货记录！");
-        }
+        });
     });
 });
 
-function initComplete(){
-    var dataPlugin1='<div class="btn-group pull-left" role="group" aria-label="...">'+
-                        '<button type="button" class="btn btn-default" id="addBtn">增行</button>'+
-                        '<button type="button" class="btn btn-default" id="delete">删除</button>'+
-                        '<button type="button" class="btn btn-default" id="excel">Excel导出</button>'+
-                    '</div>'
-    $('.clear').append(dataPlugin1);
-}
 function makeZXS(){
     var zxs = 0;
     $("input[id='xh']").each(function(index,xh){

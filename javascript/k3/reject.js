@@ -77,7 +77,7 @@ $(function () {
         "oLanguage":language, 
         "aoColumnDefs":[
             {
-              "aTargets" :　[17],//修改颜色的目标列
+              "aTargets" :　[24],//修改颜色的目标列
               //nTd是一个对象，所指的是目标单元格；
               //sData是指目标单元格中所对应的值；
               //iRow是指目标单元格在datatable中所在的行数；
@@ -768,16 +768,34 @@ function gb(data){
 
 function getFBillNo(){//获取table中所有的单据编号
   var total = "";
-  var table = document .getElementById ("example")
-  var a = table.rows.length
-  for (var i=1 ; i<a ; i++){
-    if((""==table.rows[i].cells[19].innerHTML) && (""!=table.rows[i].cells[18].innerHTML) && (""!=table.rows[i].cells[17].innerHTML) && (table.rows[i].cells[17].innerHTML<=3000)){
+
+  var table = $('#example');
+  var tbody = table1.children('tbody');
+  var trs = tbody.find('tr');
+  trs.each(function (index,tr) { 
+    var tds = $(tr).find('td');
+    var fgfzth = tds.eq(25).text();//分管副总
+    var cwfzrth = tds.eq(23).text();//财务负责人
+    var bfjeth = tds.eq(24).text();//报废金额
+    if(""==fgfzth && ""!=cwfzrth && ""!=bfjeth && (bfjeth<=3000)){
       total+=",'"+table.rows[i].cells[0].innerHTML+"'";
     }else{
       total=",error1";
       break;
     }
-  }
+  });
+  // var table = document .getElementById ("example")
+  // var a = table.rows.length
+  // alert(a);
+  // for (var i=1 ; i<a ; i++){
+  //   if((""==table.rows[i].cells[25].innerHTML) && (""!=table.rows[i].cells[23].innerHTML) 
+  //     && (""!=table.rows[i].cells[24].innerHTML) && (table.rows[i].cells[24].innerHTML<=3000)){
+  //     total+=",'"+table.rows[i].cells[0].innerHTML+"'";
+  //   }else{
+  //     total=",error1";
+  //     break;
+  //   }
+  // }
   return total.substring(1);
 }
 
