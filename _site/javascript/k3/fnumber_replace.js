@@ -49,13 +49,16 @@ $(function () {
     "aoColumns": [
       { "data": "ZfNumber" },
       { "data": "ZfName" },
-      { "data": "ZfModel" },
+      // { "data": "ZfModel" },
       { "data": "FBillNo" },
       { "data": "TfNumber" },
       { "data": "TfName" },
-      { "data": "TfModel" },
+      // { "data": "TfModel" },
       { "data": "FQty" },
       { "data": "FBOMNumber" },
+      { "data": "bomFNumber" },
+      { "data": "sfqd" },
+      { "data": "sfhy" },
       { "data": "FVersion" },
     ]
   });
