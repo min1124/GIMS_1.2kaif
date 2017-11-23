@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <!-- bootstrap不支持IE的兼容模式，因此加此行，在IE运行最新的渲染模式 -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <!-- 初始化移动浏览显示 宽度为设备的宽度，页面加载时，缩放比率为1，也就是不缩放 -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <!-- Bootstrap 3.3.5 -->
+    <link rel="stylesheet" href="../../bootstrap/css/bootstrap.min.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="../../plugins/font-awesome-4.5.0/css/font-awesome.min.css">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="../../plugins/ionicons-2.0.1/css/ionicons.min.css">
+    <!-- DataTables -->
+    <link rel="stylesheet" href="../../plugins/datatables/dataTables.bootstrap.css">
+    <link rel="stylesheet" href="../../plugins/datatables/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="../../plugins/datatables/buttons.dataTables.min.css">
+    <link rel="stylesheet" href="../../plugins/datatables/select.dataTables.min.css">
+    <link rel="stylesheet" href="../../plugins/select2/select2.min.css">
+    <link rel="stylesheet" href="../../plugins/datatables/editor.dataTables.min.css">
+    <link rel="stylesheet" href="../../plugins/datatables/extensions/TableTools/css/dataTables.tableTools.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="../../dist/css/AdminLTE.min.css">
+    <!-- AdminLTE Skins. Choose a skin from the css/skins
+         folder instead of downloading all of them to reduce the load. -->
+    <link rel="stylesheet" href="../../dist/css/skins/skin-blue.min.css">
+    
+    
+    <!-- css gims -->
+    <link rel="stylesheet" href="../../style/dormit/dormit.css">
+    <!-- fixedcolumn固定列css -->
+    <link rel="stylesheet" href="../../plugins/datatables/extensions/FixedColumns/css/dataTables.fixedColumns.css">
+    <link rel="stylesheet" type="text/css" href="../../plugins/datatables/extensions/FixedHeader/css/dataTables.fixedHeader.css">
+    <link rel="stylesheet" type="text/css" href="../../plugins/datatables/extensions/ColReorder/css/dataTables.colReorder.css">
+    <style>
+      th, td { white-space: nowrap;}
+
+    </style>
+    
+    <!-- jQuery 2.1.4 -->
+    <script src="../../plugins/jQuery/jquery-1.11.0.min.js"></script>
+    <!-- bootstrap模板为使IE6、7、8版本（IE9以下版本）浏览器兼容html5新增的标签，引入下面代码文件即可。 -->
+    <!-- bootstrap模板为使IE6、7、8版本（IE9以下版本）浏览器兼容css3样式，引入下面代码文件即可。 -->
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+<body>
+   
+    <section class="content">
+    <div class="row">
+	    <div class="col-xs-12">  
+	        <div class="box" >
+	            <div class="box-header">
+	                <h3 class="box-title">物料基础信息表</h3>
+	            </div><!-- /.box-header -->
+	            <div class="box-body">
+	                <table id="example" class="table table-bordered table-striped">
+	                  	<thead>
+	                    	<tr>
+	                    		<th>供应商物料编码</th>
+	                     		<th>供应商产品型号</th>
+		                      	<th>供应商物料描述</th>
+		                      	<th>物料小类</th>
+		                        <th>客户代码</th>
+		                        <th>客户物料编码</th>
+		                        <th>客户产品型号</th>
+		                        <th>单位</th>
+		                        <th>ITEM类别</th>
+		                        <th>良率%</th>
+		                        <th>货期（天）</th>
+		                        <th>生命周期状态</th>
+	                    	</tr>
+	                  	</thead>
+	                </table>
+	            </div>
+	        </div>
+	    </div>
+    </div>
+</section> 
+
+
+<script src="../../javascript/k3/fnumber_foundation.js"></script> 
+
+
+    <script src="../../javascript/gims_public.js"></script>
+    <!-- Bootstrap 3.3.5 -->
+    <script src="../../bootstrap/js/bootstrap.min.js"></script>
+    <!-- DataTables -->
+    <script src="../../plugins/datatables/jquery.dataTables.min.js"></script>
+    <script src="../../plugins/datatables/dataTables.bootstrap.min.js"></script>
+    <script src="../../plugins/datatables/dataTables.buttons.min.js"></script>
+    <script src="../../plugins/datatables/dataTables.editor.min.js"></script>
+    <script src="../../plugins/datatables/dataTables.select.min.js"></script>
+    <script src="../../plugins/select2/select2.full.min.js"></script>
+    <script src="../../plugins/datatables/buttons.html5.min.js"></script>
+    <script src="../../plugins/datatables/extensions/TableTools/js/dataTables.tableTools.js"></script>
+    <!-- SlimScroll -->
+    <script src="../../plugins/slimScroll/jquery.slimscroll.min.js"></script>
+    <!-- FastClick -->
+    <script src="../../plugins/fastclick/fastclick.min.js"></script>
+     <!-- ChartJS 1.0.1 -->
+    <script src="../../plugins/chartjs/Chart.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="../../dist/js/app.min.js"></script>
+    <!-- AdminLTE for demo purposes -->
+    <script src="../../dist/js/demo.js"></script>
+    <!-- gims-dormit script -->
+    <script src="../../javascript/dormit/staff_info.js"></script> 
+    <!-- fixedcolumn固定列js -->
+    <script src="../../plugins/datatables/extensions/FixedColumns/js/dataTables.fixedColumns.min.js"></script>
+    <script src="../../plugins/datatables/extensions/FixedHeader/js/dataTables.fixedHeader.min.js"></script>
+    <script src="../../plugins/datatables/extensions/ColReorder/js/dataTables.colReorder.min.js"></script>
+</body>
+</html>

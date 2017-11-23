@@ -24,13 +24,15 @@
 	
 	</div>
 <script src="plugins/jQuery/jQuery-2.1.4.min.js"></script>
+<script src="javascript/gims_public.js"></script>
 <script>
 document.cookie  = 'name='+"";
 $('#btlogin').on('click', function(){
 	var name = $('#name').val();
 	var password = $('#password').val();
-	// var url = "http://192.168.137.179:3000/login?t=" + Math.random();
-	var url = "http://192.168.7.82:3000/login?t=" + Math.random();
+
+	var url = ip + "login?t=" + Math.random();
+
 	var data = {
 		name: name, 
 		password: password

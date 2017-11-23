@@ -28,166 +28,274 @@ layout: default
 </div>
 <div class="modal fade" id="myModal" role="dialog" aria-labelledby="myModalLabel" >
     <div class="modal-dialog" role="document" style="width: 70%">
-      <div class="modal-content" >
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          <h2 class="modal-title" id="myModalLabel" align="center">用户管理</h2>
-        </div>
+      	<div class="modal-content" >
+        	<div class="modal-header">
+          		<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          		<h2 class="modal-title" id="myModalLabel" align="center">用户管理</h2>
+        	</div>
         
-        <div class="modal-body">
-          	<ul id="myTab" class="nav nav-tabs">
-	            <li class="active"><a href="#user" data-toggle="tab" id="update_user">基本信息</a></li>
-	            <li><a href="#power" data-toggle="tab" id="update_power">用户权限</a></li>
-	            <!-- <li><a href="#editp" data-toggle="tab" >权限修改</a></li> -->
-	        </ul>
-	        <div id="myTabContent" class="tab-content" style="display: inline;">
-	        	<div class="tab-pane fade in active" id="user">	            	
-	                <div class="register-box" style="height: 250px">
-                		<div class="register-box-body" >
-	                    	<div class="col-xs-12">
-								<div class="form-group has-feedback">
-					            <input type="text" class="form-control" placeholder="姓名" id="name">
-					            <span class="glyphicon glyphicon-user form-control-feedback"></span>
-					          </div>
-					          <div class="form-group has-feedback">
-					            <input type="text" class="form-control" placeholder="工号" id="work_no">
-					            <span class="glyphicon glyphicon-list-alt form-control-feedback"></span>
-					          </div>
-					          <div class="form-group has-feedback">
-								<select id="dept" name="bmbz" class="form-control"></select> 				      
-					          </div>
-					          <div class="form-group has-feedback">
-								<select id="flag"  class="form-control">
-									<option value="">在职</option>  
-									<option value="1">离职</option>
-								</select> 			  
-					          </div>
-					          <div class="form-group has-feedback">
-					          	<input type="text" class="form-control" placeholder="密码" id="password">
-					          </div>
+        	<div class="modal-body">
+          		<ul id="myTab" class="nav nav-tabs">
+	            	<li class="active"><a href="#user" data-toggle="tab" id="update_user">基本信息</a></li>
+	            	<li><a href="#power" data-toggle="tab" id="update_power">用户权限</a></li>
+	        	</ul>
+	        	<div id="myTabContent" class="tab-content" style="display: inline;">
+	        		<div class="tab-pane fade in active" id="user">	            	
+	               	 	<div class="register-box" style="height: 250px">
+                			<div class="register-box-body" >
+	                    		<div class="col-xs-12">
+									<div class="form-group has-feedback">
+					            		<input type="text" class="form-control" placeholder="姓名" id="name">
+					            		<span class="glyphicon glyphicon-user form-control-feedback"></span>
+					          		</div>
+					          		<div class="form-group has-feedback">
+					            		<input type="text" class="form-control" placeholder="工号" id="work_no">
+					            		<span class="glyphicon glyphicon-list-alt form-control-feedback"></span>
+					          		</div>
+					          		<div class="form-group has-feedback">
+										<select id="dept" name="bmbz" class="form-control"></select> 				      
+					          		</div>
+					          		<div class="form-group has-feedback">
+										<select id="flag"  class="form-control">
+											<option value="">在职</option>  
+											<option value="1">离职</option>
+										</select> 			  
+					          		</div>
+					          		<div class="form-group has-feedback">
+					          			<input type="text" class="form-control" placeholder="密码" id="password">
+					          		</div>
+								</div>
 							</div>
 						</div>
-					</div>
-	            </div>
-	            <!-- <div class="tab-pane fade " id="power">
-	            	<div class="box" >
-	                	<div class="box-body" style="height: 550px;overflow:scroll;" >
-	                    	<div class="col-xs-12">
-								
-							</div>
-	                	</div>	
-	                	
-	                </div>
-	            </div> -->
-	            <div class="tab-pane fade " id="power">
-					
-			          <div>
-			            <input type="hidden" id="user_name" value="">
-			          </div>
-		              <table id="example1" class="table table-bordered table-striped">	  
-		                  <tr>
-		                    <th><li>K3辅助系统</li>
-								<ul><li><input type="checkbox" class="1-1" value="t_bom_auth" name="k3">BOM查询</li>
+	            	</div>
+	            	<div class="tab-pane fade " id="power">
+			        	<div>
+			            	<input type="hidden" id="user_name" value="">
+			        	</div>
+		            	<table id="example1" class="table table-bordered table-striped">	  
+		                	<tr>
+		                  		<th colspan="5">
+		                  			<li>K3辅助系统</li>
+		                  		</th>
+		                	</tr>
+		                	<tr>
+		                    	<th>
 									<ul>
-									<li><input type="checkbox" class="1-1-1" value="export_auth" name="t_bom_auth">导出</li>
+										<li><input type="checkbox" class="1-1" value="t_bom_auth" name="k3">BOM查询</li>
+										<ul>
+											<li><input type="checkbox" class="1-1-1" value="export_auth" name="t_bom_auth">导出</li>
+										</ul>
 									</ul>
-								</ul>
-								<ul><li><input type="checkbox" class="1-2" value="t_hj_auth" name="k3">货架查询</li>
 									<ul>
-										<li><input type="checkbox" class="1-2-1" value="export_auth" name="t_hj_auth">导出</li>
+										<li><input type="checkbox" class="1-2" value="t_hj_auth" name="k3">货架查询</li>
+										<ul>
+											<li><input type="checkbox" class="1-2-1" value="export_auth" name="t_hj_auth">导出</li>
+										</ul>
 									</ul>
-								</ul>
-								<ul><li><input type="checkbox" class="1-3" value="t_icmo_auth" name="k3">投料单审批</li>
 									<ul>
-										<li><input type="checkbox" class="1-3-1" value="ic_auth" name="t_icmo_auth">管芯</li>
-										<li><input type="checkbox" class="1-3-2" value="to_auth" name="t_icmo_auth">TO</li>
-										<li><input type="checkbox" class="1-3-3" value="device_auth" name="t_icmo_auth">器件</li>
-										<li><input type="checkbox" class="1-3-4" value="module_auth" name="t_icmo_auth">模块</li>
-										<li><input type="checkbox" class="1-3-5" value="quality_auth" name="t_icmo_auth">品质</li>
-										<li><input type="checkbox" class="1-3-6" value="export_auth" name="t_icmo_auth">导出</li>
+										<li><input type="checkbox" class="1-3" value="t_icmo_auth" name="k3">投料单审批</li>
+										<ul>
+											<li><input type="checkbox" class="1-3-1" value="ic_auth" name="t_icmo_auth">管芯</li>
+											<li><input type="checkbox" class="1-3-2" value="to_auth" name="t_icmo_auth">TO</li>
+											<li><input type="checkbox" class="1-3-3" value="device_auth" name="t_icmo_auth">器件</li>
+											<li><input type="checkbox" class="1-3-4" value="module_auth" name="t_icmo_auth">模块</li>
+											<li><input type="checkbox" class="1-3-5" value="quality_auth" name="t_icmo_auth">品质</li>
+											<li><input type="checkbox" class="1-3-6" value="export_auth" name="t_icmo_auth">导出</li>
+										</ul>
 									</ul>
-								</ul>
-								<ul><li><input type="checkbox" class="1-4" value="t_reject_auth" name="k3">报废单申请</li>
 									<ul>
-										<li><input type="checkbox" class="1-4-1" value="create_auth" name="t_reject_auth">新增</li>
-										<li><input type="checkbox" class="1-4-2" value="delete_auth" name="t_reject_auth">删除</li>
-										<li><input type="checkbox" class="1-4-3" value="dept_auth" name="t_reject_auth">部门负责人</li>
-										<li><input type="checkbox" class="1-4-4" value="me_gx_auth" name="t_reject_auth">ME负责人(管芯)</li>
-										<li><input type="checkbox" class="1-4-5" value="me_qj_auth" name="t_reject_auth">ME负责人(器件)</li>
-										<li><input type="checkbox" class="1-4-6" value="me_mk_auth" name="t_reject_auth">ME负责人(模块)</li>
-										<li><input type="checkbox" class="1-4-7" value="me_to_auth" name="t_reject_auth">ME负责人(TO)</li>
-										<li><input type="checkbox" class="1-4-8" value="pz_gx_auth" name="t_reject_auth">品质负责人(管芯)</li>
-										<li><input type="checkbox" class="1-4-9" value="pz_qj_auth" name="t_reject_auth">品质负责人(器件)</li>
-										<li><input type="checkbox" class="1-4-10" value="pz_mk_auth" name="t_reject_auth">品质负责人(模块)</li>
-										<li><input type="checkbox" class="1-4-11" value="pz_to_auth" name="t_reject_auth">品质负责人(TO)</li>
-										<li><input type="checkbox" class="1-4-12" value="sg_auth" name="t_reject_auth">生管负责人</li>
-										<li><input type="checkbox" class="1-4-13" value="cw_auth" name="t_reject_auth">财务负责人</li>
-										<li><input type="checkbox" class="1-4-14" value="fz_auth" name="t_reject_auth">分管副总</li>
-										<li><input type="checkbox" class="1-4-15" value="cgy_auth" name="t_reject_auth">仓管员</li>
-										<li><input type="checkbox" class="1-4-16" value="export_auth" name="t_reject_auth">导出</li>
+										<li><input type="checkbox" class="1-4" value="t_reject_auth" name="k3">报废单申请</li>
+										<ul>
+											<li><input type="checkbox" class="1-4-1" value="create_auth" name="t_reject_auth">新增</li>
+											<li><input type="checkbox" class="1-4-2" value="delete_auth" name="t_reject_auth">删除</li>
+											<li><input type="checkbox" class="1-4-3" value="dept_auth" name="t_reject_auth">部门负责人</li>
+											<li><input type="checkbox" class="1-4-4" value="me_gx_auth" name="t_reject_auth">ME负责人(管芯)</li>
+											<li><input type="checkbox" class="1-4-5" value="me_qj_auth" name="t_reject_auth">ME负责人(器件)</li>
+											<li><input type="checkbox" class="1-4-6" value="me_mk_auth" name="t_reject_auth">ME负责人(模块)</li>
+											<li><input type="checkbox" class="1-4-7" value="me_to_auth" name="t_reject_auth">ME负责人(TO)</li>
+											<li><input type="checkbox" class="1-4-8" value="pz_gx_auth" name="t_reject_auth">品质负责人(管芯)</li>
+											<li><input type="checkbox" class="1-4-9" value="pz_qj_auth" name="t_reject_auth">品质负责人(器件)</li>
+											<li><input type="checkbox" class="1-4-10" value="pz_mk_auth" name="t_reject_auth">品质负责人(模块)</li>
+											<li><input type="checkbox" class="1-4-11" value="pz_to_auth" name="t_reject_auth">品质负责人(TO)</li>
+											<li><input type="checkbox" class="1-4-12" value="sg_auth" name="t_reject_auth">生管负责人</li>
+											<li><input type="checkbox" class="1-4-13" value="cw_auth" name="t_reject_auth">财务负责人</li>
+											<li><input type="checkbox" class="1-4-14" value="fz_auth" name="t_reject_auth">分管副总</li>
+											<li><input type="checkbox" class="1-4-15" value="cgy_auth" name="t_reject_auth">仓管员</li>
+											<li><input type="checkbox" class="1-4-16" value="export_auth" name="t_reject_auth">导出</li>
+										</ul>
 									</ul>
-								</ul>
-								<ul><li><input type="checkbox" class="1-5" value="t_recieve_auth" name="k3">收货确认</li>
+								</th>
+								<th>
 									<ul>
-										<li><input type="checkbox" class="1-5-1" value="export" name="t_recieve_auth">导出</li>
-										<li><input type="checkbox" class="1-5-2" value="update_wharehouse" name="t_recieve_auth">批量更新(仓库)</li>
-										<li><input type="checkbox" class="1-5-3" value="update_sale" name="t_recieve_auth">批量更新(销售)</li>
+										<li><input type="checkbox" class="1-25" value="t_rejectyf_auth" name="k3">报废单申请(研发)</li>
+										<ul>
+											<li><input type="checkbox" class="1-25-1" value="create_auth" name="t_rejectyf_auth">新增</li>
+											<li><input type="checkbox" class="1-25-2" value="delete_auth" name="t_rejectyf_auth">删除</li>
+											<li><input type="checkbox" class="1-25-3" value="dept_auth" name="t_rejectyf_auth">部门负责人</li>
+											<li><input type="checkbox" class="1-25-4" value="pz_gj_auth" name="t_rejectyf_auth">品质负责人(管技)</li>
+											<li><input type="checkbox" class="1-25-5" value="pz_kf_auth" name="t_rejectyf_auth">品质负责人(开发)</li>
+											<li><input type="checkbox" class="1-25-6" value="pz_gy_auth" name="t_rejectyf_auth">品质负责人(公研)</li>
+											<li><input type="checkbox" class="1-25-7" value="pz_gs_auth" name="t_rejectyf_auth">品质负责人(高速)</li>
+											<li><input type="checkbox" class="1-25-8" value="pz_st_auth" name="t_rejectyf_auth">品质负责人(数通)</li>
+											<li><input type="checkbox" class="1-25-9" value="pz_sf_auth" name="t_rejectyf_auth">品质负责人(SFP)</li>
+											<li><input type="checkbox" class="1-25-10" value="pz_po_auth" name="t_rejectyf_auth">品质负责人(PON)</li>
+											<li><input type="checkbox" class="1-25-11" value="pz_cy_auth" name="t_rejectyf_auth">品质负责人(成研)</li>
+											<li><input type="checkbox" class="1-25-12" value="cw_auth" name="t_rejectyf_auth">财务负责人</li>
+											<li><input type="checkbox" class="1-25-13" value="fz_auth" name="t_rejectyf_auth">分管副总</li>
+											<li><input type="checkbox" class="1-25-14" value="cgy_auth" name="t_rejectyf_auth">仓管员</li>
+											<li><input type="checkbox" class="1-25-15" value="export_auth" name="t_rejectyf_auth">导出</li>
+										</ul>
 									</ul>
-								</ul>
-								<ul><li><input type="checkbox" class="1-6" value="t_order_auth" name="k3">销售订单</li>
-								</ul>
-								<ul><li><input type="checkbox" class="1-7" value="t_return_auth" name="k3">回货计划</li>
-								</ul>
-								<ul><li><input type="checkbox" class="1-8" value="t_delivery_auth" name="k3">海思出库</li>
-								</ul>
-								<ul><li><input type="checkbox" class="1-9" value="t_change_auth" name="k3">任务变更单审批</li>
+								</th>
+								<th>
 									<ul>
-										<li><input type="checkbox" class="1-9-1" value="ic_auth" name="t_change_auth">管芯权限</li>
-										<li><input type="checkbox" class="1-9-2" value="to_auth" name="t_change_auth">TO权限</li>
-										<li><input type="checkbox" class="1-9-3" value="device_auth" name="t_change_auth">器件权限</li>
-										<li><input type="checkbox" class="1-9-4" value="module_auth" name="t_change_auth">模块权限</li>
-										<li><input type="checkbox" class="1-9-5" value="quality_auth" name="t_change_auth">品质权限</li>
+										<li><input type="checkbox" class="1-26" value="t_rejectkc_auth" name="k3">报废单申请(库存)</li>
+										<ul>
+											<li><input type="checkbox" class="1-26-1" value="create_auth" name="t_rejectkc_auth">新增</li>
+											<li><input type="checkbox" class="1-26-2" value="delete_auth" name="t_rejectkc_auth">删除</li>
+											<li><input type="checkbox" class="1-26-3" value="dept_auth" name="t_rejectkc_auth">部门负责人</li>
+											<li><input type="checkbox" class="1-26-4" value="me_gx_auth" name="t_rejectkc_auth">ME负责人(管芯)</li>
+											<li><input type="checkbox" class="1-26-5" value="me_qj_auth" name="t_rejectkc_auth">ME负责人(器件)</li>
+											<li><input type="checkbox" class="1-26-6" value="me_mk_auth" name="t_rejectkc_auth">ME负责人(模块)</li>
+											<li><input type="checkbox" class="1-26-7" value="me_to_auth" name="t_rejectkc_auth">ME负责人(TO)</li>
+											<li><input type="checkbox" class="1-26-8" value="me_sg_auth" name="t_rejectkc_auth">ME负责人(生管)</li>
+											<li><input type="checkbox" class="1-26-9" value="me_gj_auth" name="t_rejectkc_auth">ME负责人(管技)</li>
+											<li><input type="checkbox" class="1-26-10" value="me_kf_auth" name="t_rejectkc_auth">ME负责人(开发)</li>
+											<li><input type="checkbox" class="1-26-11" value="me_gy_auth" name="t_rejectkc_auth">ME负责人(公研)</li>
+											<li><input type="checkbox" class="1-26-12" value="me_gs_auth" name="t_rejectkc_auth">ME负责人(高速)</li>
+											<li><input type="checkbox" class="1-26-13" value="me_st_auth" name="t_rejectkc_auth">ME负责人(数通)</li>
+											<li><input type="checkbox" class="1-26-14" value="me_sf_auth" name="t_rejectkc_auth">ME负责人(SFP)</li>
+											<li><input type="checkbox" class="1-26-15" value="me_po_auth" name="t_rejectkc_auth">ME负责人(PON)</li>
+											<li><input type="checkbox" class="1-26-16" value="me_cy_auth" name="t_rejectkc_auth">ME负责人(成研)</li>
+											<li><input type="checkbox" class="1-26-17" value="pz_gx_auth" name="t_rejectkc_auth">品质负责人(管芯)</li>
+											<li><input type="checkbox" class="1-26-18" value="pz_qj_auth" name="t_rejectkc_auth">品质负责人(器件)</li>
+											<li><input type="checkbox" class="1-26-19" value="pz_mk_auth" name="t_rejectkc_auth">品质负责人(模块)</li>
+											<li><input type="checkbox" class="1-26-20" value="pz_to_auth" name="t_rejectkc_auth">品质负责人(TO)</li>
+											<li><input type="checkbox" class="1-26-21" value="pz_sg_auth" name="t_rejectkc_auth">品质负责人(生管)</li>
+											<li><input type="checkbox" class="1-26-22" value="pz_gj_auth" name="t_rejectkc_auth">品质负责人(管技)</li>
+											<li><input type="checkbox" class="1-26-23" value="pz_kf_auth" name="t_rejectkc_auth">品质负责人(开发)</li>
+											<li><input type="checkbox" class="1-26-24" value="pz_gy_auth" name="t_rejectkc_auth">品质负责人(公研)</li>
+											<li><input type="checkbox" class="1-26-25" value="pz_gs_auth" name="t_rejectkc_auth">品质负责人(高速)</li>
+											<li><input type="checkbox" class="1-26-26" value="pz_st_auth" name="t_rejectkc_auth">品质负责人(数通)</li>
+											<li><input type="checkbox" class="1-26-27" value="pz_sf_auth" name="t_rejectkc_auth">品质负责人(SFP)</li>
+											<li><input type="checkbox" class="1-26-28" value="pz_po_auth" name="t_rejectkc_auth">品质负责人(PON)</li>
+											<li><input type="checkbox" class="1-26-29" value="pz_cy_auth" name="t_rejectkc_auth">品质负责人(成研)</li>
+											<li><input type="checkbox" class="1-26-30" value="sg_auth" name="t_rejectkc_auth">生管负责人</li>
+											<li><input type="checkbox" class="1-26-31" value="cw_auth" name="t_rejectkc_auth">财务负责人</li>
+											<li><input type="checkbox" class="1-26-32" value="fz_auth" name="t_rejectkc_auth">分管副总</li>
+											<li><input type="checkbox" class="1-26-33" value="cgy_auth" name="t_rejectkc_auth">仓管员</li>
+											<li><input type="checkbox" class="1-26-34" value="export_auth" name="t_rejectkc_auth">导出</li>
+										</ul>
 									</ul>
-								</ul>
-								<ul><li><input type="checkbox" class="1-10" value="t_stockbill_auth" name="k3">K3采购比价查询</li>
-								</ul>
-								<ul><li><input type="checkbox" class="1-11" value="t_cancel_auth" name="k3">退货确认</li>
-								</ul>
-								<ul><li><input type="checkbox" class="1-12" value="t_icsearch_auth" name="k3">代码查询</li>
-								</ul>
-								<ul><li><input type="checkbox" class="1-13" value="t_fnumber_auth" name="k3">产品代码信息库</li>
-								</ul>
-								<ul><li><input type="checkbox" class="1-14" value="t_seoutstock_auth" name="k3">发货通知单</li>
-								</ul>
-								<ul><li><input type="checkbox" class="1-15" value="t_perfchar_auth" name="k3">VMI发货通知单关闭</li>
-								</ul>
-		                    </th>
-		                    <th><li>供应商管理</li></th>
-		                    <th><li>生产现场管理</li></th>
-		                    <th><li>宿舍管理</li>
-		                    <ul>
-		                    	<li><input type="checkbox" class="4-1" value="4-1" name="authority">人员管理</li>
-		                    		<ul>
-										<li><input type="checkbox" class="4-1-1" value="4-1-1">增</li>
-										<li><input type="checkbox" class="4-1-1" value="4-1-2">删</li>
-										<li><input type="checkbox" class="4-1-1" value="4-1-3">改</li>
-										<li><input type="checkbox" class="4-1-1" value="4-1-4">查</li>
+								</th>
+								<th>
+									<ul>
+										<li><input type="checkbox" class="1-5" value="t_recieve_auth" name="k3">收货确认</li>
+										<ul>
+											<li><input type="checkbox" class="1-5-1" value="export" name="t_recieve_auth">导出</li>
+											<li><input type="checkbox" class="1-5-2" value="update_wharehouse" name="t_recieve_auth">批量更新(仓库)</li>
+											<li><input type="checkbox" class="1-5-3" value="update_sale" name="t_recieve_auth">批量更新(销售)</li>
+										</ul>
 									</ul>
-		                    	<li><input type="checkbox" class="4-2" value="4-2">房间管理</li>
-		                    </ul>
-		                    </th>
-		                  </tr> 
-		              </table>
-	            </div>
-            </div>
-        </div>
-        <div class="modal-footer">
-          <div class="col-lg-12">
-            <button type="button" class="btn btn-default " data-dismiss="modal">退出</button>
-            <button id="save" type="button" class="btn btn-primary pull-left">保存</button>
-          </div>
-        </div>
-      </div>
+									<ul>
+										<li><input type="checkbox" class="1-6" value="t_order_auth" name="k3">销售订单</li>
+									</ul>
+									<ul>
+										<li><input type="checkbox" class="1-7" value="t_return_auth" name="k3">回货计划</li>
+									</ul>
+									<ul>
+										<li><input type="checkbox" class="1-8" value="t_delivery_auth" name="k3">海思出库</li>
+									</ul>
+									<ul>
+										<li><input type="checkbox" class="1-9" value="t_change_auth" name="k3">任务变更单审批</li>
+										<ul>
+											<li><input type="checkbox" class="1-9-1" value="ic_auth" name="t_change_auth">管芯权限</li>
+											<li><input type="checkbox" class="1-9-2" value="to_auth" name="t_change_auth">TO权限</li>
+											<li><input type="checkbox" class="1-9-3" value="device_auth" name="t_change_auth">器件权限</li>
+											<li><input type="checkbox" class="1-9-4" value="module_auth" name="t_change_auth">模块权限</li>
+											<li><input type="checkbox" class="1-9-5" value="quality_auth" name="t_change_auth">品质权限</li>
+										</ul>
+									</ul>
+									<ul>
+										<li><input type="checkbox" class="1-10" value="t_stockbill_auth" name="k3">K3采购比价查询</li>
+									</ul>
+									<ul>
+										<li><input type="checkbox" class="1-11" value="t_cancel_auth" name="k3">退货确认</li>
+									</ul>
+									<ul>
+										<li><input type="checkbox" class="1-12" value="t_icsearch_auth" name="k3">代码查询</li>
+									</ul>
+									<ul>
+										<li><input type="checkbox" class="1-13" value="t_fnumber_auth" name="k3">产品代码信息库(正源)</li>
+										<ul>
+											<li><input type="checkbox" class="1-13-1" value="t_fnquery_auth" name="t_fnumber_auth">查询权限</li>
+											<ul>
+												<li><input type="checkbox" class="1-13-1-1" value="t_all_auth" name="t_fnquery_auth">所有</li>
+												<li><input type="checkbox" class="1-13-1-2" value="t_gs_auth" name="t_fnquery_auth">高速</li>
+												<li><input type="checkbox" class="1-13-1-3" value="t_sfp_auth" name="t_fnquery_auth">SFP</li>
+												<li><input type="checkbox" class="1-13-1-4" value="t_pon_auth" name="t_fnquery_auth">PON</li>
+												<li><input type="checkbox" class="1-13-1-5" value="t_st_auth" name="t_fnquery_auth">数通</li>
+											</ul>
+										</ul>
+										<ul>
+											<li><input type="checkbox" class="1-13-2" value="t_fnupdate_auth" name="t_fnumber_auth">新增/修改/删除权限</li>
+											<ul>
+												<li><input type="checkbox" class="1-13-2-1" value="t_all_auth" name="t_fnupdate_auth">所有</li>
+												<li><input type="checkbox" class="1-13-2-2" value="t_gs_auth" name="t_fnupdate_auth">高速</li>
+												<li><input type="checkbox" class="1-13-2-3" value="t_sfp_auth" name="t_fnupdate_auth">SFP</li>
+												<li><input type="checkbox" class="1-13-2-4" value="t_pon_auth" name="t_fnupdate_auth">PON</li>
+												<li><input type="checkbox" class="1-13-2-5" value="t_st_auth" name="t_fnupdate_auth">数通</li>
+											</ul>
+										</ul>
+									</ul>
+								</th>
+								<th>
+									<ul>
+										<li><input type="checkbox" class="1-14" value="t_seoutstock_auth" name="k3">发货通知单</li>
+									</ul>
+									<ul>
+										<li><input type="checkbox" class="1-15" value="t_perfchar_auth" name="k3">VMI发货通知单关闭</li>
+									</ul>
+									<ul>
+										<li><input type="checkbox" class="1-16" value="t_delayorder_auth" name="k3">精益生产报表</li>
+									</ul>
+									<ul>
+										<li><input type="checkbox" class="1-17" value="t_bfprice_auth" name="k3">报废单价维护</li>
+									</ul>
+									<ul>
+										<li><input type="checkbox" class="1-18" value="t_bomkey_auth" name="k3">BOM物料库</li>
+									</ul>
+									<ul>
+										<li><input type="checkbox" class="1-19" value="t_custperfchar_auth" name="k3">客户性能特征对应表</li>
+									</ul>
+									<ul>
+										<li><input type="checkbox" class="1-20" value="t_fnumberhw_auth" name="k3">产品代码信息库</li>
+									</ul>
+									<ul>
+										<li><input type="checkbox" class="1-21" value="t_fnumberdesc_auth" name="k3">华为物料描述</li>
+									</ul>
+									<ul>
+										<li><input type="checkbox" class="1-22" value="t_keyfnumbers_auth" name="k3">采购关键物料表</li>
+									</ul>
+									<ul>
+										<li><input type="checkbox" class="1-23" value="t_replace_auth" name="k3">物料替代关系查询</li>
+									</ul>
+									<ul>
+										<li><input type="checkbox" class="1-24" value="t_zxhub_auth" name="k3">中兴客户代码维护</li>
+									</ul>
+		                    	</th>
+ 							</tr> 
+		            	</table>
+	           	 	</div>
+            	</div>
+        	</div>
+        	<div class="modal-footer">
+          		<div class="col-lg-12">
+            		<button type="button" class="btn btn-default " data-dismiss="modal">退出</button>
+            		<button id="save" type="button" class="btn btn-primary pull-left">保存</button>
+          		</div>
+        	</div>
+      	</div>
     </div>
 </div>
 

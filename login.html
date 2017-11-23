@@ -19,19 +19,20 @@
 			<input type="password" id="password" class="form-control" placeholder="密码" required>
 			<div class="form-message" style="height: 20px;">
 			</div>
-			<input class="btn btn-lg btn-primary btn-block input" type="button" id="btlogin" onclick="" value="login">
-			<input class="btn btn-lg btn-primary btn-block input" type="button" id="sign" onclick="" value="sign up">
+			<input class="btn btn-lg btn-primary btn-block input" type="button" id="btlogin" onclick="" value="登录">
+			<input class="btn btn-lg btn-primary btn-block input" type="button" id="sign" onclick="" value="注册">
 			
 		</form>
 	
 	</div>
 <script src="plugins/jQuery/jquery-1.11.0.min.js"></script>
+<script src="javascript/gims_public.js"></script>
 <script>
 $('#btlogin').on('click', function(){
 	var name = $('#name').val();
 	var password = $('#password').val();
-	// var url = "http://localhost:3000/login?t=" + Math.random();
-	var url = "http://192.168.7.82:3000/login?t=" + Math.random();
+
+	var url = ip + "login?t=" + Math.random();
 	var data = {
 		name: name, 
 		password: password

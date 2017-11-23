@@ -1,13 +1,11 @@
-var name
-var token
 var table
 var table1
 var fnumber = new Array() 
 jQuery.support.cors = true;
 var type = "tltz"
 $(function(){
-	token = getCookie('token');
-    name = getCookie('name');
+	var token = getCookie('token');
+    var name = getCookie('name');
     
     table = $('#example').DataTable({
 		"Destroy":true,

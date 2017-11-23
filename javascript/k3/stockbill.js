@@ -1,9 +1,8 @@
-var name
-var token
-var table
+jQuery.support.cors = true;
+var table;
 $(function(){
-	token = getCookie('token');
-    name = getCookie('name');
+	var token = getCookie('token');
+    var name = getCookie('name');
 	table = $('#example').DataTable({
 		"Destroy":true,
 		"paging": true,
@@ -76,12 +75,10 @@ function initComplete(){
         '</div>'
     var dataPlugin2 ='<div id="time" class=" pull-left dateRange" style="margin-left:200px;"> '+
         '<span>开始时间：</span><input type="month" id="selecttime">'+
-        '</div>';
+        '</div>'
     $('.clear').append(dataPlugin1);
     $('.clear').append(dataPlugin2);
     $('#true').click(function(){
     	table.ajax.reload();
-    })
+    });
 }
-
-

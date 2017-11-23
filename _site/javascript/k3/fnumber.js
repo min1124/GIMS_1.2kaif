@@ -32,7 +32,7 @@ $(function () {
       var currentdate = date2.getFullYear() + seperator1 + month + seperator1 + strDate;
       if(data.kcxhjz_date != null && data.kcxhjz_date != ""){
         if ((data.kcxhjz_date <= currentdate) && ('Y' == data.shipping_or_not)) {  
-          for (var i = 0; i < 17; i++) {  
+          for (var i = 0; i < 20; i++) {  
             $('td', row).eq(i).css('font-weight', "bold").css("color", "red");  
           }  
         } 
@@ -64,9 +64,14 @@ $(function () {
       { "data": "customer_code" },
       { "data": "customer_name" },
       { "data": "fnumber" },
+      { "data": "fnumber_hw" },
       { "data": "product_model_zy" },
       { "data": "customer_number" },
+      { "data": "pcn_flag" },
+      { "data": "pcn_date" },
       { "data": "product_model" },
+      { "data": "fnumber_desc" },
+      { "data": "key_fnumbers" },
       { "data": "product_line" },
       { "data": "product_status" },
       { "data": "shipping_or_not" },
@@ -112,10 +117,11 @@ $(function () {
 　　　});
 　})
   $(document).on("change","#fnumber",function(){ //产品代码联动
+    var wldmSql = $(this).val();
     var data0={
       name:name,
       token:token,
-      sql:$(this).val(),
+      sql:wldmSql,
     }
     $.ajax({
       url:ip+'fnumber/checkFnumber',
@@ -133,6 +139,7 @@ $(function () {
             success:function(rs){
               if(rs.dataA[0]!=null){
                 $("#customerCode").val(rs.dataA[0].客户代码)
+                $("#productModelZy").val(rs.dataA[0].物料名称);
                 var data1={
                   name:name,
                   token:token,
@@ -150,20 +157,19 @@ $(function () {
                       alert("客户代码"+rs.data[0].客户代码C+"存在多个客户名称，请核实！");
                     }else{
                       $("#customerName").val('');
-                      alert("物料代码"+$(this).val()+"无对应客户名称，请核实！");
+                      alert("物料代码"+wldmSql+"无对应客户名称，请核实！");
                     }
                   }
                 });
               }else{
                 $("#customerCode").val('');
-                alert("物料代码"+$(this).val()+"无对应客户代码，请核实！");
+                alert("物料代码"+wldmSql+"无对应客户代码，请核实！");
+                $("#productModelZy").val('');
               }
               if(rs.dataB[0]!=null){
-                $("#productModelZy").val(rs.dataB[0].物料名称);
                 $("#customerNumber").val(rs.dataB[0].客户代码);
                 $("#productModel").val(rs.dataB[0].客户型号);
               }else{
-                $("#productModelZy").val('');
                 $("#customerNumber").val('');
                 $("#productModel").val('');
               }
@@ -205,6 +211,8 @@ $(function () {
       var productModel=$('#productModel').val();
       var productLine=$('#productLine').val();
       var productStatus=$('#productStatus').val();
+      var pcnFlag=$('#pcnFlag').val();
+      var pcnDate=$('#pcnDate').val();
       var shippingOrNot=$('#shippingOrNot').val();
       var costPriority=$('#costPriority').val();
       var f11=$('#f11').val();
@@ -238,6 +246,8 @@ $(function () {
             productModel:productModel,
             productLine:productLine,
             productStatus:productStatus,
+            pcnFlag:pcnFlag,
+            pcnDate:pcnDate,
             shippingOrNot:shippingOrNot,
             costPriority:costPriority,
             f11:f11,
@@ -263,6 +273,8 @@ $(function () {
                 $('#productModel').val('');
                 $('#productLine').val('');
                 $('#productStatus').val('');
+                $('#pcnFlag').val('');
+                $('#pcnDate').val('');
                 $('#shippingOrNot').val('');
                 $('#costPriority').val('');
                 $('#f11').val('');
@@ -281,6 +293,76 @@ $(function () {
     $(this).toggleClass('selected');
   });
 
+  $(document).on("dblclick","#example tbody tr",function() {//双击事件
+    var IdHw = $(this).children('td').eq(0).text();
+    var customerCodeHw = $(this).children('td').eq(3).text();
+    var fnumberHw = $(this).children('td').eq(5).text();
+    var fnumberSelHw = $(this).children('td').eq(6).text();
+    var customerNumberHw = $(this).children('td').eq(8).text();
+    var pcnFlagHw = $(this).children('td').eq(9).text();
+    var productModelHw = $(this).children('td').eq(11).text();
+    var fnumberdesc = $(this).children('td').eq(12).text();
+    var keyfnumbers = $(this).children('td').eq(13).text();
+    var shippingOrNotHw = $(this).children('td').eq(16).text();
+    
+    hw(IdHw,fnumberHw,fnumberSelHw,customerNumberHw,pcnFlagHw,productModelHw,fnumberdesc,keyfnumbers,shippingOrNotHw);
+  }); 
+
+  $(document).on("change","#pcnFlag1",function(){//PCN通过下拉选项
+    update1();
+  });
+
+  $(document).on("change","#shippingOrNot1",function(){//是否可发货下拉选项
+    update1();
+  });
+
+  $(document).on("change","#fnumberSelHw",function(){//产品代码(提供华为)下拉选项
+    var fnumberSelHw = $('#fnumberSelHw').val();
+    keyFnumberHw(fnumberSelHw,"");
+    fnumberDescHw(fnumberSelHw)
+  });
+
+  $(document).on("click","#updSaveHw",function(){//修改提供华为产品代码 保存按钮
+    var keyBomFnumber = "";
+    var tableQuery = $("#exampleBom");
+    var tbody = tableQuery.children('tbody');
+    var trs = tbody.children('tr');
+    var keyBomFnumber = "";
+
+    $('input[name="keyfnumbers"]:checked').each(function(){ 
+      keyBomFnumber = keyBomFnumber + $(this).val() + ",";
+    }); 
+    if(""!=keyBomFnumber){
+      keyBomFnumber = keyBomFnumber.substr(0,keyBomFnumber.length-1);
+    }
+
+    var customerNumberHw=$('#customerNumberHw').val();
+    var fnumberSelHw=$('#fnumberSelHw').val();  
+    var productModelHw=$('#productModelHw').val();   
+    var fnumberDescHw=$('#fnumberDescHw').val();  
+    var data={
+      name:name,
+      token:token,
+      customer_number:customerNumberHw,
+      fnumberSelect:fnumberSelHw,
+      keyBomFnumber:keyBomFnumber,
+      productModelHw:productModelHw,
+      fnumberDescHw:fnumberDescHw,
+    }
+    $.ajax({
+      url:ip+'fnumber/fnumberselchange',
+      type:"POST",
+      data:data,
+      success:function(rs){
+        if(0==rs){
+          alert("更新成功！");
+          $('#myModalHw').modal('hide');
+          table.ajax.reload();
+        }   
+      }
+    });
+  });
+
   $(document).on("click","#upd",function() {//修改
     var td = $(".selected").children('td');
     if (td.length==0){
@@ -291,6 +373,7 @@ $(function () {
         token: token,
         name: name,
       }
+      var select = $('#shippingOrNot1');
       $.ajax({  
         'url': ip+'fnumber/upd?sql='+id,   
         'type': 'post',
@@ -309,25 +392,32 @@ $(function () {
           $('#customerCode1').val(rs.data1[0].customer_code);
           $('#customerName1').val(rs.data1[0].customer_name);
           $('#fnumber1').val(rs.data1[0].fnumber);
+          $('#fnumberSel1').val(rs.data1[0].fnumber_hw);
           $('#productModelZy1').val(rs.data1[0].product_model_zy);
           $('#customerNumber1').val(rs.data1[0].customer_number);
           $('#productModel1').val(rs.data1[0].product_model);
           $('#productLine1').val(rs.data1[0].product_line);
           $('#productStatus1').val(rs.data1[0].product_status);
+          $('#pcnFlag1').val(rs.data1[0].pcn_flag);
+          $('#pcnDate1').val(rs.data1[0].pcn_date);
           $('#shippingOrNot1').val(rs.data1[0].shipping_or_not);
           $('#costPriority1').val(rs.data1[0].cost_priority);
           $('#f111').val(rs.data1[0].F11);
           $('#kcxhjzDate1').val(rs.data1[0].kcxhjz_date);
           $('#note1').val(rs.data1[0].note);
+          $('#fnumberdesc1').val(rs.data1[0].fnumber_desc);
+          $('#keyfnumbers1').val(rs.data1[0].key_fnumbers);
         },
       }); 
       $('#myModal1').modal('show');
     }
   });
   $(document).on("click","#updSave",function(){//修改保存按钮
-    if(confirm("确定保存吗？")){
+    //if(confirm("确定保存吗？")){
       var id=$('#ID1').val();
       var productStatus=$('#productStatus1').val();
+      var pcnFlag=$('#pcnFlag1').val();
+      var pcnDate=$('#pcnDate1').val();
       var shippingOrNot=$('#shippingOrNot1').val();
       var costPriority=$('#costPriority1').val();
       var f11=$('#f111').val();
@@ -339,6 +429,8 @@ $(function () {
         token:token,
         id:id,
         productStatus:productStatus,
+        pcnFlag:pcnFlag,
+        pcnDate:pcnDate,
         shippingOrNot:shippingOrNot,
         costPriority:costPriority,
         f11:f11,
@@ -350,14 +442,14 @@ $(function () {
         type:"POST",
         data:data,
         success:function(rs){
-          alert(rs);
-          if("保存成功"==rs){
+          if(0==rs){
+            alert("修改成功！");
             $('#myModal1').modal('hide');
             table.ajax.reload();
           }   
         }
       });
-    }
+    //}
   });
   $(document).on("click","#del",function(){//删除按钮
     var id=$(".selected").children('td').eq(0).text();
@@ -413,6 +505,8 @@ $(function () {
           var row = '<thead>'+
                     '<tr>'+
                       '<th>产品状态</th>'+
+                      '<th>是否为PCN通过的方案</th>'+
+                      '<th>PCN通过时间</th>'+
                       '<th>是否可发货</th>'+
                       '<th>成本优先级</th>'+
                       '<th>新增日期</th>'+
@@ -423,6 +517,8 @@ $(function () {
                   '</thead>';
           var data = [
             { "data": "product_status" },
+            { "data": "pcn_flag" },
+            { "data": "pcn_date" },
             { "data": "shipping_or_not" },
             { "data": "cost_priority" },
             { "data": "update_date1" },
@@ -473,6 +569,8 @@ $(function () {
           $('#productModel2').val(rs.data1[0].product_model);
           $('#productLine2').val(rs.data1[0].product_line);
           $('#productStatus2').val(rs.data1[0].product_status);
+          $('#pcnFlag2').val(rs.data1[0].pcn_flag);
+          $('#pcnDate2').val(rs.data1[0].pcn_date);
           $('#shippingOrNot2').val(rs.data1[0].shipping_or_not);
           $('#costPriority2').val(rs.data1[0].cost_priority);
           $('#f112').val(rs.data1[0].F11);
@@ -493,6 +591,127 @@ function initComplete(){ //初始化表格
 	                  '</div>';
 	$('.clear').append(dataPlugin1);                
 }
+
+function update1(){
+  var IdHw = $("#ID1").val();
+  var fnumberHw = $("#fnumber1").val();
+  var fnumberSelHw = $("#fnumberSel1").val();
+  var customerNumberHw = $("#customerNumber1").val();
+  var pcnFlagHw = $("#pcnFlag1").val();
+  var productModelHw = $("#productModelZy1").val();
+  var fnumberdesc = $("#fnumberdesc1").val();
+  var keyfnumbers = $("#keyfnumbers1").val();
+  var shippingOrNotHw = $("#shippingOrNot1").val();
+  if("Y"==pcnFlagHw && "N"==shippingOrNotHw){
+    if(confirm("是否修改产品代码(提供华为)？")){
+      //hw(IdHw,fnumberHw,fnumberSelHw,customerNumberHw,pcnFlagHw,shippingOrNotHw);
+      hw(IdHw,fnumberHw,fnumberSelHw,customerNumberHw,pcnFlagHw,productModelHw,fnumberdesc,keyfnumbers,shippingOrNotHw)
+    }
+  }
+}
+
+function hw(IdHw,fnumberHw,fnumberSelHw,customerNumberHw,pcnFlagHw,productModelHw,fnumberdesc,keyfnumbers,shippingOrNotHw){
+  var select = $("#fnumberSelHw");
+  if (customerNumberHw && ""!=customerNumberHw) {
+    $.ajax({
+      url: ip + 'fnumber/fnumberselect',
+      data: {
+        customer_number: customerNumberHw,
+        name: getCookie('name'),
+        token: getCookie('token'),
+      },
+      type: 'post',
+      success: function(rs){
+        select.empty();
+        var option = $("<option>").text('').val('');
+        select.append(option);
+        for(var i=0;i<rs.data.length;i++) {
+          var option ='<option value="'+rs.data[i].fnumber+'">'+rs.data[i].fnumber+'</option>';
+          select.append(option);
+        }
+        select.val(fnumberSelHw)//
+      }
+    });
+  }
+  keyFnumberHw(fnumberSelHw,keyfnumbers);
+  //fnumberDescHw(fnumberSelHw);
+  $("#IdHw").val(IdHw)//
+  $("#fnumberHw").val(fnumberHw)//
+  
+  $("#customerNumberHw").val(customerNumberHw)//
+  $("#pcnFlagHw").val(pcnFlagHw)//
+  $("#shippingOrNotHw").val(shippingOrNotHw)//
+  $("#productModelHw").val(productModelHw)//
+  $("#fnumberDescHw").val(fnumberdesc)//
+  $('#myModalHw').modal('show')
+}
+
+function keyFnumberHw(fnumberSelHw,keyfnumbers){
+  var keyfnumbersArray = new Array(); //定义一数组 
+  if("" != keyfnumbers){
+    keyfnumbersArray = keyfnumbers.split(","); //字符分割 
+  }
+
+  var tableQuery = $("#exampleBom");
+  var tbody = tableQuery.children('tbody');
+  tbody.empty();
+  if (fnumberSelHw && ""!=fnumberSelHw) {
+    $.ajax({
+      url: ip + 'fnumber/keyfnumber',
+      data: {
+        fnumber: fnumberSelHw,
+        name: getCookie('name'),
+        token: getCookie('token'),
+      },
+      type: 'post',
+      success: function(rs){
+        var tr;
+        var row = rs.data.length/5;
+        for(var i=0;i<rs.data.length;i++) {
+          if(0==i%5){
+            tr = document.createElement("tr");  
+            tbody.append(tr);
+          }
+          var td = document.createElement("td");
+          tr.append(td);
+          var label = document.createElement("label");
+          td.append(label);
+          label.setAttribute("class", "checkbox-inline");
+          var input = document.createElement("input");
+          label.append(input);
+          input.setAttribute("name","keyfnumbers");
+          input.setAttribute("type","checkbox");
+          input.setAttribute("value",rs.data[i].物料代码);
+          for (var j=0;j<keyfnumbersArray.length;j++ ) { 
+            //document.write(keyfnumbersArray[j]+"<br/>"); //分割后的字符输出 
+            if(keyfnumbersArray[j] == rs.data[i].物料代码){
+              input.setAttribute("checked","checked");
+            }
+          } 
+          label.append(rs.data[i].物料代码);                
+        }
+      }
+    });
+  }
+}
+
+function fnumberDescHw(fnumberSelHw){
+  $.ajax({
+    url: ip + 'fnumber/fnumberdesc',
+    data: {
+      fnumberSelHw: fnumberSelHw,
+      name: getCookie('name'),
+      token: getCookie('token'),
+    },
+    type: 'post',
+    success: function(rs){
+      if(rs.data && rs.data.length>0) {            
+        $("#fnumberDescHw").val(rs.data[0].fnumber_desc)//
+      }
+    }
+  });
+}    
+
 function doUpload() {//上传文件函数
   var formData = new FormData($( "#uploadForm" )[0]);  
   var token = getCookie('token');

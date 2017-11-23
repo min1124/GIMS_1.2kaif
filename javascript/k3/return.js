@@ -141,6 +141,7 @@ function index(info){ //初始化页面
 			    "ordering": true,
 			    "info": true,
 			    "autoWidth": false,
+			    "oLanguage": language, 
 			    'dom': 'T<"clear">lfrtip',
 			    "tableTools": {
 		            "sSwfPath": "../../plugins/datatables/extensions/TableTools/swf/copy_csv_xls_pdf.swf",

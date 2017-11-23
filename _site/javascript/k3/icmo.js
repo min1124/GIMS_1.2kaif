@@ -1,14 +1,12 @@
-  var table
-  var table1
-  var table2
-  var token
-  var name
-  var type = 'icmo'
-  jQuery.support.cors = true;
-  $(function () {
+jQuery.support.cors = true;
+var table
+var table1
+var table2
+var type = 'icmo'
+$(function () {
   var url = ip+"icmo/index"
-  token = getCookie('token');
-  name = getCookie('name');
+  var token = getCookie('token');
+  var name = getCookie('name');
   table = $('#example').DataTable({
       "Destroy":true,
       "paging": true,
@@ -277,10 +275,8 @@
     }
   })
   $(document).on("dblclick","#example tbody tr",function() {
-    
       var a=$(this).children('td').eq(1).text();
       form(a)
-    
   });
   $("#review").click(function(){//任务制造单/委外制造单工程师审核
     if($('#gcs').val()==""){
@@ -575,6 +571,9 @@ function form(sql){//弹出model
   $("#zdr").val('')//制单人赋值
   $("#gcs").val('')//制单人赋值
   $("#pzgcs").val('')//制单人赋值-----------------
+
+  var token = getCookie('token');
+  var name = getCookie('name');
 
   var rowset 
   if(type=="icmo"){

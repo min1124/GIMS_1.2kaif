@@ -1,0 +1,37 @@
+---
+layout: default
+---
+<style>
+  th, td { white-space: nowrap; }
+  .selected{
+  background-color: #acbad4; 
+  }
+</style>
+
+<section class="content" >
+	<div id="myTabContent" class="tab-content" style="display: inline;">
+		<div class="tab-pane fade in active" id="order">
+			<div class="box" >
+				<div class="box-header">
+                	<h3 class="box-title">关键物料BOM信息表</h3>
+            	</div>
+				<div class="box-body" style="height: 600px;overflow:scroll;" >
+					<div class="col-xs-12">
+						<table id="example" class="table table-bordered " >
+							<thead>
+								<tr>
+									<th>父阶物料编码</th>
+									<th>子阶物料编码</th>
+									<th>父阶基础用量</th>
+									<th>子阶用量</th>
+									<th>替代组</th>
+								</tr>
+							</thead> 
+						</table>
+					</div>
+				</div>
+ 			</div>
+		</div>
+	</div>
+</section>
+<script src="../../javascript/k3/fnumber_bomkey.js"></script>

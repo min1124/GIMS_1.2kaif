@@ -6,7 +6,7 @@ layout: default
 		<div class="col-xs-12">  
 			<div class="box" >
 				<div class="box-header">
-					<h3 class="box-title">产品代码信息库
+					<h3 class="box-title">华为产品代码信息库
 </h3>
 				</div>
 				<div class="box-body">
@@ -19,9 +19,14 @@ layout: default
 								<th>客户代码</th>
 								<th>客户名称</th>
 								<th>产品代码</th>
+								<th>产品代码(提供华为)</th>
 								<th>产品型号</th>
 								<th>客户产品代码</th>
+								<th>是否为PCN通过的方案</th>
+								<th>PCN通过时间</th>
 								<th>客户产品型号</th>
+								<th>产品描述(提供华为)</th>
+								<th>关键物料代码</th>
 								<th>产品线</th>
 								<th>产品状态</th>
 								<th>是否可发货</th>
@@ -51,7 +56,7 @@ layout: default
 	</div>
 </section> 
 
-<!-- Modal new -->
+<!-- Modal new 新增-->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" >
 	<div class="modal-dialog" role="document" style="width: 900px">
 		<div class="modal-content" >
@@ -136,6 +141,7 @@ layout: default
 						</td>
 						<td style="text-align:left;">
 							<select style="width: 100%" id="productStatus">
+								<option value="转产">转产</option>
                   				<option value="EVT">EVT</option>
                   				<option value="DVT">DVT</option>
                   				<option value="PVT">PVT</option>
@@ -143,6 +149,23 @@ layout: default
                 			</select>
 						</td>
 					</tr>
+<!-- 					<tr>
+						<td style="text-align:right;">
+							<span>是否为PCN通过的方案：</span>
+						</td>
+						<td style="text-align:left;">
+							<select style="width: 100%" id="pcnFlag">
+                  				<option value="Y">Y</option>
+                  				<option value="N">N</option>
+                			</select>
+						</td>
+						<td style="text-align:right;">
+							<span>PCN通过时间：</span>
+						</td>
+						<td style="text-align:left;">
+							<input style="width:100%" type="date" id="pcnDate">
+						</td>
+					</tr> -->
 					<tr>
 						<td style="text-align:right;">
 							<span>是否可发货：</span>
@@ -158,6 +181,7 @@ layout: default
 						</td>
 						<td style="text-align:left;">
 							<select style="width: 100%" id="costPriority">
+								<option value=""></option>
                   				<option value="首选">1.首选</option>
                   				<option value="次选">2.次选</option>
                 			</select>
@@ -200,7 +224,7 @@ layout: default
 </div>
 <!-- Modal -->
 
-<!-- Modal update -->
+<!-- Modal update 修改-->
 <div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" >
     <div class="modal-dialog" role="document" style="width: 900px">
         <div class="modal-content" >
@@ -213,6 +237,12 @@ layout: default
             		<tr>
             			<td style="width: 25%;text-align:left;">
 							<input style="width:100%" type="text" id="ID1" hidden="hidden">
+						</td>
+						<td style="width: 25%;text-align:left;">
+							<input style="width:100%" type="text" id="fnumberdesc1" hidden="hidden">
+						</td>
+						<td style="width: 25%;text-align:left;">
+							<input style="width:100%" type="text" id="keyfnumbers1" hidden="hidden">
 						</td>
 					</tr>
             		<tr>
@@ -259,6 +289,20 @@ layout: default
 					</tr>
 					<tr>
 						<td style="text-align:right;">
+							<span>客户产品代码：</span>
+						</td>
+						<td style="text-align:left;">
+							<input style="width:100%" type="text" id="customerNumber1" disabled="disabled">
+						</td>
+						<td style="text-align:right;">
+							<span>客户产品型号：</span>
+						</td>
+						<td style="text-align:left;">
+							<input style="width:100%" type="text" id="productModel1" disabled="disabled">
+						</td>
+					</tr>
+					<tr>
+						<td style="text-align:right;">
 							<span>产品线：</span>
 						</td>
 						<td style="text-align:left;">
@@ -269,11 +313,29 @@ layout: default
 						</td>
 						<td style="text-align:left;">
 							<select style="width: 100%" id="productStatus1">
+								<option value="转产">转产</option>
                   				<option value="EVT">EVT</option>
                   				<option value="DVT">DVT</option>
                   				<option value="PVT">PVT</option>
                   				<option value="MVT">MVT</option>
                 			</select>
+						</td>
+					</tr>
+					<tr>
+						<td style="text-align:right;">
+							<span>是否为PCN通过的方案：</span>
+						</td>
+						<td style="text-align:left;">
+							<select style="width: 100%" id="pcnFlag1">
+                  				<option value="Y">Y</option>
+                  				<option value="N">N</option>
+                			</select>
+						</td>
+						<td style="text-align:right;">
+							<span>PCN通过时间：</span>
+						</td>
+						<td style="text-align:left;">
+							<input style="width:100%" type="date" id="pcnDate1">
 						</td>
 					</tr>
 					<tr>
@@ -291,6 +353,7 @@ layout: default
 						</td>
 						<td style="text-align:left;">
 							<select style="width: 100%" id="costPriority1">
+								<option value=""></option>
                   				<option value="首选">1.首选</option>
                   				<option value="次选">2.次选</option>
                 			</select>
@@ -326,6 +389,89 @@ layout: default
             	<div class="col-xs-12">
 					<button type="button" class="btn btn-default " data-dismiss="modal">退出</button>
 					<button id="updSave" type="button" class="btn btn-primary pull-left">保存</button>
+				</div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal -->
+<!-- Modal update fnumber_hw 选择提供华为产品代码-->
+<div class="modal fade" id="myModalHw" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" >
+    <div class="modal-dialog" role="document" style="width: 900px">
+        <div class="modal-content" >
+            <div class="modal-header">
+              	<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              	<h2 class="modal-title" id="myModalLabel" align="center">提供华为产品代码选择</h2>
+            </div>
+            <div class="modal-body">
+            	<table>
+            		<tr>
+            			<td style="width: 25%;text-align:left;">
+							<input style="width:100%" type="text" id="IdHw" hidden="hidden">
+						</td>
+						<td style="width: 25%;text-align:left;">
+							<input style="width:100%" type="text" id="productModelHw" hidden="hidden">
+						</td>
+					</tr>
+					<tr>
+						<td style="text-align:right;">
+							<span>客户产品代码：</span>
+						</td>
+            			<td style="width: 25%;text-align:left;">
+							<input style="width:100%" type="text" id="customerNumberHw" disabled="disabled">
+						</td>
+						<td style="width: 25%;text-align:right;">
+							<span>产品代码：</span>
+						</td>
+						<td style="width: 25%;text-align:left;">
+							<input style="width:100%" type="text" id="fnumberHw" disabled="disabled">
+						</td>
+					</tr>
+					<tr>
+						<td style="text-align:right;">
+							<span>产品代码(提供华为)：</span>
+						</td>
+            			<td style="width: 25%;text-align:left;">
+							<select id="fnumberSelHw" name="fnumberSelHw" style="width: 100%">
+							</select>
+						</td>
+						<td style="width: 25%;text-align:right;">
+							<span>产品描述：</span>
+						</td>
+						<td style="width: 25%;text-align:left;">
+							<input style="width:100%" type="text" id="fnumberDescHw" disabled="disabled">
+						</td>
+					</tr>
+					<tr>
+						<td style="text-align:right;">
+							<span>是否为PCN通过的方案：</span>
+						</td>
+						<td style="text-align:left;">
+                			<input style="width:100%" type="text" id="pcnFlagHw" disabled="disabled">
+						</td>
+						<td style="text-align:right;">
+							<span>是否可发货：</span>
+						</td>
+						<td style="text-align:left;">
+							<input style="width:100%" type="text" id="shippingOrNotHw" disabled="disabled">
+						</td>
+					</tr>
+					<tr>
+						<td style="text-align:right;">
+							<span>关键物料代码：</span>
+						</td>
+						<td colspan="3" style="text-align:left;">
+							<table id="exampleBom" class="table table-bordered " style="table-layout:fixed;">
+                          		<tbody></tbody>
+                        	</table>
+						</td>
+					</tr>
+				</table>
+            </div>
+            <div class="modal-footer">
+            	<div class="col-xs-12">
+					<button type="button" class="btn btn-default " data-dismiss="modal">退出</button>
+					<button id="updSaveHw" type="button" class="btn btn-primary pull-left">保存</button>
 				</div>
             </div>
         </div>
@@ -392,6 +538,20 @@ layout: default
 					</tr>
 					<tr>
 						<td style="text-align:right;">
+							<span>客户产品代码：</span>
+						</td>
+						<td style="text-align:left;">
+							<input style="width:100%" type="text" id="customerNumber2" disabled="disabled">
+						</td>
+						<td style="text-align:right;">
+							<span>客户产品型号：</span>
+						</td>
+						<td style="text-align:left;">
+							<input style="width:100%" type="text" id="productModel2" disabled="disabled">
+						</td>
+					</tr>
+					<tr>
+						<td style="text-align:right;">
 							<span>产品线：</span>
 						</td>
 						<td style="text-align:left;">
@@ -402,6 +562,20 @@ layout: default
 						</td>
 						<td style="text-align:left;">
 							<input style="width: 100%" type="text" id="productStatus2" disabled="disabled">
+						</td>
+					</tr>
+					<tr>
+						<td style="text-align:right;">
+							<span>是否为PCN通过的方案：</span>
+						</td>
+						<td style="text-align:left;">
+							<input style="width: 100%" type="text" id="pcnFlag2" disabled="disabled">
+						</td>
+						<td style="text-align:right;">
+							<span>PCN通过时间：</span>
+						</td>
+						<td style="text-align:left;">
+							<input style="width:100%" type="date" id="pcnDate2" disabled="disabled">
 						</td>
 					</tr>
 					<tr>
@@ -453,7 +627,6 @@ layout: default
             <div class="modal-footer">
             	<div class="col-xs-12">
 					<button type="button" class="btn btn-default " data-dismiss="modal">退出</button>
-					<button id="updSave" type="button" class="btn btn-primary pull-left">保存</button>
 				</div>
             </div>
         </div>

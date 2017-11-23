@@ -33,15 +33,15 @@
             <span class="glyphicon glyphicon-list-alt form-control-feedback"></span>
           </div> -->
           <div class="form-group has-feedback">
-            <input type="password" class="form-control" placeholder="Old Password" id="oldpassword">
+            <input type="password" class="form-control" placeholder="原密码" id="oldpassword">
             <span class="glyphicon glyphicon-log-in form-control-feedback"></span>
           </div>
           <div class="form-group has-feedback">
-            <input type="password" class="form-control" placeholder="New Password" id="newpassword">
+            <input type="password" class="form-control" placeholder="新密码" id="newpassword">
             <span class="glyphicon glyphicon-lock form-control-feedback"></span>
           </div>
           <div class="form-group has-feedback">
-            <input type="password" class="form-control" placeholder="Retype password" id="repassword">
+            <input type="password" class="form-control" placeholder="确认密码" id="repassword">
             <span class="glyphicon glyphicon-log-in form-control-feedback"></span>
           </div>
           <div class="row">
@@ -65,6 +65,7 @@
     <script src="bootstrap/js/bootstrap.min.js"></script>
     <!-- iCheck -->
     <!-- <script src="plugins/iCheck/icheck.min.js"></script> -->
+    <script src="javascript/gims_public.js"></script>
     <script>
       $(function () {
         $('#pswupdate').click(function(){
@@ -76,9 +77,8 @@
 				alert("请输入完整信息")
 			}else{
 				if(newpsw==$('#repassword').val()){
-					$.ajax({  //获得部门
-			            'url':'http://192.168.7.82:3001/user/pswupdate',
-			            // 'url':'http://localhost:3000/user/pswupdate',   
+					$.ajax({  //获得部门                  
+			            'url':ip + 'user/pswupdate',
 			            'type': 'post',
 			            'data':{
 			            	name:name,

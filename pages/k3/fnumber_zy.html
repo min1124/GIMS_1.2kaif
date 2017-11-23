@@ -1,0 +1,494 @@
+---
+layout: default
+--- 
+<section class="content">
+	<div class="row">
+		<div class="col-xs-12">  
+			<div class="box" >
+				<div class="box-header">
+					<h3 class="box-title">产品代码信息库
+</h3>
+				</div>
+				<div class="box-body">
+					<table id="example" class="table table-bordered table-striped">
+						<thead>
+							<tr>
+								<th>ID</th>
+								<th>来源</th>
+								<th>来源编号</th>
+								<th>客户代码</th>
+								<th>客户名称</th>
+								<th>产品代码</th>
+								<th>产品型号</th>
+								<th>客户产品代码</th>
+								<th>客户产品型号</th>
+								<th>产品线</th>
+								<th>产品状态</th>
+								<th>是否可发货</th>
+								<th>成本优先级</th>
+								<th>新增日期</th>
+								<th>修订内容</th>
+								<th>库存消耗截止日期</th>
+								<th>备注</th>
+							</tr>
+						</thead>
+					</table>
+				</div>
+<!-- 				<div class="box-footer">
+					<div class="col-xs-4">
+						<form id= "uploadForm">
+							<div class="col-xs-7">
+								<input type="file" name="file" accept=".xls,.xlsx" style="display: inline;">
+							</div> 
+							<div class="col-xs-5">
+								<input type="button" value="上传" class="btn btn-info" onclick="doUpload()" style="display: inline;"/> 
+							</div> 
+						</form>
+					</div>
+				</div>
+ -->			</div>
+		</div>
+	</div>
+</section> 
+
+<!-- Modal new -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" >
+	<div class="modal-dialog" role="document" style="width: 900px">
+		<div class="modal-content" >
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h2 class="modal-title" id="myModalLabel" align="center">产品代码新增</h2>
+			</div>
+			<div class="modal-body">
+				<table>
+					<tr>
+						<td style="width: 25%;text-align:right;">
+							<span>来源：</span>
+						</td>
+						<td style="width: 25%;text-align:left;">
+							<select style="width: 100%" id="source">
+                  				<option value="合同评审">合同评审</option>
+                  				<option value="EC">EC</option>
+                  				<option value="PR">PR</option>
+                  				<option value="会议决议">会议决议</option>
+                			</select>
+						</td>
+						<td style="width: 25%;text-align:right;">
+							<span>来源编号：</span>
+						</td>
+						<td style="width: 25%;text-align:left;">
+							<input style="width:100%" type="text" id="sourceCode">
+						</td>
+					</tr>
+					<tr>
+						<td style="width: 25%;text-align:right;">
+							<span>客户代码：</span>
+						</td>
+						<td style="width: 25%;text-align:left;">
+                			<input style="width:100%" type="text" id="customerCode" disabled="disabled">               
+						</td>
+						<td style="width: 25%;text-align:right;">
+							<span>客户名称：</span>
+						</td>
+						<td style="width: 25%;text-align:left;">
+							<input style="width:100%" type="text" id="customerName" disabled="disabled">
+						</td>
+					</tr>
+					<tr>
+						<td style="width: 25%;text-align:right;">
+							<span>产品代码：</span>
+						</td>
+						<td style="width: 25%;text-align:left;">
+							<select id="fnumber" name="fnumber" class="form-control" data-live-search = "true" style="display:inline;width:100%;height: 100%">
+                			</select>   
+						</td>
+						<td style="width: 25%;text-align:right;">
+							<span>产品型号：</span>
+						</td>
+						<td style="width: 25%;text-align:left;">
+							<input style="width:100%" type="text" id="productModelZy" disabled="disabled">
+						</td>
+					</tr>
+					<tr>
+						<td style="text-align:right;">
+							<span>客户产品代码：</span>
+						</td>
+						<td style="text-align:left;">
+							<input style="width:100%" type="text" id="customerNumber" disabled="disabled">
+						</td>
+						<td style="text-align:right;">
+							<span>客户产品型号：</span>
+						</td>
+						<td style="text-align:left;">
+							<input style="width:100%" type="text" id="productModel" disabled="disabled">
+						</td>
+					</tr>
+					<tr>
+						<td style="text-align:right;">
+							<span>产品线：</span>
+						</td>
+						<td style="text-align:left;">
+							<select id="productLine" name="productLine" class="form-control" style="display:inline;width: 100%;height: 100%">
+                			</select>
+						</td>
+						<td style="text-align:right;">
+							<span>产品状态：</span>
+						</td>
+						<td style="text-align:left;">
+							<select style="width: 100%" id="productStatus">
+								<option value="转产">转产</option>
+                  				<option value="EVT">EVT</option>
+                  				<option value="DVT">DVT</option>
+                  				<option value="PVT">PVT</option>
+                  				<option value="MVT">MVT</option>
+                			</select>
+						</td>
+					</tr>
+					<tr>
+						<td style="text-align:right;">
+							<span>是否可发货：</span>
+						</td>
+						<td style="text-align:left;">
+							<select style="width: 100%" id="shippingOrNot">
+                  				<option value="Y">Y</option>
+                  				<option value="N">N</option>
+                			</select>
+						</td>
+						<td style="text-align:right;">
+							<span>成本优先级：</span>
+						</td>
+						<td style="text-align:left;">
+							<select style="width: 100%" id="costPriority">
+								<option value=""></option>
+                  				<option value="首选">1.首选</option>
+                  				<option value="次选">2.次选</option>
+                			</select>
+						</td>
+					</tr>
+					<tr>
+						<td style="text-align:right;">
+							<span>修订内容：</span>
+						</td>
+						<td colspan="3" style="text-align:left;">
+							<textarea rows="5" cols="80%" id="f11"></textarea>
+						</td>
+					</tr>
+					<tr>
+						<td style="text-align:right;">
+							<span>库存消耗截止日期：</span>
+						</td>
+						<td style="text-align:left;">
+							<input style="width:100%" type="date" id="kcxhjzDate">
+						</td>
+					</tr>
+					<tr>
+						<td style="text-align:right;">
+							<span>备注：</span>
+						</td>
+						<td colspan="3" style="text-align:left;">
+							<textarea rows="2" cols="80%" id="note"></textarea>
+						</td>
+					</tr>
+				</table>
+			</div>
+			<div class="modal-footer">
+				<div class="col-xs-12">
+					<button type="button" class="btn btn-default " data-dismiss="modal">退出</button>
+					<button id="save" type="button" class="btn btn-primary pull-left">保存</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- Modal -->
+
+<!-- Modal update -->
+<div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" >
+    <div class="modal-dialog" role="document" style="width: 900px">
+        <div class="modal-content" >
+            <div class="modal-header">
+              	<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              	<h2 class="modal-title" id="myModalLabel" align="center">产品代码修改</h2>
+            </div>
+            <div class="modal-body">
+            	<table>
+            		<tr>
+            			<td style="width: 25%;text-align:left;">
+							<input style="width:100%" type="text" id="ID1" hidden="hidden">
+						</td>
+					</tr>
+            		<tr>
+						<td style="width: 25%;text-align:right;">
+							<span>来源：</span>
+						</td>
+						<td style="width: 25%;text-align:left;">
+							<input style="width:100%" type="text" id="source1" disabled="disabled">
+						</td>
+						<td style="width: 25%;text-align:right;">
+							<span style="">来源编号：</span>
+						</td>
+						<td style="width: 25%;text-align:left;">
+							<input style="width:100%" type="text" id="sourceCode1" disabled="disabled">
+						</td>
+					</tr>
+					<tr>
+						<td style="width: 25%;text-align:right;">
+							<span>客户代码：</span>
+						</td>
+						<td style="width: 25%;text-align:left;">
+                			<input style="width:100%" type="text" id="customerCode1" disabled="disabled">               
+						</td>
+						<td style="width: 25%;text-align:right;">
+							<span>客户名称：</span>
+						</td>
+						<td style="width: 25%;text-align:left;">
+							<input style="width:100%" type="text" id="customerName1" disabled="disabled">
+						</td>
+					</tr>
+					<tr>
+						<td style="width: 25%;text-align:right;">
+							<span>产品代码：</span>
+						</td>
+						<td style="width: 25%;text-align:left;">
+							<input style="width:100%" type="text" id="fnumber1" disabled="disabled">
+						</td>
+						<td style="width: 25%;text-align:right;">
+							<span>产品型号：</span>
+						</td>
+						<td style="width: 25%;text-align:left;">
+							<input style="width:100%" type="text" id="productModelZy1" disabled="disabled">
+						</td>
+					</tr>
+					<tr>
+						<td style="text-align:right;">
+							<span>客户产品代码：</span>
+						</td>
+						<td style="text-align:left;">
+							<input style="width:100%" type="text" id="customerNumber1" disabled="disabled">
+						</td>
+						<td style="text-align:right;">
+							<span>客户产品型号：</span>
+						</td>
+						<td style="text-align:left;">
+							<input style="width:100%" type="text" id="productModel1" disabled="disabled">
+						</td>
+					</tr>
+					<tr>
+						<td style="text-align:right;">
+							<span>产品线：</span>
+						</td>
+						<td style="text-align:left;">
+							<input style="width:100%" type="text" id="productLine1" disabled="disabled">
+						</td>
+						<td style="text-align:right;">
+							<span>产品状态：</span>
+						</td>
+						<td style="text-align:left;">
+							<select style="width: 100%" id="productStatus1">
+								<option value="转产">转产</option>
+                  				<option value="EVT">EVT</option>
+                  				<option value="DVT">DVT</option>
+                  				<option value="PVT">PVT</option>
+                  				<option value="MVT">MVT</option>
+                			</select>
+						</td>
+					</tr>
+					<tr>
+						<td style="text-align:right;">
+							<span>是否可发货：</span>
+						</td>
+						<td style="text-align:left;">
+							<select style="width: 100%" id="shippingOrNot1">
+                  				<option value="Y">Y</option>
+                  				<option value="N">N</option>
+                			</select>
+						</td>
+						<td style="text-align:right;">
+							<span>成本优先级：</span>
+						</td>
+						<td style="text-align:left;">
+							<select style="width: 100%" id="costPriority1">
+								<option value=""></option>
+                  				<option value="首选">1.首选</option>
+                  				<option value="次选">2.次选</option>
+                			</select>
+						</td>
+					</tr>
+ 					<tr>
+						<td style="text-align:right;">
+							<span>修订内容：</span>
+						</td>
+						<td colspan="3" style="text-align:left;">
+							<textarea rows="5" cols="80%" id="f111"></textarea>
+						</td>
+					</tr>
+					<tr>
+						<td style="text-align:right;">
+							<span>库存消耗截止日期：</span>
+						</td>
+						<td style="text-align:left;">
+							<input style="width:100%" type="date" id="kcxhjzDate1">
+						</td>
+					</tr>
+					<tr>
+						<td style="text-align:right;">
+							<span>备注：</span>
+						</td>
+						<td colspan="3" style="text-align:left;">
+							<textarea rows="2" cols="80%" id="note1"></textarea>
+						</td>
+					</tr>
+				</table>
+            </div>
+            <div class="modal-footer">
+            	<div class="col-xs-12">
+					<button type="button" class="btn btn-default " data-dismiss="modal">退出</button>
+					<button id="updSave" type="button" class="btn btn-primary pull-left">保存</button>
+				</div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal -->
+<!-- Modal 修订历史 -->
+<div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" >
+    <div class="modal-dialog" role="document" style="width: 900px">
+        <div class="modal-content" >
+            <div class="modal-header">
+              	<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              	<h2 class="modal-title" id="myModalLabel" align="center">产品代码修订历史</h2>
+            </div>
+            <div class="modal-body">
+            	<h4 class="modal-title" id="myModalLabel" align="left">当前版本</h4>
+            	<table>
+            		<tr>
+            			<td style="width: 25%;text-align:left;">
+							<input style="width: 100%" type="text" id="ID2" hidden="hidden">
+						</td>
+					</tr>
+            		<tr>
+						<td style="width: 25%;text-align:right;">
+							<span>来源：</span>
+						</td>
+						<td style="width: 25%;text-align:left;">
+							<input style="width: 100%" type="text" id="source2" disabled="disabled">
+						</td>
+						<td style="width: 25%;text-align:right;">
+							<span style="">来源编号：</span>
+						</td>
+						<td style="width: 25%;text-align:left;">
+							<input style="width: 100%" type="text" id="sourceCode2" disabled="disabled">
+						</td>
+					</tr>
+					<tr>
+						<td style="width: 25%;text-align:right;">
+							<span>客户代码：</span>
+						</td>
+						<td style="width: 25%;text-align:left;">
+                			<input style="width: 100%" type="text" id="customerCode2" disabled="disabled">               
+						</td>
+						<td style="width: 25%;text-align:right;">
+							<span>客户名称：</span>
+						</td>
+						<td style="width: 25%;text-align:left;">
+							<input style="width: 100%" type="text" id="customerName2" disabled="disabled">
+						</td>
+					</tr>
+					<tr>
+						<td style="width: 25%;text-align:right;">
+							<span>产品代码：</span>
+						</td>
+						<td style="width: 25%;text-align:left;">
+							<input style="width: 100%" type="text" id="fnumber2" disabled="disabled">
+						</td>
+						<td style="width: 25%;text-align:right;">
+							<span>产品型号：</span>
+						</td>
+						<td style="width: 25%;text-align:left;">
+							<input style="width: 100%" type="text" id="productModelZy2" disabled="disabled">
+						</td>
+					</tr>
+					<tr>
+						<td style="text-align:right;">
+							<span>客户产品代码：</span>
+						</td>
+						<td style="text-align:left;">
+							<input style="width:100%" type="text" id="customerNumber2" disabled="disabled">
+						</td>
+						<td style="text-align:right;">
+							<span>客户产品型号：</span>
+						</td>
+						<td style="text-align:left;">
+							<input style="width:100%" type="text" id="productModel2" disabled="disabled">
+						</td>
+					</tr>
+					<tr>
+						<td style="text-align:right;">
+							<span>产品线：</span>
+						</td>
+						<td style="text-align:left;">
+							<input style="width: 100%" type="text" id="productLine2" disabled="disabled">
+						</td>
+						<td style="text-align:right;">
+							<span>产品状态：</span>
+						</td>
+						<td style="text-align:left;">
+							<input style="width: 100%" type="text" id="productStatus2" disabled="disabled">
+						</td>
+					</tr>
+					<tr>
+						<td style="text-align:right;">
+							<span>是否可发货：</span>
+						</td>
+						<td style="text-align:left;">
+							<input style="width: 100%" type="text" id="shippingOrNot2" disabled="disabled">
+						</td>
+						<td style="text-align:right;">
+							<span>成本优先级：</span>
+						</td>
+						<td style="text-align:left;">
+							<input style="width: 100%" type="text" id="costPriority2" disabled="disabled">
+						</td>
+					</tr>
+ 					<tr>
+						<td style="text-align:right;">
+							<span>修订内容：</span>
+						</td>
+						<td colspan="3" style="text-align:left;">
+							<textarea rows="2" cols="80%" id="f112" disabled="disabled"></textarea>
+						</td>
+					</tr>
+					<tr>
+						<td style="text-align:right;">
+							<span>库存消耗截止日期：</span>
+						</td>
+						<td style="text-align:left;">
+							<input style="width: 100%" type="date" id="kcxhjzDate2" disabled="disabled">
+						</td>
+					</tr>
+					<tr>
+						<td style="text-align:right;">
+							<span>备注：</span>
+						</td>
+						<td colspan="3" style="text-align:left;">
+							<textarea rows="2" cols="80%" id="note2" disabled="disabled"></textarea>
+						</td>
+					</tr>
+				</table>
+				<hr>
+				<h4 class="modal-title" id="myModalLabel" align="left">修订历史</h4>
+				<div class="row" style="height: 300px;overflow: scroll;">
+					<table id="exampleUpd" class="table table-bordered table-striped">
+					</table>
+ 				</div>
+            </div>
+            <div class="modal-footer">
+            	<div class="col-xs-12">
+					<button type="button" class="btn btn-default " data-dismiss="modal">退出</button>
+					<button id="updSave" type="button" class="btn btn-primary pull-left">保存</button>
+				</div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../../javascript/k3/fnumber_zy.js"></script>  

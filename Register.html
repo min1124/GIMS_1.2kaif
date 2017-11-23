@@ -46,11 +46,11 @@
             <!-- <span class="glyphicon glyphicon-envelope form-control-feedback">&nbsp;</span> -->
           </div>
           <div class="form-group has-feedback">
-            <input type="password" class="form-control" placeholder="Password" id="password">
+            <input type="password" class="form-control" placeholder="密码" id="password">
             <span class="glyphicon glyphicon-lock form-control-feedback"></span>
           </div>
           <div class="form-group has-feedback">
-            <input type="password" class="form-control" placeholder="Retype password" id="password1">
+            <input type="password" class="form-control" placeholder="确认密码" id="password1">
             <span class="glyphicon glyphicon-log-in form-control-feedback"></span>
           </div>
           <div class="row">
@@ -74,54 +74,56 @@
     <script src="bootstrap/js/bootstrap.min.js"></script>
     <!-- iCheck -->
     <!-- <script src="plugins/iCheck/icheck.min.js"></script> -->
+    <script src="javascript/gims_public.js"></script>
     <script>
       $(function () {
+
         $('#register').click(function(){
         	var name = $("#name").val();
-          	var dept = $('#dept').val();
-          	var work_no = $('#work_no').val();
-          	var password = $('#password').val();
-          	if(name==""||dept==""||work_no==""||password==""){
-				alert("请输入完整信息")
-			}else{
-				if(password==$('#password1').val()){
-					$.ajax({  //获得部门
-			            'url':'http://192.168.7.82:3000/gimuser/new',   
-			            'type': 'post',
-			            'data':{
-			            	name:name,
-			            	dept:dept,
-			            	password:password,
-			            	work_no: work_no,
-			            },
-			            'error': function(rs){
-			            	alert("网络错误，请刷新页面")
-			            },
-			            'success': function(rs){
-							window.location.href = "../login.html"
-			            }
+          var dept = $('#dept').val();
+          var work_no = $('#work_no').val();
+          var password = $('#password').val();
+          if(name==""||dept==""||work_no==""||password==""){
+				    alert("请输入完整信息")
+			    }else{
+				    if(password==$('#password1').val()){
+					    $.ajax({  //获得部门
+			          'url':ip+'gimuser/new',   
+			          'type': 'post',
+			          'data':{
+			            name:name,
+			            dept:dept,
+			            password:password,
+			            work_no: work_no,
+			          },
+			          'error': function(rs){
+			            alert("网络错误，请刷新页面")
+			          },
+			          'success': function(rs){
+                  alert("注册成功！");
+							    window.location.href = "../login.html"
+			          }
 			        });
-				}else{
-					alert('密码不一致，请重新输入！')
-				}
-			}
-        });
-        $.ajax({  //获得部门
-            'url':'http://192.168.7.82:3001/reject/de',   
-            // 'url':'http://localhost:3000/reject/de', 
-            'type': 'post',
-            error: function(rs){
-            	alert("网络错误，请刷新页面")
-            },
-            'success': function(rs){
-              var select = $("#dept");
-              for(var i=0;i<rs.data.length;i++) {
-                var option = $("<option>").text(rs.data[i].FName).val(rs.data[i].FItemID);
-                select.append(option);
-              }
-            }
+				    }else{
+					    alert('密码不一致，请重新输入！')
+				    }
+			    }
         });
 
+        $.ajax({  //获得部门
+          'url':ip+'reject/de',   
+          'type': 'post',
+          error: function(rs){
+            alert("网络错误，请刷新页面")
+          },
+          'success': function(rs){
+            var select = $("#dept");
+            for(var i=0;i<rs.data.length;i++) {
+              var option = $("<option>").text(rs.data[i].FName).val(rs.data[i].FItemID);
+              select.append(option);
+            }
+          }
+        });
       });
     </script>
   </body>

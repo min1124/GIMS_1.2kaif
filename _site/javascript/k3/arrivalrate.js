@@ -1,6 +1,5 @@
-var token 
-var name 
-var table
+jQuery.support.cors = true;
+var table;
 var a_1 = 0//第一周需求及时率 
 var a_2 = 0//第一周采购及时率
 var b_1 = 0//第二周需求及时率 
@@ -11,8 +10,8 @@ var d_1 = 0//第四周需求及时率
 var d_2 = 0//第四周采购及时率
 var excel_id //记录页面所属
 $(function(){
-	token = getCookie('token');
-	name = getCookie('name');
+	var token = getCookie('token');
+	var name = getCookie('name');
 	index()
 	$('#select_time').change(function(){
 		var id = $("#select_time").val();
@@ -20,7 +19,6 @@ $(function(){
 		index(id);
 	})
 	$(document).on("click","#delete",function(){
-		
     	if(confirm("确定删除吗？")){
     		$.ajax({
     			url: ip + 'arrival/delete',
@@ -44,6 +42,8 @@ $(function(){
 })
 
 function index(id){
+	var token = getCookie('token');
+	var name = getCookie('name');
 	$.ajax({
 		url: ip + 'arrival/index',
 		type: 'POST',
@@ -91,6 +91,7 @@ function index(id){
 			    "lengthChange": false,
 			    "iDisplayLength":9,
 			    "searching": true,
+			    "oLanguage": language, 
 			    // "ordering": true,
 			    'dom': 'T<"clear">lfrtip',
 			    "tableTools": {

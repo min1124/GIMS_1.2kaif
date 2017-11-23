@@ -255,10 +255,10 @@ $(function(){
                 $(this).addClass('selected');
             }
         }else{
-                var ke = $(".selected").children('td').find('.k3')
-                ke.empty()
-                table.$('tr.selected').removeClass('selected');
-                $(this).addClass('selected');
+            var ke = $(".selected").children('td').find('.k3')
+            ke.empty()
+            table.$('tr.selected').removeClass('selected');
+            $(this).addClass('selected');
         }
         // alert($(this).children('td').eq(3).text())
         var customer_number=$(this).children('td').eq(7).text();

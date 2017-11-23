@@ -1,11 +1,9 @@
 jQuery.support.cors = true;
-var table
-var token 
-var name 
-var table1
+var table;
+var table1;
 $(function(){
-	token = getCookie('token');
-	name = getCookie('name');
+	var token = getCookie('token');
+	var name = getCookie('name');
 	table = $('#example').DataTable({
 	    "paging": true,
 	    "lengthChange": false,
@@ -58,6 +56,9 @@ $(function(){
 });
 
 function delivery(number){
+	var token = getCookie('token');
+	var name = getCookie('name');
+	
 	var date = new Date();
     var year=date.getFullYear(); 
     var month = date.getMonth() + 1 ;
@@ -189,8 +190,3 @@ function initComplete(){
 	  $('#ToolTables_example1_0').children('div').children('embed').css('width','69')
 	});
 }
-
-
-
-
-
